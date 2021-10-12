@@ -1,8 +1,11 @@
 import React from 'react'
 
-const PageWrapper = ({ children }) => {
+import { Head } from '@layout'
+
+const PageWrapper = ({ title, children }) => {
     return (
         <>
+            <Head title={title} />
             <div>
                 <main>{children}</main>
             </div>
