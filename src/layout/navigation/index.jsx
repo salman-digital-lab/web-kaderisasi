@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { BMKAFullIcons } from '@assets'
+import { BMKAFullIcon } from '@assets'
 import { ComponentWrapper } from '@components'
 
 import Route from './route'
@@ -11,7 +11,7 @@ const Navigation = () => {
             <ComponentWrapper>
                 <div className='flex justify-between'>
                     <div className='flex items-center w-32'>
-                        <BMKAFullIcons />
+                        <BMKAFullIcon />
                     </div>
                     <div className='flex justify-center'>
                         <Route href='/'>Home</Route>
