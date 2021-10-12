@@ -1,10 +1,12 @@
 import React from 'react'
 
+import { PageWrapper } from '@layout'
+
 const index = () => {
     return (
-        <div className='py-20 text-center'>
+        <PageWrapper title='Home'>
             <h1 className='text-4xl'>hello world from tailwind</h1>
-        </div>
+        </PageWrapper>
     )
 }
 
