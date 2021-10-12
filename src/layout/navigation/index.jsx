@@ -7,7 +7,7 @@ import Route from './route'
 
 const Navigation = () => {
     return (
-        <nav className='fixed left-0 top-0 w-full p-4 bg-bmka-primary-blue'>
+        <nav className='fixed left-0 top-0 w-full py-4 bg-bmka-primary-blue'>
             <ComponentWrapper>
                 <div className='flex justify-between'>
                     <div className='flex items-center w-32'>
