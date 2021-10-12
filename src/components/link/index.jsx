@@ -4,7 +4,7 @@
 import React from 'react'
 import Link from 'next/link'
 
-const LinkComponent = ({ href, children, external }) => {
+const link = ({ href, children, external }) => {
     if (external) {
         return (
             <a href={href} target='_blank'>
@@ -20,4 +20,8 @@ const LinkComponent = ({ href, children, external }) => {
     )
 }
 
-export default LinkComponent
+link.defaultProps = {
+    href: '/',
+}
+
+export default link
