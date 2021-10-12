@@ -9,7 +9,7 @@ const ContactSection = () => {
     return (
         <div>
             <FooterTitle>Kontak</FooterTitle>
-            <div className='mt-4 flex flex-col gap-4'>
+            <div className='flex flex-col gap-4'>
                 <div className='flex items-center gap-4'>
                     <LineIcon className='w-6 h-6 text-white' />
                     <FooterText>@bmkasalman</FooterText>
