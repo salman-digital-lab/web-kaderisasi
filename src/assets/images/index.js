@@ -1,3 +1,3 @@
-import BMKALogo from './BMKALogo.png'
+import BMKALogoImages from './BMKALogo.png'
 
-export { BMKALogo }
+export { BMKALogoImages }
