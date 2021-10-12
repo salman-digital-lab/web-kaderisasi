@@ -16,4 +16,8 @@ const Head = ({ title }) => {
     )
 }
 
+Head.defautProps = {
+    title: 'Oops!',
+}
+
 export default Head
