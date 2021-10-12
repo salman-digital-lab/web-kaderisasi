@@ -1,3 +1,3 @@
-import BMKAFullIcons from './BMKAFull'
+import BMKAFullIcon from './BMKAFull'
 
-export { BMKAFullIcons }
+export { BMKAFullIcon }
