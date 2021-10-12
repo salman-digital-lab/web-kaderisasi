@@ -12,6 +12,9 @@ const Head = ({ title }) => {
             title={title}
             description={description}
             titleTemplate={titleTemplate}
+            additionalLinkTags={[
+                { rel: 'shortcut icon', href: '/assets/favicon.png' },
+            ]}
         />
     )
 }
