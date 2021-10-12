@@ -1,3 +1,4 @@
+import Head from './head'
 import PageWrapper from './pageWrapper'
 
-export { PageWrapper }
+export { Head, PageWrapper }
