@@ -6,7 +6,7 @@ const PageWrapper = ({ title, children }) => {
     return (
         <>
             <Head title={title} />
-            <div className='w-full min-h-screen max-w-screen-md mx-auto grid grid-rows-pageWrapper'>
+            <div className='w-full min-h-screen grid grid-rows-pageWrapper'>
                 <div>
                     <Navigation />
                     <main>{children}</main>
