@@ -1,5 +1,6 @@
 import Head from './head'
+import Footer from './footer'
 import Navigation from './navigation'
 import PageWrapper from './pageWrapper'
 
-export { Head, Navigation, PageWrapper }
+export { Head, Footer, Navigation, PageWrapper }
