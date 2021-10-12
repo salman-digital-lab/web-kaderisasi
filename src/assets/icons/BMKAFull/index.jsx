@@ -3,10 +3,8 @@ import React from 'react'
 const BMKAFull = () => {
     return (
         <svg
-            width='1506'
-            height='606'
-            viewBox='0 0 1506 606'
             fill='none'
+            viewBox='0 0 1506 606'
             xmlns='http://www.w3.org/2000/svg'
         >
             <g clipPath='url(#clip0)'>
