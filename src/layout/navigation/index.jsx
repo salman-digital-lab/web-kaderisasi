@@ -1,21 +1,26 @@
 import React from 'react'
-import Image from 'next/image'
 
 import { ComponentWrapper } from '@components'
+
+import Route from './route'
 
 const Navigation = () => {
     return (
         <nav className='fixed left-0 top-0 w-full py-2 px-4 bg-bmka-primary-blue'>
             <ComponentWrapper>
                 <div className='flex justify-between'>
-                    <div>
+                    <div className='flex items-center'>
                         <p>Logo Here</p>
                     </div>
-                    <div>
-                        <p>Link</p>
+                    <div className='flex justify-center'>
+                        <Route href='/'>Home</Route>
+                        <Route href='/activities'>Kegiatan</Route>
+                        <Route href='/student-care'>Ruang Curhat</Route>
+                        <Route href='/about-us'>Tentang Kami</Route>
                     </div>
-                    <div>
-                        <p>User Auth</p>
+                    <div className='flex justify-center'>
+                        <Route href='/register'>Daftar</Route>
+                        <Route href='/login'>Masuk</Route>
                     </div>
                 </div>
             </ComponentWrapper>
