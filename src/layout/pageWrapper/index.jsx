@@ -1,13 +1,17 @@
 import React from 'react'
 
-import { Head } from '@layout'
+import { Head, Footer, Navigation } from '@layout'
 
 const PageWrapper = ({ title, children }) => {
     return (
         <>
             <Head title={title} />
             <div>
-                <main>{children}</main>
+                <div>
+                    <Navigation />
+                    <main>{children}</main>
+                </div>
+                <Footer />
             </div>
         </>
     )
