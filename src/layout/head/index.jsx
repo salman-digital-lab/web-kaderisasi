@@ -5,7 +5,7 @@ const Head = ({ title }) => {
     const description = process.env.NEXT_PUBLIC_SEO_DESCRIPTION
     const titlePostfix = process.env.NEXT_PUBLIC_SEO_TITLE_POSTFIX
 
-    const titleTemplate = `%s &#124; ${titlePostfix}`
+    const titleTemplate = `%s | ${titlePostfix}`
 
     return (
         <NextSeo
