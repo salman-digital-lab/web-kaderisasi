@@ -1,4 +1,5 @@
 import Head from './head'
+import Navigation from './navigation'
 import PageWrapper from './pageWrapper'
 
-export { Head, PageWrapper }
+export { Head, Navigation, PageWrapper }
