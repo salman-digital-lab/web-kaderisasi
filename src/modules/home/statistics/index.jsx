@@ -5,7 +5,7 @@ import Box from './box'
 const Statistics = () => {
     return (
         <div
-            className='flex justify-between border-2 relative -top-1/4 rounded'
+            className='flex justify-between border-2 relative -top-1/4 rounded-xl'
             style={{
                 borderColor: '#8DBCDD',
                 backgroundColor: '#F7F5F5',
