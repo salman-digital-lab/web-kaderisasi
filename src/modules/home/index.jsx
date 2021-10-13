@@ -4,6 +4,7 @@ import { ComponentWrapper } from '@components'
 
 import Header from './header'
 import Statistics from './statistics'
+import StudentCare from './studentCare'
 
 const HomeModule = () => {
     return (
@@ -11,6 +12,7 @@ const HomeModule = () => {
             <Header />
             <ComponentWrapper>
                 <Statistics />
+                <StudentCare />
             </ComponentWrapper>
         </div>
     )
