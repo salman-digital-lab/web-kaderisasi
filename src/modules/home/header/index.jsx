@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { BMKAWelcome } from '@assets'
-import { Jumbotron } from '@components'
+import { Button, Jumbotron } from '@components'
 
 const Header = () => {
     return (
@@ -20,7 +20,22 @@ const Header = () => {
                             elit. Eu nec, in faucibus mi mauris at eros nunc
                             porta. Odio lobortis etiam.
                         </p>
-                        <div>{/*  */}</div>
+                        <div className='flex items-center gap-6'>
+                            <div>
+                                <Button type='button' variant='primary'>
+                                    Tentang BMKA
+                                </Button>
+                            </div>
+                            <div
+                                style={{ width: '2px' }}
+                                className='h-16 bg-white'
+                            />
+                            <div>
+                                <Button type='button' variant='secondary'>
+                                    Alur Kaderisasi
+                                </Button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div>
