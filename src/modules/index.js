@@ -1,3 +1,3 @@
-import { HomeModule } from '@modules'
+import HomeModule from './home'
 
 export { HomeModule }
