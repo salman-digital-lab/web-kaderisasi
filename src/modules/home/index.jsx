@@ -1,9 +1,14 @@
 import React from 'react'
 
+import { Jumbotron, ComponentWrapper } from '@components'
+
 const HomeModule = () => {
     return (
         <div>
-            <p>testing</p>
+            <Jumbotron />
+            <ComponentWrapper>
+                <p>test</p>
+            </ComponentWrapper>
         </div>
     )
 }
