@@ -1,11 +1,13 @@
 import React from 'react'
 
-import { Jumbotron, ComponentWrapper } from '@components'
+import { ComponentWrapper } from '@components'
+
+import Header from './header'
 
 const HomeModule = () => {
     return (
         <div>
-            <Jumbotron />
+            <Header />
             <ComponentWrapper>
                 <p>test</p>
             </ComponentWrapper>
