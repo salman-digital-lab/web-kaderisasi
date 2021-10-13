@@ -1,11 +1,12 @@
 import React from 'react'
 
+import { HomeModule } from '@modules'
 import { PageWrapper } from '@layout'
 
 const index = () => {
     return (
         <PageWrapper title='Home'>
-            <h1 className='text-4xl'>hello world from tailwind</h1>
+            <HomeModule />
         </PageWrapper>
     )
 }
