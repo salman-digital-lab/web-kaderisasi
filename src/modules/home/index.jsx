@@ -3,13 +3,14 @@ import React from 'react'
 import { ComponentWrapper } from '@components'
 
 import Header from './header'
+import Statistics from './statistics'
 
 const HomeModule = () => {
     return (
         <div>
             <Header />
             <ComponentWrapper>
-                <p>test</p>
+                <Statistics />
             </ComponentWrapper>
         </div>
     )
