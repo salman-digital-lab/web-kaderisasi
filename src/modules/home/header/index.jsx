@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { BMKAWelcome } from '@assets'
-import { Button, Jumbotron } from '@components'
+import { Link, Button, Jumbotron } from '@components'
 
 const Header = () => {
     return (
@@ -22,18 +22,22 @@ const Header = () => {
                         </p>
                         <div className='flex items-center gap-6'>
                             <div>
-                                <Button type='button' variant='primary'>
-                                    Tentang BMKA
-                                </Button>
+                                <Link href='/about-us'>
+                                    <Button type='button' variant='primary'>
+                                        Tentang BMKA
+                                    </Button>
+                                </Link>
                             </div>
                             <div
                                 style={{ width: '2px' }}
                                 className='h-16 bg-white'
                             />
                             <div>
-                                <Button type='button' variant='secondary'>
-                                    Alur Kaderisasi
-                                </Button>
+                                <Link href='/regeneration-flow'>
+                                    <Button type='button' variant='secondary'>
+                                        Alur Kaderisasi
+                                    </Button>
+                                </Link>
                             </div>
                         </div>
                     </div>
