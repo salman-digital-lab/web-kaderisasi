@@ -1,8 +1,9 @@
 import React from 'react'
 
-import '@styles/preflight.css'
 import 'tailwindcss/tailwind.css'
 import '@fontsource/roboto/400.css'
+
+import '@styles/preflight.css'
 
 const myApp = ({ Component, pageProps }) => {
     return <Component {...pageProps} />
