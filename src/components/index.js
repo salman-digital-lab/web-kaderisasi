@@ -1,4 +1,5 @@
 import Link from './link'
+import Jumbotron from './jumbotron'
 import ComponentWrapper from './componentWrapper'
 
-export { Link, ComponentWrapper }
+export { Link, Jumbotron, ComponentWrapper }
