@@ -4,7 +4,7 @@ import { ComponentWrapper } from '@components'
 
 const Jumbotron = ({ children }) => {
     return (
-        <div className='w-full bg-bmka-primary-blue py-36'>
+        <div className='w-full bg-bmka-primary-blue pt-40 pb-28'>
             <ComponentWrapper>{children}</ComponentWrapper>
         </div>
     )
