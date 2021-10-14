@@ -4,7 +4,7 @@ import React from 'react'
 
 import { Link, Button } from '@components'
 
-const ActivityCard = ({ slug, name, banner, createdAt, registerEndDate }) => {
+const ActivityCard = ({ slug, name, banner, registerEndDate }) => {
     return (
         <div
             style={{ width: '270px' }}
@@ -14,7 +14,7 @@ const ActivityCard = ({ slug, name, banner, createdAt, registerEndDate }) => {
                 <img
                     src={banner}
                     alt='Activity Banner'
-                    className='w-full object-cover rounded'
+                    className='w-full h-48 object-cover rounded'
                 />
                 <p className='font-bold'>{name}</p>
             </div>
