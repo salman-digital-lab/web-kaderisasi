@@ -4,7 +4,12 @@
 import React from 'react'
 
 import { formatDate } from '@utils'
-import { ActivityCard, CardCarousell } from '@components'
+import {
+    Button,
+    ActivityCard,
+    CardCarousell,
+    ComponentWrapper,
+} from '@components'
 
 const Activity = ({ dataActivity }) => {
     return (
@@ -25,6 +30,16 @@ const Activity = ({ dataActivity }) => {
                 })}
                 <div />
             </CardCarousell>
+            <ComponentWrapper>
+                <div className='mt-12 text-center'>
+                    <Button
+                        textClassName='font-extrabold text-bmka-accent-orange'
+                        className='border-2 border-bmka-accent-orange rounded'
+                    >
+                        Lihat Selengkapnya
+                    </Button>
+                </div>
+            </ComponentWrapper>
         </div>
     )
 }
