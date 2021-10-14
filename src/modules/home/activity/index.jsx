@@ -5,6 +5,7 @@ import React from 'react'
 
 import { formatDate } from '@utils'
 import {
+    Link,
     Button,
     ActivityCard,
     CardCarousell,
@@ -32,12 +33,14 @@ const Activity = ({ dataActivity }) => {
             </CardCarousell>
             <ComponentWrapper>
                 <div className='mt-12 text-center'>
-                    <Button
-                        textClassName='font-extrabold text-bmka-accent-orange'
-                        className='border-2 border-bmka-accent-orange rounded'
-                    >
-                        Lihat Selengkapnya
-                    </Button>
+                    <Link href='/activities'>
+                        <Button
+                            textClassName='font-extrabold text-bmka-accent-orange'
+                            className='border-2 border-bmka-accent-orange rounded'
+                        >
+                            Lihat Selengkapnya
+                        </Button>
+                    </Link>
                 </div>
             </ComponentWrapper>
         </div>
