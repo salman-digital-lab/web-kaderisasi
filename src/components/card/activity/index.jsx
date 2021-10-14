@@ -1,28 +1,32 @@
-/* eslint-disable camelcase */
 /* eslint-disable @next/next/no-img-element */
 
 import React from 'react'
 
 import { Link, Button } from '@components'
 
-const ActivityCard = ({
-    slug,
-    name,
-    banner,
-    created_at,
-    register_end_date,
-}) => {
+const ActivityCard = ({ slug, name, banner, createdAt, registerEndDate }) => {
     return (
-        <div>
-            <img src={banner} alt='Activity Banner' />
-            <p>{name}</p>
-            <p>Tutup: {register_end_date}</p>
-            <p>Posted on {created_at}</p>
-            <Link href={`/activity/${slug}`}>
-                <Button type='button' variant='primary'>
-                    Daftar
-                </Button>
-            </Link>
+        <div
+            style={{ width: '270px' }}
+            className='p-2 flex flex-col justify-between gap-4 border-2 border-bmka-primary-blue rounded'
+        >
+            <div className='flex flex-col gap-4'>
+                <img
+                    src={banner}
+                    alt='Activity Banner'
+                    className='w-full object-cover rounded'
+                />
+                <p className='font-bold'>{name}</p>
+            </div>
+            <div className='flex flex-col gap-4'>
+                <p className='text-sm'>Tutup: {registerEndDate}</p>
+
+                <Link href={`/activity/${slug}`}>
+                    <Button type='button' className='w-full' variant='primary'>
+                        Daftar
+                    </Button>
+                </Link>
+            </div>
         </div>
     )
 }
