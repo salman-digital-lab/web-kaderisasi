@@ -5,3 +5,4 @@ import CardCarousell from './cardCarousell'
 import ComponentWrapper from './componentWrapper'
 
 export { Link, Button, Jumbotron, CardCarousell, ComponentWrapper }
+export * from './card'
