@@ -3,6 +3,7 @@ import React from 'react'
 const ArrowRight = ({ className }) => {
     return (
         <svg
+            fill='none'
             viewBox='0 0 24 24'
             className={`stroke-current ${className ?? ''}`}
             xmlns='http://www.w3.org/2000/svg'
