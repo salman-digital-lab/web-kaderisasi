@@ -10,14 +10,14 @@ const Header = ({ title, nextHandler, previousHandler }) => {
                 <button
                     type='button'
                     className='border-2 border-bmka-primary-blue rounded p-2'
-                    onClick={nextHandler}
+                    onClick={previousHandler}
                 >
                     <ArrowLeftIcon className='w-6 rounded text-bmka-primary-blue' />
                 </button>
                 <button
                     type='button'
                     className='border-2 border-bmka-primary-blue rounded p-2'
-                    onClick={previousHandler}
+                    onClick={nextHandler}
                 >
                     <ArrowRightIcon className='w-6 rounded text-bmka-primary-blue' />
                 </button>
