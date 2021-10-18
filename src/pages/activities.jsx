@@ -9,7 +9,7 @@ const activities = ({ activity, activityCategory }) => {
         <PageWrapper title='Activities'>
             <ActivitiesModule
                 activityData={activity}
-                activityCategory={activityCategory}
+                activityCategoryData={activityCategory}
             />
         </PageWrapper>
     )
