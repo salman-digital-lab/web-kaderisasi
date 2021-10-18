@@ -1,9 +1,11 @@
 import React from 'react'
 
+import ActivitiesModuleHeader from './header'
+
 const ActivitiesModule = () => {
     return (
         <div>
-            <p>hello world</p>
+            <ActivitiesModuleHeader />
         </div>
     )
 }
