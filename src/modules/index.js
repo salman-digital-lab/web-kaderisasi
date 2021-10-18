@@ -1,3 +1,4 @@
 import HomeModule from './home'
+import ActivitiesModule from './activities'
 
-export { HomeModule }
+export { HomeModule, ActivitiesModule }
