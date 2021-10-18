@@ -3,6 +3,7 @@ import LockIcon from './lock'
 import UserIcon from './user'
 import LineIcon from './line'
 import PhoneIcon from './phone'
+import EmailIcon from './email'
 import SearchIcon from './search'
 import BMKAFullIcon from './BMKAFull'
 import BMKAAuthIcon from './BMKAAuth'
@@ -18,6 +19,7 @@ export {
     LockIcon,
     LineIcon,
     PhoneIcon,
+    EmailIcon,
     SearchIcon,
     BMKAFullIcon,
     BMKAAuthIcon,
