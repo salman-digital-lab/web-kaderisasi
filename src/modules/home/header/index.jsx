@@ -36,7 +36,11 @@ const Header = () => {
                             />
                             <div>
                                 <Link href='/regeneration-flow'>
-                                    <Button type='button' variant='secondary'>
+                                    <Button
+                                        type='button'
+                                        className='border-2 border-white'
+                                        textClassName='text-white font-bold'
+                                    >
                                         Alur Kaderisasi
                                     </Button>
                                 </Link>
