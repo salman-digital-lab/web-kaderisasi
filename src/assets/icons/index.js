@@ -1,19 +1,21 @@
 import MailIcon from './mail'
 import LineIcon from './line'
 import PhoneIcon from './phone'
-import ArrowLeftIcon from './arrowLeft'
-import ArrowRightIcon from './arrowRight'
 import BMKAFullIcon from './BMKAFull'
-import BMKAWelcome from './BMKAWelcome'
+import ArrowLeftIcon from './arrowLeft'
 import InstagramIcon from './instagram'
+import ArrowRightIcon from './arrowRight'
+import BMKAWelcomeIcon from './BMKAWelcome'
+import BMKAActivitiesIcon from './BMKAActivities'
 
 export {
     MailIcon,
     LineIcon,
     PhoneIcon,
-    BMKAWelcome,
     BMKAFullIcon,
     InstagramIcon,
     ArrowLeftIcon,
     ArrowRightIcon,
+    BMKAWelcomeIcon,
+    BMKAActivitiesIcon,
 }
