@@ -2,24 +2,27 @@ import React from 'react'
 
 import { ComponentWrapper } from '@components'
 
-import Header from './header'
-import Activity from './activity'
-import Statistics from './statistics'
-import StudentCare from './studentCare'
+import HomeModuleHeader from './header'
+import HomeModuleActivity from './activity'
+import HomeModuleStatistics from './statistics'
+import HomeModuleStudentCare from './studentCare'
 
-const HomeModule = ({ dataActivity }) => {
+const HomeModule = ({ activityData, activityCategoryData }) => {
     return (
         <div>
-            <Header />
+            <HomeModuleHeader />
             <ComponentWrapper>
-                <Statistics />
+                <HomeModuleStatistics />
             </ComponentWrapper>
             <div className='mt-14'>
-                <Activity dataActivity={dataActivity} />
+                <HomeModuleActivity
+                    activityData={activityData}
+                    activityCategoryData={activityCategoryData}
+                />
             </div>
             <div className='my-28'>
                 <ComponentWrapper>
-                    <StudentCare />
+                    <HomeModuleStudentCare />
                 </ComponentWrapper>
             </div>
         </div>

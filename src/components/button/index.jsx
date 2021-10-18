@@ -3,7 +3,7 @@
 import React from 'react'
 
 const Button = ({ children, variant, className, textClassName, ...props }) => {
-    const defaultClassName = `py-2 px-4  ${className ?? ''}`
+    const defaultClassName = `py-2 px-4 rounded ${className ?? ''}`
 
     switch (variant) {
         case 'primary':
@@ -19,7 +19,7 @@ const Button = ({ children, variant, className, textClassName, ...props }) => {
         case 'secondary':
             return (
                 <button
-                    className={`border-2 border-white rounded ${defaultClassName}`}
+                    className={`bg-bmka-primary-blue border-2 border-bmka-primary-blue rounded ${defaultClassName}`}
                     {...props}
                 >
                     <p className='text-white font-bold'>{children}</p>

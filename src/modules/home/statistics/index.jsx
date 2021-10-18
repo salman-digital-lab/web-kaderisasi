@@ -2,14 +2,14 @@ import React from 'react'
 
 import Box from './box'
 
-const Statistics = () => {
+const HomeModuleStatistics = () => {
     return (
         <div
-            className='flex justify-between border-2 relative -top-1/4 rounded-xl'
+            className='w-full max-w-5xl mx-auto flex justify-between border-2 rounded-xl bg-white'
             style={{
-                borderColor: '#8DBCDD',
-                backgroundColor: '#F7F5F5',
+                // borderColor: '#8DBCDD',
                 transform: 'translate(0%,-50%)',
+                boxShadow: '0px 1px 15px rgba(0, 0, 0, 0.15)',
             }}
         >
             <Box number='50' title='Kampus di seluruh Indonesia' />
@@ -19,4 +19,4 @@ const Statistics = () => {
     )
 }
 
-export default Statistics
+export default HomeModuleStatistics

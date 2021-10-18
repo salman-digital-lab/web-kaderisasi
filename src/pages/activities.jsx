@@ -1,13 +1,13 @@
 import React from 'react'
 import axios from 'axios'
 
-import { HomeModule } from '@modules'
 import { PageWrapper } from '@layout'
+import { ActivitiesModule } from '@modules'
 
-const index = ({ activity, activityCategory }) => {
+const activities = ({ activity, activityCategory }) => {
     return (
-        <PageWrapper title='Home'>
-            <HomeModule
+        <PageWrapper title='Activities'>
+            <ActivitiesModule
                 activityData={activity}
                 activityCategoryData={activityCategory}
             />
@@ -32,5 +32,5 @@ const getStaticProps = async () => {
     }
 }
 
-export default index
+export default activities
 export { getStaticProps }
