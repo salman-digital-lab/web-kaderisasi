@@ -28,8 +28,9 @@ const AuthTemplateSide = () => {
             <div className='flex flex-col gap-4'>
                 <h1 className='text-white'>Portal Aktivis Salman ITB</h1>
                 <p className='text-white'>
-                    Sebelum mengikuti berbagai kegiatan harap melakukan login
-                    dulu ya ke akun masing - masing
+                    Sebelum mengikuti berbagai kegiatan harap melakukan Log In
+                    dulu ya ke akun masing - masing. Jika belum memiliki akun
+                    anda dapat membuatnya terlebih dahulu.
                 </p>
             </div>
             <div>
