@@ -8,19 +8,17 @@ import { ActivityCard } from '@components'
 
 const ActivitiesModuleList = ({ activityData }) => {
     return (
-        <div>
-            <h2>Daftar Kegiatan</h2>
-            <div
-                className='w-full grid gap-4 justify-center'
-                style={{
-                    gridTemplateColumns:
-                        'repeat(auto-fill, minmax(270px, 1fr))',
-                }}
-            >
-                {activityData.map((item, index) => {
-                    const { name, banner, created_at, register_end_date } = item
+        <div
+            className='w-full grid gap-4 my-8'
+            style={{
+                gridTemplateColumns: 'repeat(auto-fill, minmax(270px, 1fr))',
+            }}
+        >
+            {activityData.map((item, index) => {
+                const { name, banner, created_at, register_end_date } = item
 
-                    return (
+                return (
+                    <div className='flex justify-center'>
                         <ActivityCard
                             key={index}
                             name={name}
@@ -28,9 +26,9 @@ const ActivitiesModuleList = ({ activityData }) => {
                             createdAt={formatDate(created_at)}
                             registerEndDate={formatDate(register_end_date)}
                         />
-                    )
-                })}
-            </div>
+                    </div>
+                )
+            })}
         </div>
     )
 }
