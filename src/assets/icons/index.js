@@ -1,4 +1,5 @@
 import MailIcon from './mail'
+import UserIcon from './user'
 import LineIcon from './line'
 import PhoneIcon from './phone'
 import SearchIcon from './search'
@@ -12,6 +13,7 @@ import BMKAActivitiesIcon from './BMKAActivities'
 
 export {
     MailIcon,
+    UserIcon,
     LineIcon,
     PhoneIcon,
     SearchIcon,
