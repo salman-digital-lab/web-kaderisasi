@@ -5,7 +5,7 @@ import { LoginModule } from '@modules'
 
 const login = () => {
     return (
-        <PageWrapper title='Login' plain>
+        <PageWrapper title='Log In' plain>
             <LoginModule />
         </PageWrapper>
     )
