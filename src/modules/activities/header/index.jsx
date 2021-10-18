@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { Jumbotron } from '@components'
 import { BMKAActivitiesIcon } from '@assets'
+import { Button, Jumbotron } from '@components'
 
 const ActivitiesModuleHeader = () => {
     return (
@@ -21,6 +21,9 @@ const ActivitiesModuleHeader = () => {
                             menjadi kader salman. Kegiatan meliputi kegiatan
                             kaderisasi, pelatihan, keasramaan dan lain-lain.
                         </p>
+                        <div>
+                            <Button variant='primary'>Cari Kegiatan</Button>
+                        </div>
                     </div>
                 </div>
                 <div>
