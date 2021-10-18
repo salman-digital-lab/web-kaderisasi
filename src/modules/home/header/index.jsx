@@ -18,9 +18,17 @@ const Header = () => {
                         <p className='text-white'>
                             Portal Aktivis Salman yang dikelola BMKA (Bidang
                             Kemahasiswaan, Kaderisasi dan Alumni) Salman yang
-                            berfungsi sebagai pusat pendaftaran kegiatan di
-                            @kaderisasisalman. Program pembinaan dalam rangka
-                            membentuk kader teladan untuk membangun Indonesia.
+                            berfungsi sebagai pusat pendaftaran kegiatan di{' '}
+                            <span className='font-bold underline'>
+                                <Link
+                                    href='https://www.instagram.com/kaderisasisalman/'
+                                    external
+                                >
+                                    @kaderisasisalman
+                                </Link>
+                            </span>
+                            . Program pembinaan dalam rangka membentuk kader
+                            teladan untuk membangun Indonesia.
                         </p>
                         <div className='flex items-center gap-6'>
                             <div>
