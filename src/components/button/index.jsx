@@ -19,7 +19,7 @@ const Button = ({ children, variant, className, textClassName, ...props }) => {
         case 'secondary':
             return (
                 <button
-                    className={`border-2 border-white rounded ${defaultClassName}`}
+                    className={`bg-bmka-primary-blue border-2 border-bmka-primary-blue rounded ${defaultClassName}`}
                     {...props}
                 >
                     <p className='text-white font-bold'>{children}</p>
