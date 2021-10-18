@@ -2,17 +2,21 @@ import React from 'react'
 
 import { Head, Footer, Navigation } from '@layout'
 
-const PageWrapper = ({ title, children }) => {
+const PageWrapper = ({ title, children, plain }) => {
     return (
         <>
             <Head title={title} />
-            <div className='w-full min-h-screen grid grid-rows-pageWrapper'>
-                <div>
-                    <Navigation />
-                    <main>{children}</main>
+            {!plain ? (
+                <div className='w-full min-h-screen grid grid-rows-pageWrapper'>
+                    <div>
+                        <Navigation />
+                        <main>{children}</main>
+                    </div>
+                    <Footer />
                 </div>
-                <Footer />
-            </div>
+            ) : (
+                <main>{children}</main>
+            )}
         </>
     )
 }
