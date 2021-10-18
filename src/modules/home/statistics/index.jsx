@@ -2,7 +2,7 @@ import React from 'react'
 
 import Box from './box'
 
-const Statistics = () => {
+const HomeModuleStatistics = () => {
     return (
         <div
             className='w-full max-w-5xl mx-auto flex justify-between border-2 rounded-xl bg-white'
@@ -19,4 +19,4 @@ const Statistics = () => {
     )
 }
 
-export default Statistics
+export default HomeModuleStatistics

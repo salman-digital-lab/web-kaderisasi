@@ -12,7 +12,7 @@ import {
     ComponentWrapper,
 } from '@components'
 
-const Activity = ({ activityData }) => {
+const HomeModuleActivity = ({ activityData }) => {
     return (
         <div>
             <CardCarousell title='Kegiatan Terkini'>
@@ -47,4 +47,4 @@ const Activity = ({ activityData }) => {
     )
 }
 
-export default Activity
+export default HomeModuleActivity

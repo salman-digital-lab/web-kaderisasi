@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Button } from '@components'
 
-const StudentCare = () => {
+const HomeModuleStudentCare = () => {
     return (
         <div>
             <div className='flex items-center justify-between px-14 py-24 bg-bmka-accent-orange rounded-3xl'>
@@ -36,4 +36,4 @@ const StudentCare = () => {
     )
 }
 
-export default StudentCare
+export default HomeModuleStudentCare

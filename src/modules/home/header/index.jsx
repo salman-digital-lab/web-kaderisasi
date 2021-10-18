@@ -3,7 +3,7 @@ import React from 'react'
 import { BMKAWelcomeIcon } from '@assets'
 import { Link, Button, Jumbotron } from '@components'
 
-const Header = () => {
+const HomeModuleHeader = () => {
     return (
         <Jumbotron>
             <div className='flex justify-between'>
@@ -66,4 +66,4 @@ const Header = () => {
     )
 }
 
-export default Header
+export default HomeModuleHeader
