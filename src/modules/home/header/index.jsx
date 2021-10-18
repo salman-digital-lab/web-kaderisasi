@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { BMKAWelcome } from '@assets'
+import { BMKAWelcomeIcon } from '@assets'
 import { Link, Button, Jumbotron } from '@components'
 
 const Header = () => {
@@ -46,7 +46,7 @@ const Header = () => {
                 </div>
                 <div>
                     <div className='h-96'>
-                        <BMKAWelcome />
+                        <BMKAWelcomeIcon />
                     </div>
                 </div>
             </div>
