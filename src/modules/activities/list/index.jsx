@@ -18,9 +18,8 @@ const ActivitiesModuleList = ({ activityData }) => {
                 const { name, banner, created_at, register_end_date } = item
 
                 return (
-                    <div className='flex justify-center'>
+                    <div key={index} className='flex justify-center'>
                         <ActivityCard
-                            key={index}
                             name={name}
                             banner={banner}
                             createdAt={formatDate(created_at)}
