@@ -16,9 +16,11 @@ const Header = () => {
                             </h1>
                         </div>
                         <p className='text-white'>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit. Eu nec, in faucibus mi mauris at eros nunc
-                            porta. Odio lobortis etiam.
+                            Portal Aktivis Salman yang dikelola BMKA (Bidang
+                            Kemahasiswaan, Kaderisasi dan Alumni) Salman yang
+                            berfungsi sebagai pusat pendaftaran kegiatan di
+                            @kaderisasisalman. Program pembinaan dalam rangka
+                            membentuk kader teladan untuk membangun Indonesia.
                         </p>
                         <div className='flex items-center gap-6'>
                             <div>
