@@ -12,11 +12,11 @@ import {
     ComponentWrapper,
 } from '@components'
 
-const Activity = ({ dataActivity }) => {
+const Activity = ({ activityData }) => {
     return (
         <div>
             <CardCarousell title='Kegiatan Terkini'>
-                {dataActivity.map((item, index) => {
+                {activityData.map((item, index) => {
                     const { name, banner, created_at, register_end_date } = item
 
                     return (

@@ -7,7 +7,7 @@ import Activity from './activity'
 import Statistics from './statistics'
 import StudentCare from './studentCare'
 
-const HomeModule = ({ dataActivity }) => {
+const HomeModule = ({ activityData, activityCategoryData }) => {
     return (
         <div>
             <Header />
@@ -15,7 +15,10 @@ const HomeModule = ({ dataActivity }) => {
                 <Statistics />
             </ComponentWrapper>
             <div className='mt-14'>
-                <Activity dataActivity={dataActivity} />
+                <Activity
+                    activityData={activityData}
+                    activityCategoryData={activityCategoryData}
+                />
             </div>
             <div className='my-28'>
                 <ComponentWrapper>
