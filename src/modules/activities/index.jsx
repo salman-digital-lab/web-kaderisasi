@@ -6,12 +6,14 @@ import ActivitiesModuleList from './list'
 import ActivitiesModuleHeader from './header'
 import ActivitiesModuleSearch from './search'
 
-const ActivitiesModule = ({ activityData }) => {
+const ActivitiesModule = ({ activityData, activityCategoryData }) => {
     return (
         <div>
             <ActivitiesModuleHeader />
             <ComponentWrapper>
-                <ActivitiesModuleSearch />
+                <ActivitiesModuleSearch
+                    activityCategoryData={activityCategoryData}
+                />
                 <ActivitiesModuleList activityData={activityData} />
             </ComponentWrapper>
         </div>
