@@ -1,9 +1,16 @@
 import React from 'react'
+import { useRouter } from 'next/router'
 
 import { Button } from '@components'
 import { BMKAFullIcon, BMKAAuthIcon } from '@assets'
 
 const AuthTemplateSide = () => {
+    const router = useRouter()
+
+    const backButtonHandler = () => {
+        router.push('/')
+    }
+
     return (
         <div className='flex flex-col gap-16'>
             <div className='flex items-center justify-between'>
@@ -12,6 +19,7 @@ const AuthTemplateSide = () => {
                 </div>
                 <Button
                     className='bg-white'
+                    onClick={backButtonHandler}
                     textClassName='font-bold text-bmka-primary-blue'
                 >
                     Kembali ke portal utama
