@@ -1,33 +1,35 @@
-/* eslint-disable camelcase */
-/* eslint-disable react/no-array-index-key */
-
 import React from 'react'
 
-import { formatDate } from '@utils'
-import { ActivityCard } from '@components'
+import { InfoIcon } from '@assets'
+import { Button } from '@components'
 
-const ActivitiesModuleList = ({ activityData }) => {
+import ActivitiesModuleListCardGrid from './cardGrid'
+
+const ActivitiesModuleList = ({
+    activityData,
+    clearFilterHandler,
+    activityCategoryData,
+}) => {
     return (
-        <div
-            className='w-full grid gap-4 my-8'
-            style={{
-                gridTemplateColumns: 'repeat(auto-fill, minmax(270px, 1fr))',
-            }}
-        >
-            {activityData.map((item, index) => {
-                const { name, banner, created_at, register_end_date } = item
-
-                return (
-                    <div key={index} className='flex justify-center'>
-                        <ActivityCard
-                            name={name}
-                            banner={banner}
-                            createdAt={formatDate(created_at)}
-                            registerEndDate={formatDate(register_end_date)}
-                        />
+        <div className='my-8'>
+            {activityData.length > 0 ? (
+                <ActivitiesModuleListCardGrid
+                    activityData={activityData}
+                    activityCategoryData={activityCategoryData}
+                />
+            ) : (
+                <div className='w-full py-28'>
+                    <div className='w-full max-w-sm p-6 mx-auto flex flex-col gap-6 text-center bg-bmka-primary-blue rounded shadow-level-1'>
+                        <InfoIcon className='w-12 mx-auto text-white' />
+                        <p className='text-white'>
+                            Tidak ada data yang ditemukan
+                        </p>
+                        <Button onClick={clearFilterHandler} variant='primary'>
+                            Bersihkan filter
+                        </Button>
                     </div>
-                )
-            })}
+                </div>
+            )}
         </div>
     )
 }

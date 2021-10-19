@@ -12,19 +12,31 @@ import {
     ComponentWrapper,
 } from '@components'
 
-const HomeModuleActivity = ({ activityData }) => {
+const HomeModuleActivity = ({ activityData, activityCategoryData }) => {
     return (
         <div>
             <CardCarousell title='Kegiatan Terkini'>
                 {activityData.map((item, index) => {
-                    const { name, banner, created_at, register_end_date } = item
+                    const {
+                        name,
+                        role,
+                        slug,
+                        banner,
+                        created_at,
+                        category_id,
+                        register_end_date,
+                    } = item
 
                     return (
                         <ActivityCard
                             key={index}
                             name={name}
+                            role={role}
+                            slug={slug}
                             banner={banner}
+                            categoryId={category_id}
                             createdAt={formatDate(created_at)}
+                            activityCategoryData={activityCategoryData}
                             registerEndDate={formatDate(register_end_date)}
                         />
                     )
