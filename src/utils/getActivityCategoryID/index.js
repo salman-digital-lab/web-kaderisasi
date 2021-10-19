@@ -6,7 +6,7 @@ const getActivityCategoryID = ({
         (item) => item.id === activityCategoryID
     )
 
-    return result
+    return result[0].name
 }
 
 export default getActivityCategoryID
