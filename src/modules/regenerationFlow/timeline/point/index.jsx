@@ -18,7 +18,7 @@ const RegenerationFlowModuleTimelinePoint = ({
                 )}
             </div>
             <div className='flex items-center justify-center'>
-                <div className='w-12 h-12 flex items-center justify-center m-4 bg-blue-400 text-white font-bold rounded-full'>
+                <div className='w-12 h-12 flex items-center justify-center mx-4 bg-blue-400 text-white font-bold rounded-full'>
                     <p>{number <= 9 ? `0${number}` : number}</p>
                 </div>
             </div>
