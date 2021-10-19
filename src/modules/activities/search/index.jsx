@@ -1,9 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-import { SearchIcon } from '@assets'
 import { Button } from '@components'
+import { SearchIcon } from '@assets'
 
 const ActivitiesModuleSearch = ({ activityCategoryData }) => {
+    const [currentCategory, setCurrentCategory] = useState('')
+
+    const categoryButtonHandler = (category) => {
+        setCurrentCategory(category)
+    }
+
     return (
         <div>
             <form
@@ -25,10 +31,23 @@ const ActivitiesModuleSearch = ({ activityCategoryData }) => {
                 </Button>
             </form>
             <div className='w-full flex justify-center gap-2 pb-6'>
-                <Button variant='secondary'>Semua</Button>
+                <Button
+                    onClick={() => categoryButtonHandler('')}
+                    variant={currentCategory === '' ? 'primary' : 'secondary'}
+                >
+                    Semua
+                </Button>
                 {activityCategoryData.map((item) => {
                     return (
-                        <Button key={item.id} variant='secondary'>
+                        <Button
+                            key={item.id}
+                            onClick={() => categoryButtonHandler(item.name)}
+                            variant={
+                                currentCategory === item.name
+                                    ? 'primary'
+                                    : 'secondary'
+                            }
+                        >
                             {item.name}
                         </Button>
                     )
