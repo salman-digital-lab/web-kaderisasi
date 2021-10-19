@@ -14,7 +14,10 @@ const ActivitiesModule = ({ activityData, activityCategoryData }) => {
                 <ActivitiesModuleSearch
                     activityCategoryData={activityCategoryData}
                 />
-                <ActivitiesModuleList activityData={activityData} />
+                <ActivitiesModuleList
+                    activityData={activityData}
+                    activityCategoryData={activityCategoryData}
+                />
             </ComponentWrapper>
         </div>
     )
