@@ -17,8 +17,11 @@ const activities = ({ activity, activityCategory }) => {
 
 const getStaticProps = async () => {
     const baseURL = process.env.NEXT_PUBLIC_BASE_URL
+    const baseURLVersion = process.env.NEXT_PUBLIC_BASE_URL_VERSION
 
-    const activitiesResponse = await axios.get(`${baseURL}/v1/activity`)
+    const activitiesResponse = await axios.get(
+        `${baseURL}/${baseURLVersion}/activity`
+    )
     const activitiesCategoryResponse = await axios.get(
         `${baseURL}/v1/activity-categories`
     )
