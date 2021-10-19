@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { ComponentWrapper } from '@components'
 
@@ -7,15 +7,20 @@ import ActivitiesModuleHeader from './header'
 import ActivitiesModuleSearch from './search'
 
 const ActivitiesModule = ({ activityData, activityCategoryData }) => {
+    const [currentActivityData, setCurrentActivityData] = useState([
+        ...activityData,
+    ])
+
     return (
         <div>
             <ActivitiesModuleHeader />
             <ComponentWrapper>
                 <ActivitiesModuleSearch
                     activityCategoryData={activityCategoryData}
+                    setCurrentActivityData={setCurrentActivityData}
                 />
                 <ActivitiesModuleList
-                    activityData={activityData}
+                    activityData={currentActivityData}
                     activityCategoryData={activityCategoryData}
                 />
             </ComponentWrapper>
