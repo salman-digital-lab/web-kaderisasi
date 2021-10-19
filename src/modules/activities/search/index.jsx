@@ -1,19 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import axios from 'axios'
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useEffect } from 'react'
 
 import { Button } from '@components'
 import { SearchIcon } from '@assets'
 
 const ActivitiesModuleSearch = ({
+    searchKeyword,
+    currentCategory,
+    setSearchKeyword,
+    setCurrentCategory,
     activityCategoryData,
     setCurrentActivityData,
 }) => {
     const firstRender = useRef(true)
-
-    const [searchKeyword, setSearchKeyword] = useState('')
-    const [currentCategory, setCurrentCategory] = useState('')
 
     const updateActivityData = async () => {
         const baseURL = process.env.NEXT_PUBLIC_BASE_URL
