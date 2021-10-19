@@ -5,7 +5,11 @@ import { Button } from '@components'
 
 import ActivitiesModuleListCardGrid from './cardGrid'
 
-const ActivitiesModuleList = ({ activityData, activityCategoryData }) => {
+const ActivitiesModuleList = ({
+    activityData,
+    clearFilterHandler,
+    activityCategoryData,
+}) => {
     return (
         <div className='my-8'>
             {activityData.length > 0 ? (
@@ -20,7 +24,9 @@ const ActivitiesModuleList = ({ activityData, activityCategoryData }) => {
                         <p className='text-white'>
                             Tidak ada data yang ditemukan
                         </p>
-                        <Button variant='primary'>Bersihkan filter</Button>
+                        <Button onClick={clearFilterHandler} variant='primary'>
+                            Bersihkan filter
+                        </Button>
                     </div>
                 </div>
             )}
