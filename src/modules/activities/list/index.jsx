@@ -6,7 +6,7 @@ import React from 'react'
 import { formatDate } from '@utils'
 import { ActivityCard } from '@components'
 
-const ActivitiesModuleList = ({ activityData }) => {
+const ActivitiesModuleList = ({ activityData, activityCategoryData }) => {
     return (
         <div
             className='w-full grid gap-4 my-8'
@@ -15,14 +15,26 @@ const ActivitiesModuleList = ({ activityData }) => {
             }}
         >
             {activityData.map((item, index) => {
-                const { name, banner, created_at, register_end_date } = item
+                const {
+                    name,
+                    role,
+                    slug,
+                    banner,
+                    created_at,
+                    category_id,
+                    register_end_date,
+                } = item
 
                 return (
                     <div key={index} className='flex justify-center'>
                         <ActivityCard
                             name={name}
+                            role={role}
+                            slug={slug}
                             banner={banner}
+                            categoryId={category_id}
                             createdAt={formatDate(created_at)}
+                            activityCategoryData={activityCategoryData}
                             registerEndDate={formatDate(register_end_date)}
                         />
                     </div>
