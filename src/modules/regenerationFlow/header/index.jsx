@@ -1,16 +1,9 @@
 import React from 'react'
-import { useRouter } from 'next/router'
 
 import { BMKAFullVerticalIcon } from '@assets'
-import { Button, Jumbotron } from '@components'
+import { Link, Button, Jumbotron } from '@components'
 
 const RegenerationFlowModuleHeader = () => {
-    const router = useRouter()
-
-    const headerButtonHandler = () => {
-        router.push('/activities')
-    }
-
     return (
         <Jumbotron>
             <div className='flex items-center justify-between'>
@@ -24,9 +17,9 @@ const RegenerationFlowModuleHeader = () => {
                         dolores non.
                     </p>
                     <div>
-                        <Button variant='primary' onClick={headerButtonHandler}>
-                            Cari Kegiatan
-                        </Button>
+                        <Link href='/activities'>
+                            <Button variant='primary'>Cari Kegiatan</Button>
+                        </Link>
                     </div>
                 </div>
                 <div className='w-56'>
