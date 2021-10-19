@@ -14,6 +14,7 @@ import InstagramIcon from './instagram'
 import ArrowRightIcon from './arrowRight'
 import BMKAWelcomeIcon from './BMKAWelcome'
 import BMKAActivitiesIcon from './BMKAActivities'
+import BMKAFullVerticalIcon from './BMKAFullVertical'
 
 export {
     MailIcon,
@@ -32,4 +33,6 @@ export {
     ArrowRightIcon,
     BMKAWelcomeIcon,
     BMKAActivitiesIcon,
+    BMKAFullVerticalIcon,
 }
+export * from './regenerationFlow'

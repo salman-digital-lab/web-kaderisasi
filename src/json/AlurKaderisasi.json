@@ -1,0 +1,48 @@
+{
+    "jamaah": [
+        {
+            "title": "Training Dasar",
+            "description": "Dua jenis spiritual camp yang akan mengajarkanmu tentang Islam yang sesungguhnya: Salman Spiritual Camp (SSC) & ITB Spiritual Camp (ITB SC)"
+        }
+    ],
+    "aktivis": [
+        {
+            "title": "Kelompok Keluarga",
+            "description": "Keluarga kecil untuk aktivis SSC/ITB SC guna memahami 7 Nilai Salman selama 3-4 bulan."
+        },
+        {
+            "title": "Lembaga Mujtahid Dakwah (LMD)",
+            "description": "Pelatihan tentang kepemimpinan dan pola pikir dalam penyelesaian masalah ummat dengan pendekatan teknologi "
+        }
+    ],
+    "kader": [
+        {
+            "title": "Project Inventra",
+            "description": "Wadah untuk kader Salman berijtihad di bidang teknologi dengan bergabung ke dalam proyek-proyek strategis di Salman ITB."
+        },
+        {
+            "title": "Talents Mapping",
+            "description": "Layanan pemetaan bakat gratis sehingga para kader salman dapat mengetahui kekuatan dan kelemahan yang ada di dirinya."
+        },
+        {
+            "title": "Kelompok Keluarga",
+            "description": "Keluarga kecil untuk aktivis SSC/ITB SC guna memahami 7 Nilai Salman selama 3-4 bulan."
+        },
+        {
+            "title": "5 Komunitas Profesi (Komprof)",
+            "description": "Lima komunitas profesi yang dapat dipilih sebagai wadah untuk menghadapi dunia pasca kampus:"
+        },
+        {
+            "title": "Spiritual Entrepeneurial Civilizer Training (SPECTRA)",
+            "description": "Program pelatihan kader lanjut Masjid Salman ITB berupa petualangan tematik – terskenario tentang upaya menggapai dan mewujudkan peradaban hidup Islami, melalui langkah analisis potensi, kalkulasi tantangan, penetapan target, manajemen proses dan resiko, sehingga didapatkan sebuah pengalaman puncak tak terlupakan tentang nilai-nilai perjuangan, ketangguhan, intelektualitas, kebersamaan, mental, dan spiritualitas."
+        },
+        {
+            "title": "Syukuran Wisuda Salman (Syukwis)",
+            "description": "Bentuk apresiasi untuk aktivis & kader salman yang sudah menyelesaikan studi dan jenjang kaderisasi di Masjid Salman ITB."
+        },
+        {
+            "title": "Mentoring Alumni",
+            "description": "Program yang akan mempertemukan alumni muda dengan alumni senior yang sudah berkiprah di bidangnya masing-masing."
+        }
+    ]
+}
