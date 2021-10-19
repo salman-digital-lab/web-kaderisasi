@@ -23,7 +23,7 @@ const getStaticProps = async () => {
         `${baseURL}/${baseURLVersion}/activity`
     )
     const activitiesCategoryResponse = await axios.get(
-        `${baseURL}/v1/activity-categories`
+        `${baseURL}/${baseURLVersion}/activity-categories`
     )
 
     return {
