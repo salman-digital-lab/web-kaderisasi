@@ -1,18 +1,63 @@
-import React, { useState } from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+
+import axios from 'axios'
+import React, { useRef, useState, useEffect } from 'react'
 
 import { Button } from '@components'
 import { SearchIcon } from '@assets'
 
-const ActivitiesModuleSearch = ({ activityCategoryData }) => {
+const ActivitiesModuleSearch = ({
+    activityCategoryData,
+    setCurrentActivityData,
+}) => {
+    const firstRender = useRef(true)
+
+    const [searchKeyword, setSearchKeyword] = useState('')
     const [currentCategory, setCurrentCategory] = useState('')
+
+    const updateActivityData = async () => {
+        const baseURL = process.env.NEXT_PUBLIC_BASE_URL
+        const baseURLVersion = process.env.NEXT_PUBLIC_BASE_URL_VERSION
+
+        const response = await axios.get(
+            `${baseURL}/${baseURLVersion}/activity?category=${currentCategory}&keyword=${searchKeyword}`
+        )
+
+        const { data } = response.data.data
+
+        setCurrentActivityData(data)
+    }
 
     const categoryButtonHandler = (category) => {
         setCurrentCategory(category)
     }
 
+    const searchInputHandler = (e) => {
+        const { value } = e.target
+
+        setSearchKeyword(value)
+    }
+
+    const formSubmitHandler = (e) => {
+        e.preventDefault()
+
+        updateActivityData()
+    }
+
+    useEffect(() => {
+        if (firstRender.current) {
+            firstRender.current = false
+
+            return
+        }
+
+        updateActivityData()
+    }, [currentCategory])
+
     return (
         <div>
             <form
+                onSubmit={formSubmitHandler}
                 className='w-full max-w-4xl mx-auto px-8 py-6 rounded-lg flex items-center gap-4 bg-white'
                 style={{
                     transform: 'translate(0%,-50%)',
@@ -23,6 +68,8 @@ const ActivitiesModuleSearch = ({ activityCategoryData }) => {
                 <input
                     type='text'
                     spellCheck='false'
+                    value={searchKeyword}
+                    onChange={searchInputHandler}
                     className='w-full outline-none'
                     placeholder='Ketik nama kegiatan disini'
                 />
