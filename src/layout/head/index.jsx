@@ -31,7 +31,7 @@ const Head = ({ title }) => {
                         url: 'https://firebasestorage.googleapis.com/v0/b/data-center-production.appspot.com/o/image%2FBanner%20BMKA.png?alt=media&token=cf1ad030-3aba-4f12-a480-56455d6a9eae',
                     },
                     {
-                        url: 'https://firebasestorage.googleapis.com/v0/b/data-center-production.appspot.com/o/image%2FLogo%20BMKA.png?alt=media&token=13b372e1-e634-4d41-b756-5e7627895768',
+                        url: 'https://firebasestorage.googleapis.com/v0/b/data-center-production.appspot.com/o/image%2FBanner%20BMKA.png?alt=media&token=cf1ad030-3aba-4f12-a480-56455d6a9eae',
                     },
                 ],
             }}
