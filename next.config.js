@@ -12,10 +12,6 @@ const nextConfig = {
         ]
     },
 
-    publicRuntimeConfig: {
-        projectRoot: __dirname,
-    },
-
     reactStrictMode: true,
 }
 
