@@ -12,6 +12,9 @@ const Head = ({ title }) => {
             title={title}
             description={description}
             titleTemplate={titleTemplate}
+            twitter={{
+                cardType: 'summary_large_image',
+            }}
             additionalLinkTags={[
                 { rel: 'shortcut icon', href: '/assets/favicon.png' },
             ]}
