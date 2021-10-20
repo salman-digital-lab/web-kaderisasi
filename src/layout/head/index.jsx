@@ -25,10 +25,10 @@ const Head = ({ title }) => {
                         width: 1129,
                         height: 465,
                         alt: 'Kaderisasi Salman ITB (BMKA)',
-                        url: 'https://firebasestorage.googleapis.com/v0/b/data-center-production.appspot.com/o/image%2Fbanner_bmka.png?alt=media&token=0f2b44e4-85d7-4e4d-9c61-bea167f1e7ab',
+                        url: 'https://firebasestorage.googleapis.com/v0/b/data-center-production.appspot.com/o/image%2FBanner%20BMKA.png?alt=media&token=49945fe4-b5af-4ca4-998c-7ad373c21ac7',
                     },
                     {
-                        url: 'https://firebasestorage.googleapis.com/v0/b/data-center-production.appspot.com/o/image%2Fbanner_bmka.png?alt=media&token=0f2b44e4-85d7-4e4d-9c61-bea167f1e7ab',
+                        url: 'https://firebasestorage.googleapis.com/v0/b/data-center-production.appspot.com/o/image%2FBanner%20BMKA.png?alt=media&token=49945fe4-b5af-4ca4-998c-7ad373c21ac7',
                     },
                 ],
             }}
