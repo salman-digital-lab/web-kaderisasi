@@ -8,7 +8,10 @@ const RegenerationFlowModuleTimelinePoint = ({
     description,
 }) => {
     return (
-        <div style={{ gridTemplateColumns: '1fr auto 1fr' }} className='grid'>
+        <div
+            className='grid gap-16 items-center'
+            style={{ gridTemplateColumns: '1fr auto 1fr' }}
+        >
             <div>
                 {number % 2 === 0 && (
                     <RegenerationFlowModuleTimelineContent
@@ -17,10 +20,15 @@ const RegenerationFlowModuleTimelinePoint = ({
                     />
                 )}
             </div>
-            <div className='flex items-center justify-center'>
-                <div className='w-12 h-12 flex items-center justify-center mx-4 bg-blue-400 text-white font-bold rounded-full'>
+            <div
+                className='h-full grid grid-flow-row'
+                style={{ gridTemplateRows: '1fr auto 1fr' }}
+            >
+                <div className='w-1 h-full mx-auto bg-bmka-accent-orange' />
+                <div className='w-12 h-12 flex items-center justify-center my-4 bg-blue-400 text-white font-bold rounded-full'>
                     <p>{number <= 9 ? `0${number}` : number}</p>
                 </div>
+                <div className='w-1 h-full mx-auto bg-bmka-accent-orange' />
             </div>
             <div>
                 {number % 2 !== 0 && (

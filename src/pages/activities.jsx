@@ -4,11 +4,12 @@ import axios from 'axios'
 import { PageWrapper } from '@layout'
 import { ActivitiesModule } from '@modules'
 
-const activities = ({ activity, activityCategory }) => {
+const activities = ({ activity, activityInfo, activityCategory }) => {
     return (
         <PageWrapper title='Activities'>
             <ActivitiesModule
                 activityData={activity}
+                activityInfo={activityInfo}
                 activityCategoryData={activityCategory}
             />
         </PageWrapper>
@@ -29,6 +30,7 @@ const getStaticProps = async () => {
     return {
         props: {
             revalidate: 10,
+            activityInfo: activitiesResponse.data.data,
             activity: activitiesResponse.data.data.data,
             activityCategory: activitiesCategoryResponse.data.data,
         },

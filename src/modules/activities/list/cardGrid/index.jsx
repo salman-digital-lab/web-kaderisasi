@@ -12,7 +12,7 @@ const ActivitiesModuleListCardGrid = ({
 }) => {
     return (
         <div
-            className='w-full grid gap-4'
+            className='w-full grid gap-6'
             style={{
                 gridTemplateColumns: 'repeat(auto-fill, minmax(270px, 1fr))',
             }}

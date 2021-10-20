@@ -74,6 +74,12 @@ const RegenerationFlowModuleTimeline = () => {
                     </div>
                 )
             })}
+
+            <RegenerationFlowModuleTimelineLine />
+
+            <div className='w-full'>
+                <div className='w-6 h-6 my-4 mx-auto bg-blue-400 rounded-full' />
+            </div>
         </div>
     )
 }

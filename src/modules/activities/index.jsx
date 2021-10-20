@@ -6,9 +6,16 @@ import ActivitiesModuleList from './list'
 import ActivitiesModuleHeader from './header'
 import ActivitiesModuleSearch from './search'
 
-const ActivitiesModule = ({ activityData, activityCategoryData }) => {
+const ActivitiesModule = ({
+    activityData,
+    activityInfo,
+    activityCategoryData,
+}) => {
     const [searchKeyword, setSearchKeyword] = useState('')
     const [currentCategory, setCurrentCategory] = useState('')
+    const [currentActivityInfo, setCurrentActivityInfo] = useState({
+        ...activityInfo,
+    })
     const [currentActivityData, setCurrentActivityData] = useState([
         ...activityData,
     ])
@@ -34,7 +41,9 @@ const ActivitiesModule = ({ activityData, activityCategoryData }) => {
                 <ActivitiesModuleList
                     activityData={currentActivityData}
                     clearFilterHandler={clearFilterHandler}
+                    currentActivityInfo={currentActivityInfo}
                     activityCategoryData={activityCategoryData}
+                    setCurrentActivityInfo={setCurrentActivityInfo}
                 />
             </ComponentWrapper>
         </div>

@@ -1,14 +1,70 @@
-import React from 'react'
+import axios from 'axios'
+import { useRouter } from 'next/router'
+import { useSnackbar } from 'notistack'
+import React, { useState } from 'react'
 
 import { Link, Button, AuthTemplate } from '@components'
 
 import RegisterModuleForm from './form'
 
 const RegisterModule = () => {
+    const router = useRouter()
+
+    const { enqueueSnackbar } = useSnackbar()
+
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+    })
+
+    const inputFormHandler = (e) => {
+        const { name, value } = e.target
+
+        setFormData({ ...formData, [name]: value })
+    }
+
+    const formSubmitHandler = async (e) => {
+        e.preventDefault()
+
+        const baseURL = process.env.NEXT_PUBLIC_BASE_URL
+        const baseURLVersion = process.env.NEXT_PUBLIC_BASE_URL_VERSION
+
+        const { name, email, password, confirmPassword } = formData
+
+        if (password !== confirmPassword) {
+            enqueueSnackbar('Password didnt match', { variant: 'error' })
+
+            return
+        }
+
+        try {
+            const response = await axios.post(
+                `${baseURL}/${baseURLVersion}/account/register`,
+                {
+                    name,
+                    email,
+                    password,
+                    is_subscribing: 1,
+                }
+            )
+
+            enqueueSnackbar(response.data.message, { variant: 'success' })
+
+            router.push('/login')
+        } catch {
+            enqueueSnackbar('Oops! Something wrong.', { variant: 'error' })
+        }
+    }
+
     return (
         <AuthTemplate>
             <div className='w-full h-full grid place-items-center'>
-                <div className='flex flex-col gap-6'>
+                <form
+                    onSubmit={formSubmitHandler}
+                    className='flex flex-col gap-6'
+                >
                     <div className='text-center'>
                         <h2 className='font-bold'>Daftar Akun</h2>
                         <p className='text-gray-600'>
@@ -16,10 +72,17 @@ const RegisterModule = () => {
                         </p>
                     </div>
                     <div>
-                        <RegisterModuleForm />
+                        <RegisterModuleForm
+                            formData={formData}
+                            inputFormHandler={inputFormHandler}
+                        />
                     </div>
                     <div>
-                        <Button variant='primary' className='w-full'>
+                        <Button
+                            type='submit'
+                            variant='primary'
+                            className='w-full'
+                        >
                             Masuk
                         </Button>
                     </div>
@@ -31,7 +94,7 @@ const RegisterModule = () => {
                             </span>
                         </p>
                     </div>
-                </div>
+                </form>
             </div>
         </AuthTemplate>
     )
