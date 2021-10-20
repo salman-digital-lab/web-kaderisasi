@@ -8,7 +8,11 @@ import '@styles/preflight.css'
 
 const myApp = ({ Component, pageProps }) => {
     return (
-        <SnackbarProvider autoHideDuration={3000} maxSnack={1}>
+        <SnackbarProvider
+            maxSnack={1}
+            autoHideDuration={3000}
+            anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+        >
             <Component {...pageProps} />
         </SnackbarProvider>
     )
