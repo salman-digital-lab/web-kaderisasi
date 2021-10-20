@@ -23,10 +23,10 @@ const ActivitiesModuleList = ({
                     <ReactPaginate
                         pageRangeDisplayed={3}
                         pageCount={currentActivityInfo.lastPage}
-                        nextClassName='text-white'
-                        previousClassName='text-white'
-                        pageLinkClassName='p-2 bg-bmka-primary-blue text-white rounded'
-                        containerClassName='w-min p-4 flex gap-6 mt-10 mx-auto bg-bmka-primary-blue rounded'
+                        nextClassName='font-bold text-bmka-accent-orange'
+                        previousClassName='font-bold text-bmka-accent-orange'
+                        pageLinkClassName='py-2 px-3 bg-bmka-primary-blue text-white rounded'
+                        containerClassName='w-min p-4 flex gap-6 mt-10 mx-auto  rounded'
                     />
                 </div>
             ) : (
