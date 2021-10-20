@@ -15,6 +15,20 @@ const Head = ({ title }) => {
             additionalLinkTags={[
                 { rel: 'shortcut icon', href: '/assets/favicon.png' },
             ]}
+            openGraph={{
+                description,
+                type: 'website',
+                url: 'https://kaderisasi.salmanitb.com/',
+                title: `${title} | ${titlePostfix}`,
+                images: [
+                    {
+                        width: 1129,
+                        height: 465,
+                        alt: 'Kaderisasi Salman ITB (BMKA)',
+                        url: 'https://gitlab.com/raflyfahrezi/web-kaderisasi-salman-itb/-/raw/main/public/assets/banner.png',
+                    },
+                ],
+            }}
         />
     )
 }
