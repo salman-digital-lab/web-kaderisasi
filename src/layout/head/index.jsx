@@ -22,8 +22,8 @@ const Head = ({ title }) => {
                 title: `${title} | ${titlePostfix}`,
                 images: [
                     {
-                        width: 800,
-                        height: 600,
+                        width: 1011,
+                        height: 465,
                         alt: 'Kaderisasi Salman ITB (BMKA)',
                         url: 'https://firebasestorage.googleapis.com/v0/b/data-center-production.appspot.com/o/image%2FBanner%20BMKA.png?alt=media&token=cf1ad030-3aba-4f12-a480-56455d6a9eae',
                     },
