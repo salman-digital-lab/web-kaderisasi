@@ -1,4 +1,6 @@
+import path from 'path'
 import React from 'react'
+import getConfig from 'next/config'
 import { NextSeo } from 'next-seo'
 
 const Head = ({ title }) => {
@@ -6,6 +8,13 @@ const Head = ({ title }) => {
     const titlePostfix = process.env.NEXT_PUBLIC_SEO_TITLE_POSTFIX
 
     const titleTemplate = `%s | ${titlePostfix}`
+
+    console.log(
+        path.join(
+            getConfig().publicRuntimeConfig.projectRoot,
+            '/public/assets/banner.png'
+        )
+    )
 
     return (
         <NextSeo
@@ -25,6 +34,9 @@ const Head = ({ title }) => {
                         width: 1129,
                         height: 465,
                         alt: 'Kaderisasi Salman ITB (BMKA)',
+                        url: 'https://gitlab.com/raflyfahrezi/web-kaderisasi-salman-itb/-/raw/main/public/assets/banner.png',
+                    },
+                    {
                         url: 'https://gitlab.com/raflyfahrezi/web-kaderisasi-salman-itb/-/raw/main/public/assets/banner.png',
                     },
                 ],
