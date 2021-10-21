@@ -9,7 +9,7 @@ const config = {
                 pageWrapper: '1fr auto;',
             },
             gridTemplateColumns: {
-                profile: 'auto 1fr;',
+                profile: '1fr 3fr;',
             },
             fontFamily: {
                 sans: ['Roboto', ...defaultTheme.fontFamily.sans],
