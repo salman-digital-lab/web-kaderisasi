@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Button, AuthTemplate } from '@components'
+import { Link, Button, AuthTemplate } from '@components'
 
 import ForgetPasswordModuleForm from './form'
 
@@ -26,6 +26,14 @@ const ForgetPasswordModule = () => {
                         >
                             Kirim Link
                         </Button>
+                    </div>
+                    <div className='text-center'>
+                        <p className='text-gray-600'>
+                            Sudah ingat passwordnya ?{' '}
+                            <span className='text-bmka-primary-blue'>
+                                <Link href='/login'>Masuk</Link>
+                            </span>
+                        </p>
                     </div>
                 </form>
             </div>
