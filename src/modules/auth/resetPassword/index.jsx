@@ -25,7 +25,7 @@ const ResetPasswordModule = () => {
                             variant='primary'
                             className='w-full'
                         >
-                            Masuk
+                            Ganti
                         </Button>
                     </div>
                 </form>
