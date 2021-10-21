@@ -5,6 +5,15 @@ const config = {
     purge: ['./src/**/*.{js,ts,jsx,tsx}'],
     theme: {
         extend: {
+            transform: {
+                'translate-0-50': 'translate(0%,-50%)',
+            },
+            gridTemplateRows: {
+                pageWrapper: '1fr auto;',
+            },
+            fontFamily: {
+                sans: ['Roboto', ...defaultTheme.fontFamily.sans],
+            },
             colors: {
                 'bmka-primary-blue': '#1F99CC',
 
@@ -23,12 +32,6 @@ const config = {
                     '0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)',
                 'level-4':
                     '0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)',
-            },
-            fontFamily: {
-                sans: ['Roboto', ...defaultTheme.fontFamily.sans],
-            },
-            gridTemplateRows: {
-                pageWrapper: '1fr auto;',
             },
         },
     },
