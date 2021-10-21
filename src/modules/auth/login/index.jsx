@@ -75,6 +75,14 @@ const LoginModule = () => {
                                 <Link href='/register'>Daftar</Link>
                             </span>
                         </p>
+                        <p className='text-gray-600'>
+                            Lupa password ?{' '}
+                            <span className='text-bmka-primary-blue'>
+                                <Link href='/forget-password'>
+                                    Ganti disini
+                                </Link>
+                            </span>
+                        </p>
                     </div>
                 </form>
             </div>
