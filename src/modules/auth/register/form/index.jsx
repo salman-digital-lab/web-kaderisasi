@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { FormInput } from '@components'
+import { AuthInput } from '@components'
 import { EmailIcon, UserIcon, LockIcon } from '@assets'
 
 const RegisterModuleForm = ({ formData, inputFormHandler }) => {
@@ -8,7 +8,7 @@ const RegisterModuleForm = ({ formData, inputFormHandler }) => {
 
     return (
         <div className='flex flex-col gap-4'>
-            <FormInput
+            <AuthInput
                 type='text'
                 name='name'
                 value={name}
@@ -18,7 +18,7 @@ const RegisterModuleForm = ({ formData, inputFormHandler }) => {
                 icon={<UserIcon className='w-6' />}
                 required
             />
-            <FormInput
+            <AuthInput
                 type='email'
                 name='email'
                 value={email}
@@ -28,7 +28,7 @@ const RegisterModuleForm = ({ formData, inputFormHandler }) => {
                 icon={<EmailIcon className='w-6' />}
                 required
             />
-            <FormInput
+            <AuthInput
                 type='password'
                 name='password'
                 value={password}
@@ -38,7 +38,7 @@ const RegisterModuleForm = ({ formData, inputFormHandler }) => {
                 icon={<LockIcon className='w-6' />}
                 required
             />
-            <FormInput
+            <AuthInput
                 type='password'
                 name='confirmPassword'
                 value={confirmPassword}
