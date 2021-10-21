@@ -21,7 +21,7 @@ const ProfileModuleContent = () => {
                 activeMenu={activeMenu}
                 setActiveMenu={setActiveMenu}
             />
-            <div className='w-full pt-6'>
+            <div className='w-full pt-10'>
                 {activeMenu === menuName.default && (
                     <ProfileModuleContentPersonalData />
                 )}
