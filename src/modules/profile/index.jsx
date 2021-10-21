@@ -2,8 +2,8 @@ import React from 'react'
 
 import { ComponentWrapper } from '@components'
 
-import ProfileModuleUserInfo from './userInfo'
 import ProfileModuleContent from './content'
+import ProfileModuleUserInfo from './userInfo'
 
 const ProfileModule = () => {
     return (
