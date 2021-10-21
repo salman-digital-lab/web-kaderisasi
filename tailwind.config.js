@@ -5,11 +5,11 @@ const config = {
     purge: ['./src/**/*.{js,ts,jsx,tsx}'],
     theme: {
         extend: {
-            transform: {
-                'translate-0-50': 'translate(0%,-50%)',
-            },
             gridTemplateRows: {
                 pageWrapper: '1fr auto;',
+            },
+            gridTemplateColumns: {
+                profile: 'auto 1fr;',
             },
             fontFamily: {
                 sans: ['Roboto', ...defaultTheme.fontFamily.sans],
