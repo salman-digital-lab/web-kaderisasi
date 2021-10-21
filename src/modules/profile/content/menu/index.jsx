@@ -2,13 +2,7 @@ import React from 'react'
 
 import { Button } from '@components'
 
-const ProfileModuleContentMenu = ({ activeMenu, setActiveMenu }) => {
-    const menuName = {
-        default: '',
-        handBook: 'handBook',
-        activities: 'activities',
-    }
-
+const ProfileModuleContentMenu = ({ menuName, activeMenu, setActiveMenu }) => {
     const buttonVariant = (name) => {
         if (name === activeMenu) {
             return 'primary'
