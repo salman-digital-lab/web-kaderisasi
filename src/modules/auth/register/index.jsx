@@ -83,7 +83,7 @@ const RegisterModule = () => {
                             variant='primary'
                             className='w-full'
                         >
-                            Masuk
+                            Daftar
                         </Button>
                     </div>
                     <div className='text-center'>
