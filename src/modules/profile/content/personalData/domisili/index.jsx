@@ -1,17 +1,36 @@
 import React from 'react'
 
-import { FormInput } from '@components'
+import { FormInput, FormSelect } from '@components'
 
 import ProfileModuleContentPersonalDataCard from '../card'
 
 const ProfileModuleContentPersonalDataDomisili = () => {
     return (
         <ProfileModuleContentPersonalDataCard>
-            <FormInput type='text' label='Provinsi' />
-            <FormInput type='text' label='Kota' />
-            <FormInput type='text' label='Kecamatan' />
-            <FormInput type='text' label='Kelurahan' />
-            <FormInput type='text' label='Kelurahan/Desa' />
+            <FormSelect value='' label='Provinsi' placeholder='Pilih provinsi'>
+                <option value='jawaBarat'>Jawa Barat</option>
+                <option value='jawaTengah'>Jawa Tengah</option>
+            </FormSelect>
+            <FormSelect value='' label='Kota' placeholder='Pilih Kota'>
+                <option value='bandung'>Bandung</option>
+                <option value='jakarta'>Jakarta</option>
+            </FormSelect>
+            <FormSelect
+                value=''
+                label='Kecamatan'
+                placeholder='Pilih Kecamatan'
+            >
+                <option value='bandung'>Bandung</option>
+                <option value='jakarta'>Jakarta</option>
+            </FormSelect>
+            <FormSelect
+                value=''
+                label='Kelurahan'
+                placeholder='Pilih Kelurahan'
+            >
+                <option value='bandung'>Bandung</option>
+                <option value='jakarta'>Jakarta</option>
+            </FormSelect>
             <FormInput type='text' label='Alamat' />
         </ProfileModuleContentPersonalDataCard>
     )
