@@ -1,6 +1,11 @@
+/* eslint-disable no-shadow */
+
 import React from 'react'
+import cookies from 'js-cookie'
+import { useRouter } from 'next/router'
 
 import { Button } from '@components'
+import { zustandStore } from '@services'
 
 import ProfileModuleContentPersonalDataTitle from './title'
 import ProfileModuleContentPersonalDataContact from './contact'
@@ -9,8 +14,24 @@ import ProfileModuleContentPersonalDataDomisili from './domisili'
 import ProfileModuleContentPersonalDataEducation from './education'
 
 const ProfileModuleContentPersonalData = () => {
+    const router = useRouter()
+
+    const state = {
+        setUser: zustandStore((state) => state.setUser),
+    }
+
     const formSubmitHandler = (e) => {
         e.preventDefault()
+    }
+
+    const logOutButtonHandler = () => {
+        const { setUser } = state
+        const userCookieName = process.env.NEXT_PUBLIC_KEY_COOKIES_USER
+
+        cookies.set(userCookieName, '')
+        setUser(null)
+
+        router.push('/login')
     }
 
     return (
@@ -44,6 +65,7 @@ const ProfileModuleContentPersonalData = () => {
             </div>
             <div className='flex justify-end gap-4 mt-8'>
                 <Button
+                    onClick={logOutButtonHandler}
                     textClassName='text-white font-bold'
                     className='bg-red-500 border-2 border-red-500'
                 >
