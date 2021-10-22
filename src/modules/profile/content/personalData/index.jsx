@@ -9,8 +9,12 @@ import ProfileModuleContentPersonalDataDomisili from './domisili'
 import ProfileModuleContentPersonalDataEducation from './education'
 
 const ProfileModuleContentPersonalData = () => {
+    const formSubmitHandler = (e) => {
+        e.preventDefault()
+    }
+
     return (
-        <div>
+        <form onSubmit={formSubmitHandler}>
             <h3 className='font-bold'>Profil</h3>
             <div className='flex flex-wrap gap-6 mt-4'>
                 <div className='w-full max-w-sm'>
@@ -45,9 +49,11 @@ const ProfileModuleContentPersonalData = () => {
                 >
                     Log Out
                 </Button>
-                <Button variant='primary'>Update</Button>
+                <Button type='submit' variant='primary'>
+                    Update
+                </Button>
             </div>
-        </div>
+        </form>
     )
 }
 
