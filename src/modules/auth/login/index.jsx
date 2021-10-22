@@ -1,4 +1,6 @@
 import axios from 'axios'
+import cookies from 'js-cookie'
+import { useRouter } from 'next/router'
 import { useSnackbar } from 'notistack'
 import React, { useState } from 'react'
 
@@ -7,6 +9,8 @@ import { Link, Button, AuthTemplate } from '@components'
 import LoginModuleForm from './form'
 
 const LoginModule = () => {
+    const router = useRouter()
+
     const { enqueueSnackbar } = useSnackbar()
 
     const [formData, setFormData] = useState({
@@ -24,6 +28,7 @@ const LoginModule = () => {
         e.preventDefault()
 
         const baseURL = process.env.NEXT_PUBLIC_BASE_URL
+        const userCookieName = process.env.NEXT_PUBLIC_KEY_COOKIES_USER
         const baseURLVersion = process.env.NEXT_PUBLIC_BASE_URL_VERSION
 
         const { email, password } = formData
@@ -34,7 +39,13 @@ const LoginModule = () => {
                 { email, password }
             )
 
-            enqueueSnackbar(response.data.message, { variant: 'success' })
+            const { token, message } = response.data
+
+            cookies.set(userCookieName, token)
+
+            enqueueSnackbar(message, { variant: 'success' })
+
+            router.push('/profile')
         } catch {
             enqueueSnackbar('Oops! Something wrong.', { variant: 'error' })
         }
