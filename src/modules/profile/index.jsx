@@ -5,12 +5,14 @@ import { ComponentWrapper } from '@components'
 import ProfileModuleContent from './content'
 import ProfileModuleUserInfo from './userInfo'
 
-const ProfileModule = () => {
+const ProfileModule = ({ activityCategoryData }) => {
     return (
         <ComponentWrapper>
             <div className='py-36 grid grid-cols-profile gap-8'>
                 <ProfileModuleUserInfo />
-                <ProfileModuleContent />
+                <ProfileModuleContent
+                    activityCategoryData={activityCategoryData}
+                />
             </div>
         </ComponentWrapper>
     )
