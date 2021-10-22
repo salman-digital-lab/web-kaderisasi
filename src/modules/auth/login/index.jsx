@@ -1,9 +1,12 @@
+/* eslint-disable no-shadow */
+
 import axios from 'axios'
 import cookies from 'js-cookie'
 import { useRouter } from 'next/router'
 import { useSnackbar } from 'notistack'
 import React, { useState } from 'react'
 
+import { zustandStore } from '@services'
 import { Link, Button, AuthTemplate } from '@components'
 
 import LoginModuleForm from './form'
@@ -12,6 +15,10 @@ const LoginModule = () => {
     const router = useRouter()
 
     const { enqueueSnackbar } = useSnackbar()
+
+    const state = {
+        setUser: zustandStore((state) => state.setUser),
+    }
 
     const [formData, setFormData] = useState({
         email: '',
@@ -27,6 +34,7 @@ const LoginModule = () => {
     const formSubmitHandler = async (e) => {
         e.preventDefault()
 
+        const { setUser } = state
         const baseURL = process.env.NEXT_PUBLIC_BASE_URL
         const userCookieName = process.env.NEXT_PUBLIC_KEY_COOKIES_USER
         const baseURLVersion = process.env.NEXT_PUBLIC_BASE_URL_VERSION
@@ -39,7 +47,9 @@ const LoginModule = () => {
                 { email, password }
             )
 
-            const { token, message } = response.data
+            const { data, token, message } = response.data
+
+            setUser(data[0])
 
             cookies.set(userCookieName, token)
 
