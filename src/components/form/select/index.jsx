@@ -9,9 +9,11 @@ const FormSelect = ({ label, placeholder, className, children, ...props }) => {
                     className={`w-full outline-none ${className ?? ''}`}
                     {...props}
                 >
-                    <option value='' disabled>
-                        {placeholder}
-                    </option>
+                    {placeholder && (
+                        <option value='' disabled>
+                            {placeholder}
+                        </option>
+                    )}
                     {children}
                 </select>
             </div>
