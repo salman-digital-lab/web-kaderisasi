@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { Button } from '@components'
+
 import ProfileModuleContentPersonalDataTitle from './title'
 import ProfileModuleContentPersonalDataContact from './contact'
 import ProfileModuleContentPersonalDataPersonal from './personal'
@@ -35,6 +37,15 @@ const ProfileModuleContentPersonalData = () => {
                     </ProfileModuleContentPersonalDataTitle>
                     <ProfileModuleContentPersonalDataContact />
                 </div>
+            </div>
+            <div className='flex justify-end gap-4 mt-8'>
+                <Button
+                    textClassName='text-white font-bold'
+                    className='bg-red-500 border-2 border-red-500'
+                >
+                    Log Out
+                </Button>
+                <Button variant='primary'>Update</Button>
             </div>
         </div>
     )
