@@ -1,6 +1,6 @@
 import React from 'react'
 
-const FormSelect = ({ label, className, children, ...props }) => {
+const FormSelect = ({ label, placeholder, className, children, ...props }) => {
     return (
         <div>
             {label && <p>{label}</p>}
@@ -9,6 +9,9 @@ const FormSelect = ({ label, className, children, ...props }) => {
                     className={`w-full outline-none ${className ?? ''}`}
                     {...props}
                 >
+                    <option value='' disabled>
+                        {placeholder}
+                    </option>
                     {children}
                 </select>
             </div>
