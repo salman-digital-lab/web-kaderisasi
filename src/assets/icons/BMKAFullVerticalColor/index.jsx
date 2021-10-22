@@ -3,10 +3,11 @@ import React from 'react'
 const BMKAFullVerticalColor = () => {
     return (
         <svg
-            width='467'
-            height='512'
-            viewBox='0 0 467 512'
             fill='none'
+            width='100%'
+            height='100%'
+            viewBox='0 0 467 512'
+            preserveAspectRatio='none'
             xmlns='http://www.w3.org/2000/svg'
         >
             <path
