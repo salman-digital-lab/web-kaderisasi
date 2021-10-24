@@ -1,3 +1,4 @@
 import withUserAuthenticationHOC from './withUserAuthentication'
+import withoutUserAuthentication from './withoutUserAuthentication'
 
-export { withUserAuthenticationHOC }
+export { withUserAuthenticationHOC, withoutUserAuthentication }
