@@ -19,7 +19,7 @@ const withUserAuthentication = (Components) => {
             const { user } = state
 
             if (!user) {
-                router.push('/login')
+                router.replace('/login')
 
                 return <div />
             }

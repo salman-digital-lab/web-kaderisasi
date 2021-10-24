@@ -19,7 +19,7 @@ const withoutUserAuthentication = (Components) => {
             const { user } = state
 
             if (user) {
-                router.push('/profile')
+                router.replace('/profile')
 
                 return <div />
             }
