@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { withoutUserAuthentication } from '@hoc'
 import { Link, Button, AuthTemplate } from '@components'
 
 import ForgetPasswordModuleForm from './form'
@@ -41,4 +42,4 @@ const ForgetPasswordModule = () => {
     )
 }
 
-export default ForgetPasswordModule
+export default withoutUserAuthentication(ForgetPasswordModule)
