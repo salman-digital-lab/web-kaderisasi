@@ -36,7 +36,7 @@ const ProfileModuleContentPersonalData = () => {
 
         enqueueSnackbar('You have been logged out', { variant: 'error' })
 
-        router.push('/login')
+        // redirect to login by withUserAuthentication HOC
     }
 
     return (
