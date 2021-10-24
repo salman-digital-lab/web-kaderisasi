@@ -1,4 +1,5 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 
 import { BMKAFullVerticalColorIcon } from '@assets'
 
@@ -9,9 +10,13 @@ const AuthenticationOverlay = () => {
             className='fixed w-full h-full flex flex-col items-center justify-center'
         >
             <div>
-                <div className='w-40 mx-auto'>
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className='w-40 mx-auto'
+                >
                     <BMKAFullVerticalColorIcon />
-                </div>
+                </motion.div>
             </div>
         </div>
     )
