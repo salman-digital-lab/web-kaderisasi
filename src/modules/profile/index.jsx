@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { ComponentWrapper } from '@components'
+import { withUserAuthenticationHOC } from '@hoc'
 
 import ProfileModuleContent from './content'
 import ProfileModuleUserInfo from './userInfo'
@@ -18,4 +19,4 @@ const ProfileModule = ({ activityCategoryData }) => {
     )
 }
 
-export default ProfileModule
+export default withUserAuthenticationHOC(ProfileModule)
