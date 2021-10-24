@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { useSnackbar } from 'notistack'
 import React, { useState } from 'react'
 
+import { withoutUserAuthentication } from '@hoc'
 import { Link, Button, AuthTemplate } from '@components'
 
 import RegisterModuleForm from './form'
@@ -100,4 +101,4 @@ const RegisterModule = () => {
     )
 }
 
-export default RegisterModule
+export default withoutUserAuthentication(RegisterModule)
