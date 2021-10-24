@@ -2,18 +2,16 @@
 
 import axios from 'axios'
 import cookies from 'js-cookie'
-import { useRouter } from 'next/router'
 import { useSnackbar } from 'notistack'
 import React, { useState } from 'react'
 
 import { zustandStore } from '@services'
+import { withoutUserAuthentication } from '@hoc'
 import { Link, Button, AuthTemplate } from '@components'
 
 import LoginModuleForm from './form'
 
 const LoginModule = () => {
-    const router = useRouter()
-
     const { enqueueSnackbar } = useSnackbar()
 
     const state = {
@@ -55,7 +53,7 @@ const LoginModule = () => {
 
             enqueueSnackbar(message, { variant: 'success' })
 
-            router.push('/profile')
+            // redirect to profile by withoutUserAuthentication HOC
         } catch {
             enqueueSnackbar('Oops! Something wrong.', { variant: 'error' })
         }
@@ -109,4 +107,4 @@ const LoginModule = () => {
     )
 }
 
-export default LoginModule
+export default withoutUserAuthentication(LoginModule)
