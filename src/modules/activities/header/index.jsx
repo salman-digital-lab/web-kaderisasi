@@ -10,9 +10,11 @@ const ActivitiesModuleHeader = () => {
                 <div className='flex items-center'>
                     <div className='max-w-xl flex flex-col gap-6'>
                         <div className='flex flex-col gap-4'>
-                            <h1 className='text-white'>Ayo Daftar Kegiatan</h1>
                             <h1 className='text-white'>
-                                Di Kaderisasi Salman ITB
+                                Ayo Daftar Kegiatan di
+                            </h1>
+                            <h1 className='text-white'>
+                                Kaderisasi Salman ITB
                             </h1>
                         </div>
                         <p className='text-white'>

@@ -2,7 +2,6 @@
 
 import React from 'react'
 import cookies from 'js-cookie'
-import { useRouter } from 'next/router'
 import { useSnackbar } from 'notistack'
 
 import { Button } from '@components'
@@ -15,8 +14,6 @@ import ProfileModuleContentPersonalDataDomisili from './domisili'
 import ProfileModuleContentPersonalDataEducation from './education'
 
 const ProfileModuleContentPersonalData = () => {
-    const router = useRouter()
-
     const { enqueueSnackbar } = useSnackbar()
 
     const state = {
@@ -36,7 +33,7 @@ const ProfileModuleContentPersonalData = () => {
 
         enqueueSnackbar('You have been logged out', { variant: 'error' })
 
-        router.push('/login')
+        // redirect to login by withUserAuthentication HOC
     }
 
     return (

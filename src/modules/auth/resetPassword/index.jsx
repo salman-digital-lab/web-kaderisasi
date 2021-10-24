@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { withUserAuthenticationHOC } from '@hoc'
 import { Button, AuthTemplate } from '@components'
 
 import ResetPasswordModuleForm from './form'
@@ -34,4 +35,4 @@ const ResetPasswordModule = () => {
     )
 }
 
-export default ResetPasswordModule
+export default withUserAuthenticationHOC(ResetPasswordModule)

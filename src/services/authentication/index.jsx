@@ -5,6 +5,7 @@ import axios from 'axios'
 import cookies from 'js-cookie'
 import jwtDecode from 'jwt-decode'
 import React, { useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 
 import { zustandStore } from '@services'
 
@@ -68,11 +69,19 @@ const Authentication = ({ children }) => {
 
     return (
         <div>
-            {state.isAuthenticating ? (
-                <AuthenticationOverlay />
-            ) : (
-                <div>{children}</div>
-            )}
+            <AnimatePresence exitBeforeEnter>
+                {state.isAuthenticating && (
+                    <motion.div
+                        exit={{ opacity: 0 }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        key={state.isAuthenticating}
+                    >
+                        <AuthenticationOverlay />
+                    </motion.div>
+                )}
+            </AnimatePresence>
+            {!state.isAuthenticating && <div>{children}</div>}
         </div>
     )
 }
