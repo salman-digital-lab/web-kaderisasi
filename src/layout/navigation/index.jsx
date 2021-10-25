@@ -13,6 +13,22 @@ const Navigation = () => {
         user: zustandStore((state) => state.user),
     }
 
+    const formatName = (name) => {
+        const maxNameLength = 15
+
+        if (!name) {
+            return ''
+        }
+
+        const nameLength = name.length
+
+        if (nameLength >= maxNameLength) {
+            return `${name.substr(0, maxNameLength)}...`
+        }
+
+        return name
+    }
+
     return (
         <nav className='fixed left-0 top-0 w-full py-4 bg-bmka-primary-blue z-50'>
             <ComponentWrapper>
@@ -33,7 +49,9 @@ const Navigation = () => {
                                 <Route href='/login'>Masuk</Route>
                             </>
                         ) : (
-                            <Route href='/profile'>Hi, {state.user.name}</Route>
+                            <Route href='/profile'>
+                                Hi, {formatName(state.user.name)}
+                            </Route>
                         )}
                     </div>
                 </div>
