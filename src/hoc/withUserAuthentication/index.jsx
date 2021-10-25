@@ -20,8 +20,6 @@ const withUserAuthentication = (Components) => {
 
             if (!user) {
                 router.replace('/login')
-
-                return <div />
             }
         }
 
