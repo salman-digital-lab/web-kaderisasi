@@ -11,7 +11,7 @@ const myApp = ({ Component, pageProps }) => {
     return (
         <>
             <NextProgress
-                height='3'
+                height={3}
                 color='#ff7b40'
                 options={{ speed: 500, showSpinner: false }}
             />
