@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-const _404 = () => {
+const _404Module = () => {
     return (
         <div className='my-32'>
             <p>Hello World</p>
@@ -10,4 +10,4 @@ const _404 = () => {
     )
 }
 
-export default _404
+export default _404Module
