@@ -10,11 +10,13 @@ const RegenerationFlowModuleHeader = () => {
                 <div className='w-full max-w-lg flex flex-col gap-6'>
                     <h1 className='text-white'>Alur Kaderisasi</h1>
                     <p className='text-white'>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing
-                        elit. Mollitia dignissimos necessitatibus, in nobis
-                        optio iure pariatur ullam illo, quia velit nesciunt
-                        illum. Maxime, sunt veniam iste placeat distinctio
-                        dolores non.
+                        Demi melahirkan kader teladan pelopor peradaban Islam,
+                        Masjid Salman ITB telah merancang alur kaderisasi yang
+                        sistematis. Dimulai dari memahami tentang Islam yang
+                        sesungguhnya, belajar bagaimana berijtihad teknologi,
+                        hingga menjadi seorang pemberadab akan kamu dapatkan
+                        jika mengikuti seluruh rangkaian kaderisasi Masjid
+                        Salman ITB.
                     </p>
                     <div>
                         <Link href='/activities'>
