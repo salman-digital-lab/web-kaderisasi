@@ -5,7 +5,7 @@
 
 import React, { useState } from 'react'
 
-import { BMKAFullIcon, Menu } from '@assets'
+import { BMKAFullIcon, MenuIcon } from '@assets'
 import { zustandStore } from '@services'
 import { ComponentWrapper } from '@components'
 
@@ -64,7 +64,7 @@ const Navigation = () => {
                         className='md:hidden text-right'
                         onClick={() => setIsActive(true)}
                     >
-                        <Menu />
+                        <MenuIcon />
                     </div>
                     <div
                         className={`fixed bg-bmka-primary-blue z-10  top-0 h-full w-full p-10 md:hidden transition-all ${
