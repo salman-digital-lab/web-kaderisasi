@@ -16,7 +16,8 @@ import BMKAWelcomeIcon from './BMKAWelcome'
 import BMKAActivitiesIcon from './BMKAActivities'
 import BMKAFullVerticalIcon from './BMKAFullVertical'
 import BMKAFullVerticalColorIcon from './BMKAFullVerticalColor'
-import Menu from './menu'
+import MenuIcon from './menu'
+import DropdownIcon from './dropdown'
 
 export {
     MailIcon,
@@ -37,6 +38,7 @@ export {
     BMKAActivitiesIcon,
     BMKAFullVerticalIcon,
     BMKAFullVerticalColorIcon,
-    Menu,
+    MenuIcon,
+    DropdownIcon,
 }
 export * from './regenerationFlow'
