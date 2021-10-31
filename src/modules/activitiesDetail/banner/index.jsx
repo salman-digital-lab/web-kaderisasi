@@ -15,11 +15,11 @@ const ActivitiesDetailModuleBanner = ({
     activityCategory,
 }) => {
     return (
-        <div className='w-full max-w-lg mx-auto'>
+        <div className='w-full max-w-lg p-6 rounded transform -translate-y-16 mx-auto bg-white shadow-level-1'>
             <div className='w-full'>
                 <ActivitiesDetailModuleBannerSlider images={images} />
             </div>
-            <div className='w-full flex justify-between'>
+            <div className='w-full flex justify-between mt-12'>
                 <div>
                     <p className='text-gray-500 text-sm'>Kategori</p>
                     <p className='text-lg font-bold text-bmka-primary-blue'>
