@@ -3,7 +3,7 @@
 import React from 'react'
 
 import { zustandStore } from '@services'
-import { Jumbotron, ComponentWrapper } from '@components'
+import { Link, Button, Jumbotron, ComponentWrapper } from '@components'
 
 import StudentCareModuleForm from './form'
 
@@ -30,7 +30,17 @@ const StudentCareModule = () => {
                     {state.user ? (
                         <StudentCareModuleForm name={state.user.name} />
                     ) : (
-                        <p>Kamu harus login dulu</p>
+                        <div className='w-full flex flex-col gap-6 text-center'>
+                            <h3 className='font-bold text-bmka-primary-blue'>
+                                Oops!
+                            </h3>
+                            <p>Kamu harus login terlebih dahulu dulu</p>
+                            <div>
+                                <Link href='/login'>
+                                    <Button variant='secondary'>Log In</Button>
+                                </Link>
+                            </div>
+                        </div>
                     )}
                 </div>
             </ComponentWrapper>
