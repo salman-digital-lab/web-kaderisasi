@@ -2,10 +2,15 @@ import React from 'react'
 
 import { Jumbotron, ComponentWrapper } from '@components'
 
+import ActivitiesDetailModuleList from './list'
 import ActivitiesDetailModuleBanner from './banner'
 import ActivitiesDetailModuleContent from './content'
 
-const ActivitiesDetailModule = ({ activityCategory, activityDetailData }) => {
+const ActivitiesDetailModule = ({
+    activityList,
+    activityCategory,
+    activityDetailData,
+}) => {
     return (
         <div>
             <Jumbotron>
@@ -14,7 +19,7 @@ const ActivitiesDetailModule = ({ activityCategory, activityDetailData }) => {
                 </h1>
             </Jumbotron>
             <ComponentWrapper>
-                <div className='pb-16'>
+                <div>
                     <div>
                         <ActivitiesDetailModuleBanner
                             status={activityDetailData.status}
@@ -31,6 +36,12 @@ const ActivitiesDetailModule = ({ activityCategory, activityDetailData }) => {
                     </div>
                 </div>
             </ComponentWrapper>
+            <div className='py-20'>
+                <ActivitiesDetailModuleList
+                    activityData={activityList}
+                    activityCategoryData={activityCategory}
+                />
+            </div>
         </div>
     )
 }
