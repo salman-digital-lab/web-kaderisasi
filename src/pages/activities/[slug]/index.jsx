@@ -7,13 +7,14 @@ import { useRouter } from 'next/router'
 import { PageWrapper } from '@layout'
 import { ActivitiesDetailModule } from '@modules'
 
-const activitiesDetail = ({ activityDetailData }) => {
+const activitiesDetail = ({ activityCategory, activityDetailData }) => {
     const router = useRouter()
     const { slug } = router.query
 
     return (
         <PageWrapper title={slug}>
             <ActivitiesDetailModule
+                activityCategory={activityCategory}
                 activityDetailData={activityDetailData[0]}
             />
         </PageWrapper>
@@ -27,10 +28,14 @@ const getStaticProps = async ({ params }) => {
     const activitiesDetailResponse = await axios.get(
         `${baseURL}/${baseURLVersion}/activity/details/${params.slug}`
     )
+    const activitiesCategoryResponse = await axios.get(
+        `${baseURL}/${baseURLVersion}/activity-categories`
+    )
 
     return {
         props: {
             revalidate: 10,
+            activityCategory: activitiesCategoryResponse.data.data,
             activityDetailData: activitiesDetailResponse.data.data,
         },
     }
