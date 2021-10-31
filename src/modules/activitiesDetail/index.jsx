@@ -5,8 +5,6 @@ import { Jumbotron, ComponentWrapper } from '@components'
 import ActivitiesDetailModuleBanner from './banner'
 
 const ActivitiesDetailModule = ({ activityDetailData }) => {
-    console.log(activityDetailData)
-
     return (
         <div>
             <Jumbotron>
@@ -15,10 +13,10 @@ const ActivitiesDetailModule = ({ activityDetailData }) => {
                 </h1>
             </Jumbotron>
             <ComponentWrapper>
-                <div className='bg-gray-400'>
-                    <ActivitiesDetailModuleBanner
+                <div>
+                    {/* <ActivitiesDetailModuleBanner
                         images={activityDetailData.images}
-                    />
+                    /> */}
                 </div>
                 <div>
                     <p>test</p>
