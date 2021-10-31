@@ -7,6 +7,7 @@ import PhoneIcon from './phone'
 import EmailIcon from './email'
 import SearchIcon from './search'
 import WarningIcon from './warning'
+import FallbackIcon from './fallback'
 import BMKAFullIcon from './BMKAFull'
 import BMKAAuthIcon from './BMKAAuth'
 import ArrowLeftIcon from './arrowLeft'
@@ -27,6 +28,7 @@ export {
     EmailIcon,
     SearchIcon,
     WarningIcon,
+    FallbackIcon,
     BMKAFullIcon,
     BMKAAuthIcon,
     InstagramIcon,
