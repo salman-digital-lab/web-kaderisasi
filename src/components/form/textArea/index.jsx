@@ -6,7 +6,9 @@ const FormTextArea = ({ label, className, ...props }) => {
             {label && <p>{label}</p>}
             <div className='flex gap-2 items-center px-2 py-3 border-2 border-bmka-primary-blue rounded'>
                 <textarea
-                    className={`w-full outline-none ${className ?? ''}`}
+                    className={`w-full outline-none resize-none ${
+                        className ?? ''
+                    }`}
                     {...props}
                 />
             </div>
