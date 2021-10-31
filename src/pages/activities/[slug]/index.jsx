@@ -20,7 +20,7 @@ const activitiesDetail = ({
             <ActivitiesDetailModule
                 activityList={activityList}
                 activityCategory={activityCategory}
-                activityDetailData={activityDetailData[0]}
+                activityDetailData={activityDetailData}
             />
         </PageWrapper>
     )
@@ -45,7 +45,7 @@ const getStaticProps = async ({ params }) => {
             revalidate: 10,
             activityList: activitiesListResponse.data.data.data,
             activityCategory: activitiesCategoryResponse.data.data,
-            activityDetailData: activitiesDetailResponse.data.data,
+            activityDetailData: activitiesDetailResponse.data.data[0],
         },
     }
 }
