@@ -4,7 +4,7 @@ import { Jumbotron, ComponentWrapper } from '@components'
 
 import ActivitiesDetailModuleBanner from './banner'
 
-const ActivitiesDetailModule = ({ activityDetailData }) => {
+const ActivitiesDetailModule = ({ activityCategory, activityDetailData }) => {
     return (
         <div>
             <Jumbotron>
@@ -14,12 +14,18 @@ const ActivitiesDetailModule = ({ activityDetailData }) => {
             </Jumbotron>
             <ComponentWrapper>
                 <div>
-                    {/* <ActivitiesDetailModuleBanner
+                    <ActivitiesDetailModuleBanner
+                        status={activityDetailData.status}
                         images={activityDetailData.images}
-                    /> */}
+                        activityCategory={activityCategory}
+                        categoryID={activityDetailData.category_id}
+                        closeDate={activityDetailData.register_end_date}
+                    />
                 </div>
-                <div>
-                    <p>test</p>
+                <div className='py-16'>
+                    <div>
+                        <p>test</p>
+                    </div>
                 </div>
             </ComponentWrapper>
         </div>
