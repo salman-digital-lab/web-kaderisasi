@@ -4,18 +4,20 @@ import { Button } from '@components'
 
 const ActivitiesDetailModuleContent = ({ description }) => {
     return (
-        <div className='w-full flex gap-4'>
+        <div className='w-full flex flex-col md:flex-row gap-4 justify-center'>
             <div className='w-full'>
-                <h2 className='font-bold'>Deskripsi</h2>
+                <h2 className='font-bold md:text-left text-center'>
+                    Deskripsi
+                </h2>
                 {description ? (
                     <p>{description}</p>
                 ) : (
-                    <p className='text-center pt-6 text-gray-500'>
+                    <p className='md:text-left text-center pt-6 text-gray-500'>
                         Belum ada deskripsi mengenai kegiatan ini.
                     </p>
                 )}
             </div>
-            <div className='w-full max-w-xs flex flex-col gap-4 text-center p-4 rounded shadow-level-1'>
+            <div className='w-full max-w-xs flex flex-col gap-4 text-center p-4 rounded shadow-level-1 mx-auto md:mx-0'>
                 <p className='font-bold'>
                     Tertarik untuk mengikuti kegiatan ini ?
                 </p>
