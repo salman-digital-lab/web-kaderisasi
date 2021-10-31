@@ -7,13 +7,18 @@ import { useRouter } from 'next/router'
 import { PageWrapper } from '@layout'
 import { ActivitiesDetailModule } from '@modules'
 
-const activitiesDetail = ({ activityCategory, activityDetailData }) => {
+const activitiesDetail = ({
+    activityList,
+    activityCategory,
+    activityDetailData,
+}) => {
     const router = useRouter()
     const { slug } = router.query
 
     return (
         <PageWrapper title={slug}>
             <ActivitiesDetailModule
+                activityList={activityList}
                 activityCategory={activityCategory}
                 activityDetailData={activityDetailData[0]}
             />
@@ -25,6 +30,9 @@ const getStaticProps = async ({ params }) => {
     const baseURL = process.env.NEXT_PUBLIC_BASE_URL
     const baseURLVersion = process.env.NEXT_PUBLIC_BASE_URL_VERSION
 
+    const activitiesListResponse = await axios.get(
+        `${baseURL}/${baseURLVersion}/activity`
+    )
     const activitiesDetailResponse = await axios.get(
         `${baseURL}/${baseURLVersion}/activity/details/${params.slug}`
     )
@@ -35,6 +43,7 @@ const getStaticProps = async ({ params }) => {
     return {
         props: {
             revalidate: 10,
+            activityList: activitiesListResponse.data.data.data,
             activityCategory: activitiesCategoryResponse.data.data,
             activityDetailData: activitiesDetailResponse.data.data,
         },
