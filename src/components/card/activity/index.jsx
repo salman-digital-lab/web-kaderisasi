@@ -38,7 +38,7 @@ const ActivityCard = ({
                     <p className='text-sm'>Untuk {role}</p>
                     <p className='text-sm'>Tutup: {registerEndDate}</p>
                 </div>
-                <Link href={`/activity/${slug}`}>
+                <Link href={`/activities/${slug}`}>
                     <Button type='button' className='w-full' variant='primary'>
                         Daftar
                     </Button>
