@@ -6,7 +6,7 @@ const ActivitiesDetailModuleContent = ({ description }) => {
     return (
         <div className='w-full flex gap-4'>
             <div className='w-full'>
-                <h3 className='font-bold'>Deskripsi</h3>
+                <h2 className='font-bold'>Deskripsi</h2>
                 {description ? (
                     <p>{description}</p>
                 ) : (
