@@ -8,26 +8,35 @@ import 'slick-carousel/slick/slick-theme.css'
 
 const ActivitiesDetailModuleBannerSlider = ({ images }) => {
     return (
-        <div className='w-full max-w-md'>
+        <div className='w-full'>
             <Slider
                 dots={true}
                 speed={500}
+                arrows={false}
                 infinite={true}
                 slidesToShow={1}
                 slidesToScroll={1}
+                focusOnSelect={false}
+                centerMode
             >
                 {images.map((item) => {
                     return (
-                        <div>
-                            <img
-                                src={item}
-                                alt='Banner'
-                                className='w-full max-w-md'
-                            />
-                        </div>
+                        <img
+                            src={item}
+                            alt='Banner'
+                            className='w-full h-full object-contain'
+                        />
                     )
                 })}
             </Slider>
+            <style jsx>
+                {`
+                    .slick-prev:before,
+                    .slick-next:before {
+                        color: black;
+                    }
+                `}
+            </style>
         </div>
     )
 }
