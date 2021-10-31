@@ -17,7 +17,7 @@ const ActivitiesDetailModuleBanner = ({
     return (
         <div className='w-full max-w-lg mx-auto'>
             <div className='w-full'>
-                {/* <ActivitiesDetailModuleBannerSlider images={images} /> */}
+                <ActivitiesDetailModuleBannerSlider images={images} />
             </div>
             <div className='w-full flex justify-between'>
                 <div>
