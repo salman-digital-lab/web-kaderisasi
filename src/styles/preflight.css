@@ -1,6 +1,22 @@
 .slick-prev:before,
 .slick-next:before {
-    color: black;
+    color: black !important;
+}
+
+.slider img {
+    min-height: 440px;
+}
+
+@media (min-width: 768px) {
+    .slider img {
+        height: 35vw;
+    }
+}
+
+@media (min-width: 1024px) {
+    .slider img {
+        height: 30vw;
+    }
 }
 
 @tailwind base;
