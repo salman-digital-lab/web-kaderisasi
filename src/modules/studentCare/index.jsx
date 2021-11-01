@@ -28,7 +28,10 @@ const StudentCareModule = () => {
             <ComponentWrapper>
                 <div className='w-full max-w-xl mb-10 p-6 mx-auto transform -translate-y-10 rounded bg-white shadow-level-1'>
                     {state.user ? (
-                        <StudentCareModuleForm name={state.user.name} />
+                        <StudentCareModuleForm
+                            name={state.user.name}
+                            token={state.user.token}
+                        />
                     ) : (
                         <div className='w-full flex flex-col gap-6 text-center'>
                             <h3 className='font-bold text-bmka-primary-blue'>
