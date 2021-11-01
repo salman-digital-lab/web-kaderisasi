@@ -9,20 +9,26 @@ import { Button, FormInput, FormSelect, FormTextArea } from '@components'
 const StudentCareModuleForm = ({ name, token }) => {
     const { enqueueSnackbar } = useSnackbar()
 
-    const [isActive, setIsActive] = useState(false)
-    const [formData, setFormDate] = useState({
+    const formDataTemplate = {
         problem_owner: '',
         problem_category: '',
         counselor_gender: '',
         problem_owner_name: '',
         technical_handling: '',
         problem_category_desk: '',
-    })
+    }
+
+    const [isActive, setIsActive] = useState(false)
+    const [isSending, setIsSending] = useState(false)
+    const [formData, setFormData] = useState({ ...formDataTemplate })
 
     const formSubmitHandler = async (e) => {
         e.preventDefault()
 
-        enqueueSnackbar('Mengirim curhatanmu...', { variant: 'info' })
+        setIsSending(true)
+        enqueueSnackbar('Mengirim curhatanmu... Tunggu sebentar ya.', {
+            variant: 'info',
+        })
 
         const baseURL = process.env.NEXT_PUBLIC_BASE_URL
         const baseURLVersion = process.env.NEXT_PUBLIC_BASE_URL_VERSION
@@ -49,18 +55,24 @@ const StudentCareModuleForm = ({ name, token }) => {
             )
 
             enqueueSnackbar(response.data.message, { variant: 'success' })
+
+            setIsSending(false)
+
+            setFormData({ ...formDataTemplate })
         } catch (error) {
             enqueueSnackbar(
                 'Oops! Ada kesalahan terjadi, coba lagi nanti atau tunggu beberapa saat.',
                 { variant: 'error' }
             )
+
+            setIsSending(false)
         }
     }
 
     const formOnChangeHandler = (e) => {
         const { name, value } = e.target
 
-        setFormDate({
+        setFormData({
             ...formData,
             [name]: value,
         })
@@ -83,6 +95,8 @@ const StudentCareModuleForm = ({ name, token }) => {
                                 value={formData.problem_owner}
                                 onChange={formOnChangeHandler}
                                 placeholder='-- Pilih pemiliki masalah --'
+                                disabled={isSending}
+                                required
                             >
                                 <option value='Diri Sendiri'>
                                     Diri sendiri
@@ -96,6 +110,8 @@ const StudentCareModuleForm = ({ name, token }) => {
                                     onChange={formOnChangeHandler}
                                     value={formData.problem_owner_name}
                                     placeholder='-- Ketikkan nama temanmu disini --'
+                                    disabled={isSending}
+                                    required
                                 />
                             )}
                             <FormSelect
@@ -104,6 +120,8 @@ const StudentCareModuleForm = ({ name, token }) => {
                                 onChange={formOnChangeHandler}
                                 value={formData.problem_category}
                                 placeholder='-- Pilih Kategori --'
+                                disabled={isSending}
+                                required
                             >
                                 <option value='Akademik'>Akademik</option>
                                 <option value='Kesehatan'>Kesehatan</option>
@@ -118,6 +136,8 @@ const StudentCareModuleForm = ({ name, token }) => {
                                 value={formData.problem_category_desk}
                                 label='Deskripsi masalah yang akan didiskusikan'
                                 placeholder='-- Ketikkan deskripsi masalahmu disini --'
+                                disabled={isSending}
+                                required
                             />
                             <FormSelect
                                 label='Teknis Penanganan'
@@ -125,6 +145,8 @@ const StudentCareModuleForm = ({ name, token }) => {
                                 onChange={formOnChangeHandler}
                                 value={formData.technical_handling}
                                 placeholder='-- Pilih Teknis Penanganan --'
+                                disabled={isSending}
+                                required
                             >
                                 <option value='Online'>Online</option>
                                 <option value='Bertemu langsung'>
@@ -137,6 +159,8 @@ const StudentCareModuleForm = ({ name, token }) => {
                                 onChange={formOnChangeHandler}
                                 value={formData.counselor_gender}
                                 placeholder='-- Pilih Prefer Konselor --'
+                                disabled={isSending}
+                                required
                             >
                                 <option value='Laki-laki'>Laki - laki</option>
                                 <option value='Perempuan'>Perempuan</option>
