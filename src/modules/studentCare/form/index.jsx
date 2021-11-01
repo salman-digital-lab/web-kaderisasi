@@ -1,10 +1,14 @@
 /* eslint-disable no-shadow */
 
+import axios from 'axios'
+import { useSnackbar } from 'notistack'
 import React, { useState } from 'react'
 
 import { Button, FormInput, FormSelect, FormTextArea } from '@components'
 
-const StudentCareModuleForm = ({ name }) => {
+const StudentCareModuleForm = ({ name, token }) => {
+    const { enqueueSnackbar } = useSnackbar()
+
     const [isActive, setIsActive] = useState(false)
     const [formData, setFormDate] = useState({
         problem_owner: '',
@@ -15,8 +19,42 @@ const StudentCareModuleForm = ({ name }) => {
         problem_category_desk: '',
     })
 
-    const formSubmitHandler = (e) => {
+    const formSubmitHandler = async (e) => {
         e.preventDefault()
+
+        enqueueSnackbar('Mengirim curhatanmu...', { variant: 'info' })
+
+        const baseURL = process.env.NEXT_PUBLIC_BASE_URL
+        const baseURLVersion = process.env.NEXT_PUBLIC_BASE_URL_VERSION
+
+        const formDataTemp = {
+            ...formData,
+            problem_owner_name:
+                formData.problem_owner === 'Diri Sendiri'
+                    ? name
+                    : formData.problem_owner_name,
+        }
+
+        try {
+            const response = await axios.post(
+                `${baseURL}/${baseURLVersion}/member/studentCare`,
+                formDataTemp,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*',
+                    },
+                }
+            )
+
+            enqueueSnackbar(response.data.message, { variant: 'success' })
+        } catch (error) {
+            enqueueSnackbar(
+                'Oops! Ada kesalahan terjadi, coba lagi nanti atau tunggu beberapa saat.',
+                { variant: 'error' }
+            )
+        }
     }
 
     const formOnChangeHandler = (e) => {
