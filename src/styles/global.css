@@ -1,0 +1,36 @@
+.slick-arrow {
+    opacity: 1 !important;
+    width: auto !important;
+    height: auto !important;
+
+    @apply p-2 !important;
+    @apply rounded !important;
+    @apply bg-bmka-accent-orange !important;
+}
+
+.slick-next {
+    right: -12px !important;
+}
+
+.slick-prev {
+    left: -12px !important;
+    z-index: 10;
+}
+
+.slider img {
+    min-height: 440px;
+
+    @apply rounded !important;
+}
+
+@media (min-width: 768px) {
+    .slider img {
+        height: 35vw;
+    }
+}
+
+@media (min-width: 1024px) {
+    .slider img {
+        height: 30vw;
+    }
+}
