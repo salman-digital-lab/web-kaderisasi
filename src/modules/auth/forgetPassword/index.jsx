@@ -1,13 +1,17 @@
 import axios from 'axios'
 import { useSnackbar } from 'notistack'
 import React, { useState } from 'react'
+import { useRouter } from 'next/router'
 
 import { withoutUserAuthentication } from '@hoc'
 import { Link, Button, AuthTemplate } from '@components'
 
+import { ArrowLeftIcon } from '@assets'
 import ForgetPasswordModuleForm from './form'
 
 const ForgetPasswordModule = () => {
+    const router = useRouter()
+
     const formDataDefault = { email: '' }
 
     const { enqueueSnackbar } = useSnackbar()
@@ -47,8 +51,24 @@ const ForgetPasswordModule = () => {
         setFormData({ ...formData, [name]: value })
     }
 
+    const backButtonHandler = () => {
+        router.push('/')
+    }
+
     return (
         <AuthTemplate>
+            <Button
+                className='md:hidden'
+                onClick={backButtonHandler}
+                textClassName='font-bold text-bmka-primary-blue'
+            >
+                <div className='flex gap-1 items-center'>
+                    <div className='w-4'>
+                        <ArrowLeftIcon />
+                    </div>
+                    Kembali ke portal utama
+                </div>
+            </Button>
             <div className='w-full h-full grid place-items-center'>
                 <form
                     onSubmit={formSubmitHandler}

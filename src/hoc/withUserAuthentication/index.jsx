@@ -20,6 +20,12 @@ const withUserAuthentication = (Components) => {
 
             if (!user) {
                 router.replace('/login')
+
+                return (
+                    <div className='pb-28 pt-52 text-center'>
+                        <h3 className='font-bold'>Redirecting...</h3>
+                    </div>
+                )
             }
         }
 

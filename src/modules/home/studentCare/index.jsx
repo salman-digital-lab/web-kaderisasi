@@ -5,11 +5,11 @@ import { Button } from '@components'
 const HomeModuleStudentCare = () => {
     return (
         <div>
-            <div className='flex items-center justify-between px-14 py-24 bg-bmka-accent-orange rounded-3xl'>
+            <div className='flex flex-col md:flex-row items-center justify-between px-14 py-10 md:py-24 bg-bmka-accent-orange rounded-3xl'>
                 <p className='text-3xl text-white font-extrabold'>
                     Ruang Curhat
                 </p>
-                <p className='text-white max-w-lg'>
+                <p className='text-white max-w-lg my-4 md:my-0'>
                     Ruang Curhat adalah layanan pengajuan dan pendampingan
                     masalah untuk aktivis Salman ITB. Kamu akan ditemani
                     langsung oleh tim Kaderisasi Salman yang berlatar belakang
@@ -17,14 +17,14 @@ const HomeModuleStudentCare = () => {
                 </p>
             </div>
             <div
-                className='mx-14 px-4 py-6 bg-white rounded-lg'
+                className='mx-14 mt-4 md:mt-0 px-4 py-6 bg-white rounded-lg'
                 style={{
                     transform: 'translate(0%,-50%)',
                     boxShadow: '0px 1px 15px rgba(0, 0, 0, 0.15)',
                 }}
             >
                 <div className='flex items-center justify-between'>
-                    <p className='font-bold'>
+                    <p className='font-bold px-1 md:px-0'>
                         Ayo menuju ruang curhat dan ceritakan masalahmu
                     </p>
                     <div>

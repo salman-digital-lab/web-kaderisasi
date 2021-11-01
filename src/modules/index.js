@@ -2,7 +2,7 @@ import _404Module from './404'
 import HomeModule from './home'
 import ProfileModule from './profile'
 import ActivitiesModule from './activities'
-import ActivitiesDetailModule from './activitiesDetail'
+import StudentCareModule from './studentCare'
 import RegenerationFlowModule from './regenerationFlow'
 
 export {
@@ -10,7 +10,7 @@ export {
     HomeModule,
     ProfileModule,
     ActivitiesModule,
-    ActivitiesDetailModule,
+    StudentCareModule,
     RegenerationFlowModule,
 }
 export * from './auth'
