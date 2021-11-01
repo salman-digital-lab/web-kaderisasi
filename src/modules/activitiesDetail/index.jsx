@@ -21,13 +21,13 @@ const ActivitiesDetailModule = ({
             ) : (
                 <div>
                     <Jumbotron>
-                        <h1 className='text-center text-white'>
+                        <h1 className='w-5/6 mx-auto md:w-full text-center text-white px-1 md:px-5 text-3xl md:text-6xl'>
                             {activityDetailData.name}
                         </h1>
                     </Jumbotron>
                     <ComponentWrapper>
                         <div>
-                            <div>
+                            <div className='w-full mx-auto px-0'>
                                 <ActivitiesDetailModuleBanner
                                     status={activityDetailData.status}
                                     images={activityDetailData.images}
