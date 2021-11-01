@@ -10,12 +10,14 @@ const HomeModuleHeader = () => {
                 <div className='flex items-center'>
                     <div className='max-w-xl flex flex-col gap-6'>
                         <div className='flex flex-col gap-4'>
-                            <h1 className='text-white'>Selamat Datang di</h1>
-                            <h1 className='text-white'>
+                            <h1 className='text-white text-center md:text-left'>
+                                Selamat Datang di
+                            </h1>
+                            <h1 className='text-white text-center md:text-left'>
                                 Kaderisasi Salman ITB
                             </h1>
                         </div>
-                        <p className='text-white'>
+                        <p className='text-white text-center md:text-left'>
                             Portal Aktivis Salman yang dikelola BMKA (Bidang
                             Kemahasiswaan, Kaderisasi dan Alumni) Salman yang
                             berfungsi sebagai pusat pendaftaran kegiatan di{' '}
@@ -30,7 +32,7 @@ const HomeModuleHeader = () => {
                             . Program pembinaan dalam rangka membentuk kader
                             teladan untuk membangun Indonesia.
                         </p>
-                        <div className='flex items-center gap-6'>
+                        <div className='flex items-center gap-6 mx-auto md:mx-0'>
                             <div>
                                 <Link href='/about-us'>
                                     <Button type='button' variant='primary'>
@@ -56,7 +58,7 @@ const HomeModuleHeader = () => {
                         </div>
                     </div>
                 </div>
-                <div>
+                <div className='hidden md:block'>
                     <div className='h-96'>
                         <BMKAWelcomeIcon />
                     </div>

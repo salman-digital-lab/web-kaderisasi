@@ -4,14 +4,18 @@ import axios from 'axios'
 import cookies from 'js-cookie'
 import { useSnackbar } from 'notistack'
 import React, { useState } from 'react'
+import { useRouter } from 'next/router'
 
 import { zustandStore } from '@services'
 import { withoutUserAuthentication } from '@hoc'
 import { Link, Button, AuthTemplate } from '@components'
 
+import { ArrowLeftIcon } from '@assets'
 import LoginModuleForm from './form'
 
 const LoginModule = () => {
+    const router = useRouter()
+
     const { enqueueSnackbar } = useSnackbar()
 
     const state = {
@@ -47,7 +51,7 @@ const LoginModule = () => {
 
             const { data, token, message } = response.data
 
-            setUser(data[0])
+            setUser({ ...data[0], token })
 
             cookies.set(userCookieName, token)
 
@@ -59,8 +63,24 @@ const LoginModule = () => {
         }
     }
 
+    const backButtonHandler = () => {
+        router.push('/')
+    }
+
     return (
         <AuthTemplate>
+            <Button
+                className='md:hidden'
+                onClick={backButtonHandler}
+                textClassName='font-bold text-bmka-primary-blue'
+            >
+                <div className='flex gap-1 items-center'>
+                    <div className='w-4'>
+                        <ArrowLeftIcon />
+                    </div>
+                    Kembali ke portal utama
+                </div>
+            </Button>
             <div className='w-full h-full grid place-items-center'>
                 <form
                     onSubmit={formSubmitHandler}

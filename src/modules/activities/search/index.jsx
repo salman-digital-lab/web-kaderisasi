@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import axios from 'axios'
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 
 import { Button } from '@components'
-import { SearchIcon } from '@assets'
+import { SearchIcon, DropdownIcon } from '@assets'
 
 const ActivitiesModuleSearch = ({
     searchKeyword,
@@ -14,6 +14,7 @@ const ActivitiesModuleSearch = ({
     activityCategoryData,
     setCurrentActivityData,
 }) => {
+    const [active, setActive] = useState({ active: true })
     const firstRender = useRef(true)
 
     const updateActivityData = async () => {
@@ -45,6 +46,11 @@ const ActivitiesModuleSearch = ({
         updateActivityData()
     }
 
+    const toggleFilter = (evt) => {
+        evt.preventDefault()
+        setActive(!active)
+    }
+
     useEffect(() => {
         if (firstRender.current) {
             firstRender.current = false
@@ -59,7 +65,7 @@ const ActivitiesModuleSearch = ({
         <div>
             <form
                 onSubmit={formSubmitHandler}
-                className='w-full max-w-4xl mx-auto px-8 py-6 rounded-lg flex items-center gap-4 bg-white'
+                className='w-full md:max-w-4xl mx-auto px-8 py-6 rounded-lg flex items-center gap-4 bg-white'
                 style={{
                     transform: 'translate(0%,-50%)',
                     boxShadow: '0px 1px 15px rgba(0, 0, 0, 0.15)',
@@ -78,7 +84,23 @@ const ActivitiesModuleSearch = ({
                     Cari
                 </Button>
             </form>
-            <div className='w-full flex justify-center gap-2 pb-6'>
+            <div className='w-full flex justify-center md:hidden my-4'>
+                <Button
+                    variant='primary'
+                    className='w-full py-1'
+                    onClick={(evt) => toggleFilter(evt)}
+                >
+                    <div className='flex justify-center items-center'>
+                        Kategori <DropdownIcon />
+                    </div>
+                </Button>
+            </div>
+
+            <div
+                className={`w-full flex flex-col md:flex-row justify-center gap-2 pb-6 ${
+                    active ? '' : 'hidden'
+                }`}
+            >
                 <Button
                     onClick={() => categoryButtonHandler('')}
                     variant={currentCategory === '' ? 'primary' : 'secondary'}
