@@ -57,7 +57,7 @@ const Authentication = ({ children }) => {
 
                     const { data } = response.data
 
-                    setUser(data)
+                    setUser({ ...data, token })
                 }
 
                 closeOverlay()

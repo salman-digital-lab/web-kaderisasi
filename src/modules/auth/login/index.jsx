@@ -51,7 +51,7 @@ const LoginModule = () => {
 
             const { data, token, message } = response.data
 
-            setUser(data[0])
+            setUser({ ...data[0], token })
 
             cookies.set(userCookieName, token)
 
