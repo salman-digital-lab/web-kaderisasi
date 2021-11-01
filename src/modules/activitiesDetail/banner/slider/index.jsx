@@ -3,6 +3,7 @@
 
 import React from 'react'
 import Slider from 'react-slick'
+
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
@@ -21,6 +22,7 @@ const ActivitiesDetailModuleBannerSlider = ({ images }) => {
                 {images.map((item) => {
                     return (
                         <img
+                            key={item}
                             src={item}
                             alt='Banner'
                             className='w-full object-fill'
@@ -28,14 +30,6 @@ const ActivitiesDetailModuleBannerSlider = ({ images }) => {
                     )
                 })}
             </Slider>
-            <style jsx>
-                {`
-                    .slick-prev:before,
-                    .slick-next:before {
-                        color: black;
-                    }
-                `}
-            </style>
         </div>
     )
 }
