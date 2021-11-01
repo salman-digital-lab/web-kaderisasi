@@ -5,6 +5,7 @@ import { SnackbarProvider } from 'notistack'
 import 'tailwindcss/tailwind.css'
 import '@fontsource/roboto/400.css'
 
+import '@styles/global.css'
 import '@styles/preflight.css'
 
 const myApp = ({ Component, pageProps }) => {
