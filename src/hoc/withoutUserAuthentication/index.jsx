@@ -20,8 +20,6 @@ const withoutUserAuthentication = (Components) => {
 
             if (user) {
                 router.replace('/profile')
-
-                return <div />
             }
         }
 
