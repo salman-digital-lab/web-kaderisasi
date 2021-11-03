@@ -1,8 +1,15 @@
 import React from 'react'
+import { PageWrapper } from '@layout'
+import ActivitesRegister from '../../../modules/activitiesRegister'
 
 const activitiesRegister = ({ slug }) => {
-    console.log(slug)
-    return <h1>test</h1>
+    return (
+        <>
+            <PageWrapper title='Pendaftaran Kegiatan'>
+                <ActivitesRegister slug={slug} />
+            </PageWrapper>
+        </>
+    )
 }
 
 export async function getServerSideProps(ctx) {
