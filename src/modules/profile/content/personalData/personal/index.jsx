@@ -6,19 +6,37 @@ import { FormInput, FormSelect } from '@components'
 
 import ProfileModuleContentPersonalDataCard from '../card'
 
-const ProfileModuleContentPersonalDataPersonal = () => {
+const ProfileModuleContentPersonalDataPersonal = ({
+    formData,
+    formOnChangeHandler,
+}) => {
     return (
         <ProfileModuleContentPersonalDataCard>
             <FormSelect
-                value=''
+                name='gender'
                 label='Jenis Kelamin'
-                placeholder='Pilih Jenis Kelamin'
+                value={formData.gender}
+                onChange={formOnChangeHandler}
+                placeholder='-- Pilih Jenis Kelamin --'
             >
-                <option value='pria'>Pria</option>
-                <option value='wanita'>Wanita</option>
+                <option value='M'>Pria</option>
+                <option value='F'>Wanita</option>
             </FormSelect>
-            <FormInput type='date' label='Tanggal Lahir' />
-            <FormInput type='text' label='Tempat Lahir' />
+            <FormInput
+                type='date'
+                label='Tanggal Lahir'
+                name='date_of_birthday'
+                onChange={formOnChangeHandler}
+                value={formData.date_of_birthday}
+            />
+            <FormInput
+                type='text'
+                name='city_of_birth'
+                label='Tempat Lahir'
+                value={formData.city_of_birth}
+                onChange={formOnChangeHandler}
+                placeholder='-- Ketikkan tempat lahir anda --'
+            />
         </ProfileModuleContentPersonalDataCard>
     )
 }
