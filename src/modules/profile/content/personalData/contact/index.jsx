@@ -11,6 +11,15 @@ const ProfileModuleContentPersonalDataContact = ({
     return (
         <ProfileModuleContentPersonalDataCard>
             <FormInput
+                type='text'
+                name='email'
+                label='E-mail'
+                value={formData.email}
+                onChange={formOnChangeHandler}
+                placeholder='-- Ketikkan email anda --'
+                disabled
+            />
+            <FormInput
                 type='number'
                 name='phone'
                 label='Whatsapp'
