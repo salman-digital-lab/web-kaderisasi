@@ -5,6 +5,7 @@ import ActivitiesModule from './activities'
 import ActivitiesDetailModule from './activitiesDetail'
 import StudentCareModule from './studentCare'
 import RegenerationFlowModule from './regenerationFlow'
+import ActivitesRegisterModule from './activitiesRegister'
 
 export {
     _404Module,
@@ -14,5 +15,6 @@ export {
     StudentCareModule,
     RegenerationFlowModule,
     ActivitiesDetailModule,
+    ActivitesRegisterModule,
 }
 export * from './auth'
