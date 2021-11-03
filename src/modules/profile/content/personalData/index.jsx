@@ -40,25 +40,25 @@ const ProfileModuleContentPersonalData = () => {
         <form onSubmit={formSubmitHandler}>
             <h3 className='font-bold'>Profil</h3>
             <div className='flex flex-wrap gap-6 mt-4'>
-                <div className='w-full max-w-sm'>
+                <div className='w-full max-w-xs'>
                     <ProfileModuleContentPersonalDataTitle>
                         Personal
                     </ProfileModuleContentPersonalDataTitle>
                     <ProfileModuleContentPersonalDataPersonal />
                 </div>
-                <div className='w-full max-w-sm'>
+                <div className='w-full max-w-xs'>
                     <ProfileModuleContentPersonalDataTitle>
                         Kampus
                     </ProfileModuleContentPersonalDataTitle>
                     <ProfileModuleContentPersonalDataEducation />
                 </div>
-                <div className='w-full max-w-sm'>
+                <div className='w-full max-w-xs'>
                     <ProfileModuleContentPersonalDataTitle>
                         Domisili
                     </ProfileModuleContentPersonalDataTitle>
                     <ProfileModuleContentPersonalDataDomisili />
                 </div>
-                <div className='w-full max-w-sm'>
+                <div className='w-full max-w-xs'>
                     <ProfileModuleContentPersonalDataTitle>
                         Kontak
                     </ProfileModuleContentPersonalDataTitle>
