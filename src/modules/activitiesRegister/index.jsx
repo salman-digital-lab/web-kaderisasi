@@ -19,6 +19,10 @@ const ActivitesRegister = ({ status, ...props }) => {
         message = 'Jenjangmu belum cukup untuk bisa mengikuti kegiatan ini.'
         linkTo = '/activities'
         messageButton = 'Kembali ke activity'
+    } else if (status === 400) {
+        message = 'Tanggal pendaftaran tidak sesuai'
+        linkTo = '/activities'
+        messageButton = 'Kembali ke activity'
     } else {
         message = 'Something went wrong'
         linkTo = '/'
@@ -41,7 +45,7 @@ const ActivitesRegister = ({ status, ...props }) => {
             </Jumbotron>
             <ComponentWrapper>
                 <div className='w-full'>
-                    {status === 401 || status === 403 ? (
+                    {status === 401 || status === 403 || status === 400 ? (
                         <div className='w-3/4 md:w-1/3 mx-auto flex flex-col gap-6 text-center rounded-lg shadow-lg p-6 my-10'>
                             <h3 className='font-bold text-bmka-primary-blue'>
                                 Oops!
