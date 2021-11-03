@@ -1,8 +1,8 @@
 /* eslint-disable no-shadow */
 
-import React from 'react'
 import cookies from 'js-cookie'
 import { useSnackbar } from 'notistack'
+import React, { useState } from 'react'
 
 import { Button } from '@components'
 import { zustandStore } from '@services'
@@ -14,14 +14,26 @@ import ProfileModuleContentPersonalDataDomisili from './domisili'
 import ProfileModuleContentPersonalDataEducation from './education'
 
 const ProfileModuleContentPersonalData = () => {
-    const { enqueueSnackbar } = useSnackbar()
-
     const state = {
+        user: zustandStore((state) => state.user),
         setUser: zustandStore((state) => state.setUser),
     }
 
+    const { enqueueSnackbar } = useSnackbar()
+
+    const [formData, setFormData] = useState({ ...state.user })
+
     const formSubmitHandler = (e) => {
         e.preventDefault()
+    }
+
+    const formOnChangeHandler = (e) => {
+        const { name, value } = e.target
+
+        setFormData({
+            ...formData,
+            [name]: value,
+        })
     }
 
     const logOutButtonHandler = () => {
@@ -44,25 +56,37 @@ const ProfileModuleContentPersonalData = () => {
                     <ProfileModuleContentPersonalDataTitle>
                         Personal
                     </ProfileModuleContentPersonalDataTitle>
-                    <ProfileModuleContentPersonalDataPersonal />
+                    <ProfileModuleContentPersonalDataPersonal
+                        formData={formData}
+                        formOnChangeHandler={formOnChangeHandler}
+                    />
                 </div>
                 <div className='w-full max-w-xs'>
                     <ProfileModuleContentPersonalDataTitle>
                         Kampus
                     </ProfileModuleContentPersonalDataTitle>
-                    <ProfileModuleContentPersonalDataEducation />
+                    <ProfileModuleContentPersonalDataEducation
+                        formData={formData}
+                        formOnChangeHandler={formOnChangeHandler}
+                    />
                 </div>
                 <div className='w-full max-w-xs'>
                     <ProfileModuleContentPersonalDataTitle>
                         Domisili
                     </ProfileModuleContentPersonalDataTitle>
-                    <ProfileModuleContentPersonalDataDomisili />
+                    <ProfileModuleContentPersonalDataDomisili
+                        formData={formData}
+                        formOnChangeHandler={formOnChangeHandler}
+                    />
                 </div>
                 <div className='w-full max-w-xs'>
                     <ProfileModuleContentPersonalDataTitle>
                         Kontak
                     </ProfileModuleContentPersonalDataTitle>
-                    <ProfileModuleContentPersonalDataContact />
+                    <ProfileModuleContentPersonalDataContact
+                        formData={formData}
+                        formOnChangeHandler={formOnChangeHandler}
+                    />
                 </div>
             </div>
             <div className='flex justify-end gap-4 mt-8'>
