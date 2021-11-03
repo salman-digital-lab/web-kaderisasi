@@ -6,10 +6,14 @@ import { ActivitesRegisterModule } from '@modules'
 import axios from 'axios'
 
 const activitiesRegister = ({ form }) => {
+    console.log(form)
     return (
         <>
             <PageWrapper title='Pendaftaran Kegiatan'>
-                <ActivitesRegisterModule status={form.status} />
+                <ActivitesRegisterModule
+                    status={form.status}
+                    message={form.message}
+                />
             </PageWrapper>
         </>
     )
@@ -32,10 +36,10 @@ export async function getServerSideProps(ctx) {
             },
         })
         .then((res) => {
-            return res
+            return res.data
         })
         .catch((error) => {
-            return error
+            return error.response.data
         })
 
     const form = JSON.parse(JSON.stringify(questionnaire))

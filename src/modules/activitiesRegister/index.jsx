@@ -4,37 +4,26 @@ import { ComponentWrapper, Jumbotron, Link, Button } from '@components'
 import { useSnackbar } from 'notistack'
 import { useRouter } from 'next/router'
 
-const ActivitesRegister = ({ status, ...props }) => {
+const ActivitesRegister = ({ status, message, ...props }) => {
     const { enqueueSnackbar } = useSnackbar()
 
-    let message = ''
-    let linkTo = ''
-    let messageButton = ''
-
-    if (status === 401) {
-        message = 'Silahkan login terlebih dahulu.'
-        linkTo = '/login'
-        messageButton = 'Login'
-    } else if (status === 403) {
-        message = 'Jenjangmu belum cukup untuk bisa mengikuti kegiatan ini.'
-        linkTo = '/activities'
-        messageButton = 'Kembali ke activity'
-    } else if (status === 400) {
-        message = 'Tanggal pendaftaran tidak sesuai'
-        linkTo = '/activities'
-        messageButton = 'Kembali ke activity'
-    } else {
-        message = 'Something went wrong'
-        linkTo = '/'
-        messageButton = 'Kembali ke home'
-    }
-
-    enqueueSnackbar(message, {
-        variant: 'error',
-    })
+    const displayMessage =
+        message === 'E_INVALID_JWT_TOKEN: jwt must be provided'
+            ? 'Silahkan login terlebih dahulu'
+            : message
 
     const router = useRouter()
     const { slug } = router.query
+
+    if (status === 'FAILED') {
+        enqueueSnackbar(displayMessage, {
+            variant: 'error',
+        })
+    }
+
+    const backToPage = () => {
+        router.push(`/activities/${slug}`)
+    }
 
     return (
         <>
@@ -45,18 +34,19 @@ const ActivitesRegister = ({ status, ...props }) => {
             </Jumbotron>
             <ComponentWrapper>
                 <div className='w-full'>
-                    {status === 401 || status === 403 || status === 400 ? (
+                    {status === 'FAILED' ? (
                         <div className='w-3/4 md:w-1/3 mx-auto flex flex-col gap-6 text-center rounded-lg shadow-lg p-6 my-10'>
                             <h3 className='font-bold text-bmka-primary-blue'>
                                 Oops!
                             </h3>
-                            <p>{message}</p>
+                            <p>{displayMessage}</p>
                             <div>
-                                <Link href={linkTo}>
-                                    <Button variant='secondary'>
-                                        {messageButton}
-                                    </Button>
-                                </Link>
+                                <Button
+                                    onClick={backToPage}
+                                    variant='secondary'
+                                >
+                                    Kembali
+                                </Button>
                             </div>
                         </div>
                     ) : (
