@@ -1,15 +1,33 @@
+/* eslint-disable no-nested-ternary */
 import React from 'react'
 import { ComponentWrapper, Jumbotron, Link, Button } from '@components'
 import { useSnackbar } from 'notistack'
 import { useRouter } from 'next/router'
 
-const ActivitesRegister = ({ status, message, ...props }) => {
+const ActivitesRegister = ({ status, ...props }) => {
     const { enqueueSnackbar } = useSnackbar()
-    if (status === 'FAILED') {
-        enqueueSnackbar(message, {
-            variant: 'error',
-        })
+
+    let message = ''
+    let linkTo = ''
+    let messageButton = ''
+
+    if (status === 401) {
+        message = 'Silahkan login terlebih dahulu.'
+        linkTo = '/login'
+        messageButton = 'Login'
+    } else if (status === 403) {
+        message = 'Jenjangmu belum cukup untuk bisa mengikuti kegiatan ini.'
+        linkTo = '/activities'
+        messageButton = 'Kembali ke activity'
+    } else {
+        message = 'Something went wrong'
+        linkTo = '/'
+        messageButton = 'Kembali ke home'
     }
+
+    enqueueSnackbar(message, {
+        variant: 'error',
+    })
 
     const router = useRouter()
     const { slug } = router.query
@@ -23,16 +41,16 @@ const ActivitesRegister = ({ status, message, ...props }) => {
             </Jumbotron>
             <ComponentWrapper>
                 <div className='w-full'>
-                    {status === 'FAILED' ? (
+                    {status === 401 || status === 403 ? (
                         <div className='w-3/4 md:w-1/3 mx-auto flex flex-col gap-6 text-center rounded-lg shadow-lg p-6 my-10'>
                             <h3 className='font-bold text-bmka-primary-blue'>
                                 Oops!
                             </h3>
                             <p>{message}</p>
                             <div>
-                                <Link href='/activities'>
+                                <Link href={linkTo}>
                                     <Button variant='secondary'>
-                                        Kembali ke activity
+                                        {messageButton}
                                     </Button>
                                 </Link>
                             </div>

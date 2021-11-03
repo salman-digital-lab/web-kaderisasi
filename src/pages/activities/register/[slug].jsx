@@ -9,10 +9,7 @@ const activitiesRegister = ({ form }) => {
     return (
         <>
             <PageWrapper title='Pendaftaran Kegiatan'>
-                <ActivitesRegisterModule
-                    status={form.status}
-                    message={form.message}
-                />
+                <ActivitesRegisterModule status={form.status} />
             </PageWrapper>
         </>
     )
@@ -38,7 +35,7 @@ export async function getServerSideProps(ctx) {
             return res
         })
         .catch((error) => {
-            return error.response.data
+            return error
         })
 
     const form = JSON.parse(JSON.stringify(questionnaire))
