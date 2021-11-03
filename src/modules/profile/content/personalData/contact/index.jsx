@@ -18,6 +18,7 @@ const ProfileModuleContentPersonalDataContact = ({
                 onChange={formOnChangeHandler}
                 placeholder='-- Ketikkan email anda --'
                 disabled
+                required
             />
             <FormInput
                 type='number'
@@ -26,6 +27,7 @@ const ProfileModuleContentPersonalDataContact = ({
                 value={formData.phone}
                 onChange={formOnChangeHandler}
                 placeholder='-- Ketikkan nomor telepon anda --'
+                required
             />
             <FormInput
                 type='text'
@@ -34,6 +36,7 @@ const ProfileModuleContentPersonalDataContact = ({
                 value={formData.line_id}
                 onChange={formOnChangeHandler}
                 placeholder='-- Ketikkan LINE ID anda --'
+                required
             />
         </ProfileModuleContentPersonalDataCard>
     )

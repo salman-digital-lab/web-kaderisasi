@@ -18,6 +18,7 @@ const ProfileModuleContentPersonalDataPersonal = ({
                 value={formData.gender}
                 onChange={formOnChangeHandler}
                 placeholder='-- Pilih Jenis Kelamin --'
+                required
             >
                 <option value='M'>Pria</option>
                 <option value='F'>Wanita</option>
@@ -28,6 +29,7 @@ const ProfileModuleContentPersonalDataPersonal = ({
                 name='date_of_birthday'
                 onChange={formOnChangeHandler}
                 value={formData.date_of_birthday}
+                required
             />
             <FormInput
                 type='text'
@@ -36,6 +38,7 @@ const ProfileModuleContentPersonalDataPersonal = ({
                 value={formData.city_of_birth}
                 onChange={formOnChangeHandler}
                 placeholder='-- Ketikkan tempat lahir anda --'
+                required
             />
         </ProfileModuleContentPersonalDataCard>
     )

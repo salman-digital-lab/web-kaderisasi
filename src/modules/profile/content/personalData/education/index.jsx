@@ -17,12 +17,14 @@ const ProfileModuleContentPersonalDataEducation = ({
                 label='Nomor Induk Mahasiswa'
                 onChange={formOnChangeHandler}
                 placeholder='-- Ketikkan nomor induk mahasiswa --'
+                required
             />
             <FormSelect
                 label='Kampus'
                 value={formData.university_id}
                 onChange={formOnChangeHandler}
                 placeholder='-- Pilih kampus anda --'
+                required
             >
                 <option value='UNIKOM'>UNIKOM</option>
                 <option value='UNIKOM'>ITB</option>
@@ -35,6 +37,7 @@ const ProfileModuleContentPersonalDataEducation = ({
                 value={formData.faculty}
                 onChange={formOnChangeHandler}
                 placeholder='-- Ketikkan fakultas anda --'
+                required
             />
             <FormInput
                 type='text'
@@ -43,6 +46,7 @@ const ProfileModuleContentPersonalDataEducation = ({
                 value={formData.major}
                 onChange={formOnChangeHandler}
                 placeholder='-- Ketikkan program studi anda --'
+                required
             />
             <FormInput
                 type='number'
@@ -51,6 +55,7 @@ const ProfileModuleContentPersonalDataEducation = ({
                 value={formData.intake_year}
                 onChange={formOnChangeHandler}
                 placeholder='-- Ketikkan tahun masuk anda --'
+                required
             />
         </ProfileModuleContentPersonalDataCard>
     )
