@@ -15,7 +15,7 @@ const ProfileModuleContent = ({ activityCategoryData }) => {
     const [activeMenu, setActiveMenu] = useState('')
 
     return (
-        <div>
+        <div className='w-full'>
             <ProfileModuleContentMenu
                 menuName={menuName}
                 activeMenu={activeMenu}
