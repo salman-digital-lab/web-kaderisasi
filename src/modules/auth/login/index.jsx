@@ -10,7 +10,6 @@ import { zustandStore } from '@services'
 import { withoutUserAuthentication } from '@hoc'
 import { Link, Button, AuthTemplate } from '@components'
 
-import { ArrowLeftIcon } from '@assets'
 import LoginModuleForm from './form'
 
 const LoginModule = () => {
@@ -51,7 +50,7 @@ const LoginModule = () => {
 
             const { data, token, message } = response.data
 
-            setUser({ ...data[0], token })
+            setUser({ ...data, token })
 
             cookies.set(userCookieName, token)
 
@@ -74,12 +73,7 @@ const LoginModule = () => {
                 onClick={backButtonHandler}
                 textClassName='font-bold text-bmka-primary-blue'
             >
-                <div className='flex gap-1 items-center'>
-                    <div className='w-4'>
-                        <ArrowLeftIcon />
-                    </div>
-                    Kembali ke portal utama
-                </div>
+                Kembali ke portal utama
             </Button>
             <div className='w-full h-full grid place-items-center'>
                 <form
