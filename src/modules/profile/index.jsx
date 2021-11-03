@@ -9,7 +9,7 @@ import ProfileModuleUserInfo from './userInfo'
 const ProfileModule = ({ activityCategoryData }) => {
     return (
         <ComponentWrapper>
-            <div className='py-36 grid grid-cols-profile gap-8'>
+            <div className='flex gap-6 pt-36 pb-12'>
                 <ProfileModuleUserInfo />
                 <ProfileModuleContent
                     activityCategoryData={activityCategoryData}
