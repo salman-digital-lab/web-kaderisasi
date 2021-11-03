@@ -1,13 +1,9 @@
 import React from 'react'
+import { Button, Link } from '@components'
 import { useRouter } from 'next/router'
-
-import { Button } from '@components'
 
 const ActivitiesDetailModuleContent = ({ description }) => {
     const router = useRouter()
-    const register = () => {
-        router.push(`/activities/register/${router.query.slug}`)
-    }
 
     return (
         <div className='w-full flex flex-col md:flex-row gap-4 justify-center'>
@@ -31,9 +27,9 @@ const ActivitiesDetailModuleContent = ({ description }) => {
                     Klik tombol di bawah ini dan silakan untuk mengikuti proses
                     pendaftaran sesuai ketentuan yang ada.
                 </p>
-                <Button onClick={register} variant='primary'>
-                    Daftar Kegiatan
-                </Button>
+                <Link href={`/activities/register/${router.query.slug}`}>
+                    <Button variant='primary'>Daftar Kegiatan</Button>
+                </Link>
             </div>
         </div>
     )
