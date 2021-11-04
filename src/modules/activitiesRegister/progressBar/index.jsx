@@ -10,17 +10,27 @@ const ProgressBar = (props) => {
 
     for (let index = 1; index <= props.maxStep; index += 1) {
         if (props.currentStep === index) {
-            items.push('activeIndicator')
+            items.push(
+                'w-4 h-4 md:w-5 md:h-5 rounded-full border-2 md:border-4 border-bmka-accent-orange bg-bmka-shade-white'
+            )
         } else {
-            items.push('defaultIndicator')
+            items.push(
+                `w-4 h-4  md:w-5 md:h-5 rounded-full bg-bmka-accent-orange  ${
+                    props.currentStep > index ? 'opacity-1' : 'opacity-50'
+                }`
+            )
         }
         if (index < props.maxStep) {
-            items.push('defaultLine')
+            items.push(
+                `w-5 md:w-10 h-0.5 bg-bmka-accent-orange ${
+                    props.currentStep > index ? 'opacity-1' : 'opacity-50'
+                }`
+            )
         }
     }
 
     return (
-        <div className='progressBar'>
+        <div className='flex items-center mx-auto gap-0'>
             {items.map((item, index) => (
                 <div className={item} key={index} />
             ))}

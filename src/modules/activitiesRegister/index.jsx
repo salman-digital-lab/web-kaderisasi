@@ -3,6 +3,7 @@ import React from 'react'
 import { ComponentWrapper, Jumbotron, Link, Button } from '@components'
 import { useSnackbar } from 'notistack'
 import { useRouter } from 'next/router'
+import ProgressBar from './progressBar'
 
 const ActivitesRegister = ({ status, message, ...props }) => {
     const { enqueueSnackbar } = useSnackbar()
@@ -21,6 +22,9 @@ const ActivitesRegister = ({ status, message, ...props }) => {
         })
     }
 
+    /**
+     * push back to previous page
+     */
     const backToPage = () => {
         router.push(`/activities/${slug}`)
     }
@@ -28,9 +32,13 @@ const ActivitesRegister = ({ status, message, ...props }) => {
     return (
         <>
             <Jumbotron>
-                <h1 className='w-5/6 mx-auto md:w-full text-center text-white px-1 md:px-5 text-3xl md:text-6xl'>
-                    {slug}
+                <h1 className='w-5/6 mx-auto md:w-full text-center text-white px-1 md:px-5 text-3xl md:text-4xl'>
+                    Form Pendaftaran
                 </h1>
+                <p className='text-center text-white mt-4'>
+                    Isi kuesioner berikut sebagai syarat untuk mengikuti
+                    kegiatan dengan benar dan lengkap.
+                </p>
             </Jumbotron>
             <ComponentWrapper>
                 <div className='w-full'>
@@ -50,7 +58,12 @@ const ActivitesRegister = ({ status, message, ...props }) => {
                             </div>
                         </div>
                     ) : (
-                        <h1 className='mt-16'>test</h1>
+                        <div className='-mt-10 flex flex-col shadow-lg rounded-md bg-white p-4 mx-auto my-10 w-10/12 md:w-9/12 lg:w-6/12'>
+                            <ProgressBar currentStep={2} maxStep={5} />
+                            <form className=''>
+                                <p>test</p>
+                            </form>
+                        </div>
                     )}
                 </div>
             </ComponentWrapper>
