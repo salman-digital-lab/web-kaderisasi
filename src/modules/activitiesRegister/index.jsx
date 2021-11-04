@@ -4,6 +4,7 @@ import { ComponentWrapper, Jumbotron, Link, Button } from '@components'
 import { useSnackbar } from 'notistack'
 import { useRouter } from 'next/router'
 import ProgressBar from './progressBar'
+import FirstStep from './firstStep'
 
 const ActivitesRegister = ({ status, message, ...props }) => {
     const { enqueueSnackbar } = useSnackbar()
@@ -59,9 +60,9 @@ const ActivitesRegister = ({ status, message, ...props }) => {
                         </div>
                     ) : (
                         <div className='-mt-10 flex flex-col shadow-lg rounded-md bg-white p-4 mx-auto my-10 w-10/12 md:w-9/12 lg:w-6/12'>
-                            <ProgressBar currentStep={2} maxStep={5} />
+                            <ProgressBar currentStep={1} maxStep={4} />
                             <form className=''>
-                                <p>test</p>
+                                <FirstStep currentStep={1} questionaire={0} />
                             </form>
                         </div>
                     )}

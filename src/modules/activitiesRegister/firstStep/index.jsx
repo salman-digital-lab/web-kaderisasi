@@ -6,13 +6,13 @@ const FirstStep = ({ currentStep, questionaire }) => {
         if (questionaire === 0) {
             return (
                 <>
-                    <h3 className='my-4 mx-auto'>
+                    <h3 className='my-5 mx-auto text-center text-lg'>
                         Apa kamu yakin ingin daftar kegiatan ini ?
                     </h3>
-                    <div className='btn-wrapper'>
+                    <div className='text-center'>
                         <Button
                             type='button'
-                            className='w-full'
+                            className='w-1/2'
                             variant='primary'
                         >
                             Daftar
@@ -22,7 +22,7 @@ const FirstStep = ({ currentStep, questionaire }) => {
             )
         }
         return (
-            <h3 className='text-center'>
+            <h3 className='mx-auto text-center text-lg my-5'>
                 Isi kuisioner berikut sebagai syarat untuk mengikuti kegiatan
             </h3>
         )
