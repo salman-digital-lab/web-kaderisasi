@@ -13,6 +13,7 @@ const activitiesRegister = ({ form }) => {
                 <ActivitesRegisterModule
                     status={form.status}
                     message={form.message}
+                    questionnaire={form.data}
                 />
             </PageWrapper>
         </>

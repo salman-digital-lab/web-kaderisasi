@@ -1,13 +1,15 @@
 /* eslint-disable no-nested-ternary */
-import React from 'react'
+import React, { useState } from 'react'
 import { ComponentWrapper, Jumbotron, Link, Button } from '@components'
 import { useSnackbar } from 'notistack'
 import { useRouter } from 'next/router'
+import axios from 'axios'
 import ProgressBar from './progressBar'
 import FirstStep from './firstStep'
 import FinalStep from './finalStep'
+import Question from './question'
 
-const ActivitesRegister = ({ status, message, ...props }) => {
+const ActivitesRegister = ({ status, message, questionnaire, ...props }) => {
     const { enqueueSnackbar } = useSnackbar()
 
     const displayMessage =
@@ -17,11 +19,162 @@ const ActivitesRegister = ({ status, message, ...props }) => {
 
     const router = useRouter()
     const { slug } = router.query
+    const maxPerPage = Math.ceil(questionnaire.length / 3)
+    const maxStep = maxPerPage + 2
+    const baseURL = process.env.NEXT_PUBLIC_BASE_URL
+
+    const [input, setInput] = useState({
+        currentStep: 1,
+        maxStep,
+        mulai: 0,
+        akhir: 2,
+        checkbox: [],
+        answer: {},
+    })
 
     if (status === 'FAILED') {
         enqueueSnackbar(displayMessage, {
             variant: 'error',
         })
+    }
+
+    /**
+     * Function to set name & default value
+     */
+    const setName = () => {
+        if (Object.keys(input.answer) <= 0) {
+            const initAnswer = {}
+            questionnaire.map((item) => {
+                if (item.type === 'scale') {
+                    initAnswer[item.name] = item.data[0].max / 2
+                } else if (item.type === 'dropdown') {
+                    initAnswer[item.name] = item.data[0].value
+                } else {
+                    initAnswer[item.name] = ''
+                }
+            })
+            setInput({
+                ...input,
+                answer: { ...initAnswer },
+            })
+        }
+    }
+
+    /**
+     * Function to handle change value in form
+     */
+    const handleChange = (event) => {
+        const { value } = event.target
+        const { type } = event.target
+        const { name } = event.target
+
+        if (type === 'checkbox') {
+            let newArray = [...input.checkbox, value]
+            if (input.checkbox.includes(value)) {
+                newArray = newArray.filter((target) => target !== value)
+            }
+            setInput({
+                ...input,
+                checkbox: newArray,
+                answer: { ...input.answer, [name]: newArray },
+            })
+        } else {
+            if (type === 'range') {
+                document.getElementById('scala').innerHTML = value
+            }
+            setInput({ ...input, answer: { ...input.answer, [name]: value } })
+        }
+    }
+
+    /**
+     * Function to increment step
+     */
+    const next = () => {
+        const currentStep = input.currentStep + 1
+        const mulai = currentStep > 2 ? input.mulai + 3 : 0
+        const akhir = currentStep > 2 ? input.akhir + 3 : 2
+        setInput({
+            ...input,
+            currentStep,
+            mulai,
+            akhir,
+        })
+    }
+
+    /**
+     * Function to submit form answer
+     */
+    const handleSubmit = async (event) => {
+        event.preventDefault()
+        if (input.currentStep === maxStep - 1) {
+            const { answer } = input
+            enqueueSnackbar('Mengirim data . . .', {
+                variant: 'info',
+            })
+
+            await axios
+                .post(
+                    `${baseURL}/v1/activity/register/submit/${slug}`,
+                    {
+                        answer,
+                    },
+                    {
+                        headers: {
+                            Authorization: `Bearer ${user.token}`,
+                            'Content-Type': 'application/json',
+                            'Access-Control-Allow-Origin': '*',
+                        },
+                    }
+                )
+                .then((res) => {
+                    enqueueSnackbar(res.data.message, {
+                        variant: 'success',
+                    })
+
+                    next()
+                })
+                .catch((error) => {
+                    enqueueSnackbar(error.data.message, {
+                        variant: 'error',
+                    })
+                })
+        }
+    }
+
+    /**
+     * Function to decrement step
+     */
+    const prev = () => {
+        const currentStep = input.currentStep - 1
+        const mulai = input.mulai - 3
+        const akhir = input.akhir - 3
+        setInput({
+            ...input,
+            currentStep,
+            mulai,
+            akhir,
+        })
+    }
+
+    /**
+     * Function to validate required form is filled or not
+     */
+    const checkform = () => {
+        let empty = 0
+        // get all the inputs within the submitted form
+        const inputs = document.getElementsByTagName('input')
+        for (let i = 0; i < inputs.length; i += 1) {
+            // only validate the inputs that have the required attribute
+            if (inputs[i].hasAttribute('required')) {
+                if (inputs[i].value === '') {
+                    // found an empty field that is required
+                    empty += 1
+                }
+            }
+        }
+        if (empty === 0) {
+            next()
+        }
     }
 
     /**
@@ -33,6 +186,7 @@ const ActivitesRegister = ({ status, message, ...props }) => {
 
     return (
         <>
+            {Object.keys(input.answer).length === 0 && setName()}
             <Jumbotron>
                 <h1 className='w-5/6 mx-auto md:w-full text-center text-white px-1 md:px-5 text-3xl md:text-4xl'>
                     Form Pendaftaran
@@ -61,10 +215,50 @@ const ActivitesRegister = ({ status, message, ...props }) => {
                         </div>
                     ) : (
                         <div className='-mt-10 flex flex-col shadow-lg rounded-md bg-white p-4 mx-auto my-10 w-10/12 md:w-9/12 lg:w-6/12'>
-                            <ProgressBar currentStep={3} maxStep={3} />
-                            <form className=''>
-                                <FirstStep currentStep={3} questionaire={0} />
-                                <FinalStep currentStep={3} maxStep={3} />
+                            <ProgressBar
+                                currentStep={input.currentStep}
+                                maxStep={maxStep}
+                            />
+                            <form className='' onSubmit={handleSubmit}>
+                                <FirstStep
+                                    currentStep={input.currentStep}
+                                    questionaire={questionnaire.length}
+                                />
+                                <Question
+                                    currentStep={input.currentStep}
+                                    maxStep={input.maxStep}
+                                    handleChange={handleChange}
+                                    data={questionnaire}
+                                    mulai={input.mulai}
+                                    akhir={input.akhir}
+                                    answer={input.answer}
+                                />
+                                <FinalStep
+                                    currentStep={input.currentStep}
+                                    maxStep={maxStep}
+                                />
+                                <div className='flex justify-around my-4'>
+                                    {input.currentStep > 1 &&
+                                        input.currentStep < maxStep && (
+                                            <Button
+                                                type='button'
+                                                variant='primary'
+                                                onClick={prev}
+                                            >
+                                                Kembali
+                                            </Button>
+                                        )}
+                                    {input.currentStep < maxStep - 1 &&
+                                        input.currentStep >= 1 && (
+                                            <Button
+                                                type='button'
+                                                variant='primary'
+                                                onClick={checkform}
+                                            >
+                                                Lanjut
+                                            </Button>
+                                        )}
+                                </div>
                             </form>
                         </div>
                     )}
