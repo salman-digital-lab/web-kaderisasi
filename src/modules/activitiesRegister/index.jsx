@@ -5,6 +5,7 @@ import { useSnackbar } from 'notistack'
 import { useRouter } from 'next/router'
 import ProgressBar from './progressBar'
 import FirstStep from './firstStep'
+import FinalStep from './finalStep'
 
 const ActivitesRegister = ({ status, message, ...props }) => {
     const { enqueueSnackbar } = useSnackbar()
@@ -60,9 +61,10 @@ const ActivitesRegister = ({ status, message, ...props }) => {
                         </div>
                     ) : (
                         <div className='-mt-10 flex flex-col shadow-lg rounded-md bg-white p-4 mx-auto my-10 w-10/12 md:w-9/12 lg:w-6/12'>
-                            <ProgressBar currentStep={1} maxStep={4} />
+                            <ProgressBar currentStep={3} maxStep={3} />
                             <form className=''>
-                                <FirstStep currentStep={1} questionaire={0} />
+                                <FirstStep currentStep={3} questionaire={0} />
+                                <FinalStep currentStep={3} maxStep={3} />
                             </form>
                         </div>
                     )}
