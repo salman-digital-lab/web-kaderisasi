@@ -142,7 +142,7 @@ const ActivitesRegister = ({ status, message, questionnaire }) => {
                     next()
                 })
                 .catch((error) => {
-                    enqueueSnackbar(error.data.message, {
+                    enqueueSnackbar(error.response.data.status, {
                         variant: 'error',
                     })
                 })
@@ -195,7 +195,6 @@ const ActivitesRegister = ({ status, message, questionnaire }) => {
     return (
         <>
             {Object.keys(input.answer).length === 0 && setName()}
-            {console.log(input.answer)}
             <Jumbotron>
                 <h1 className='w-5/6 mx-auto md:w-full text-center text-white px-1 md:px-5 text-3xl md:text-4xl'>
                     Form Pendaftaran
