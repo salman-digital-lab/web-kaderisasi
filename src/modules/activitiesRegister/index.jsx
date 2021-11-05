@@ -270,7 +270,7 @@ const ActivitesRegister = ({ status, message, questionnaire }) => {
                                         )}
                                     {input.currentStep === maxStep - 1 && (
                                         <Button
-                                            type='button'
+                                            type='submit'
                                             variant='secondary'
                                         >
                                             Kirim Kuesioner
