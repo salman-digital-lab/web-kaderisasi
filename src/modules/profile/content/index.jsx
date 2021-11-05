@@ -5,7 +5,7 @@ import ProfileModuleContentHandBook from './handBook'
 import ProfileModuleContentActivities from './activities'
 import ProfileModuleContentPersonalData from './personalData'
 
-const ProfileModuleContent = ({ activityCategoryData }) => {
+const ProfileModuleContent = ({ educationList, activityCategoryData }) => {
     const menuName = {
         default: '',
         handBook: 'handBook',
@@ -23,7 +23,9 @@ const ProfileModuleContent = ({ activityCategoryData }) => {
             />
             <div className='w-full pt-10'>
                 {activeMenu === menuName.default && (
-                    <ProfileModuleContentPersonalData />
+                    <ProfileModuleContentPersonalData
+                        educationList={educationList}
+                    />
                 )}
                 {activeMenu === menuName.activities && (
                     <ProfileModuleContentActivities
