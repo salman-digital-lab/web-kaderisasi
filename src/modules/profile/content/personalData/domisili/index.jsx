@@ -4,12 +4,27 @@ import { FormInput, FormSelect } from '@components'
 
 import ProfileModuleContentPersonalDataCard from '../card'
 
-const ProfileModuleContentPersonalDataDomisili = () => {
+const ProfileModuleContentPersonalDataDomisili = ({
+    formData,
+    provincesList,
+    formOnChangeHandler,
+}) => {
     return (
         <ProfileModuleContentPersonalDataCard>
-            <FormSelect value='' label='Provinsi' placeholder='Pilih provinsi'>
-                <option value='jawaBarat'>Jawa Barat</option>
-                <option value='jawaTengah'>Jawa Tengah</option>
+            <FormSelect
+                label='Provinsi'
+                name='province_id'
+                value={formData.province_id}
+                onChange={formOnChangeHandler}
+                placeholder='-- Pilih provinsi --'
+            >
+                {provincesList.map((item) => {
+                    return (
+                        <option key={item.id} value={item.id}>
+                            {item.name}
+                        </option>
+                    )
+                })}
             </FormSelect>
             <FormSelect value='' label='Kota' placeholder='Pilih Kota'>
                 <option value='bandung'>Bandung</option>
