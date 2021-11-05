@@ -4,6 +4,7 @@ import AuthInput from './authInput'
 import FormTextArea from './textArea'
 import FormRadio from './radio'
 import FormCheckbox from './checkbox'
+import FormScale from './scale'
 
 export {
     FormInput,
@@ -12,4 +13,5 @@ export {
     FormTextArea,
     FormRadio,
     FormCheckbox,
+    FormScale,
 }
