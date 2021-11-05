@@ -13,7 +13,7 @@ import ProfileModuleContentPersonalDataPersonal from './personal'
 import ProfileModuleContentPersonalDataDomisili from './domisili'
 import ProfileModuleContentPersonalDataEducation from './education'
 
-const ProfileModuleContentPersonalData = ({ educationList }) => {
+const ProfileModuleContentPersonalData = ({ educationList, provincesList }) => {
     const state = {
         user: zustandStore((state) => state.user),
         setUser: zustandStore((state) => state.setUser),
@@ -77,6 +77,7 @@ const ProfileModuleContentPersonalData = ({ educationList }) => {
                     </ProfileModuleContentPersonalDataTitle>
                     <ProfileModuleContentPersonalDataDomisili
                         formData={formData}
+                        provincesList={provincesList}
                         formOnChangeHandler={formOnChangeHandler}
                     />
                 </div>
