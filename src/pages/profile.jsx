@@ -4,11 +4,12 @@ import axios from 'axios'
 import { PageWrapper } from '@layout'
 import { ProfileModule } from '@modules'
 
-const profile = ({ activityCategory, educationList }) => {
+const profile = ({ educationList, provincesList, activityCategory }) => {
     return (
         <PageWrapper title='Profile'>
             <ProfileModule
                 educationList={educationList}
+                provincesList={provincesList}
                 activityCategoryData={activityCategory}
             />
         </PageWrapper>
@@ -27,11 +28,16 @@ const getStaticProps = async () => {
         `${baseURL}/${baseURLVersion}/universities`
     )
 
+    const provincesResponse = await axios.get(
+        `${baseURL}/${baseURLVersion}/regions/provinces`
+    )
+
     return {
         props: {
             revalidate: 10,
             activityCategory: [],
             educationList: educationResponse.data.data,
+            provincesList: provincesResponse.data.data,
         },
     }
 }
