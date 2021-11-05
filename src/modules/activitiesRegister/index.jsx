@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 /* eslint-disable no-shadow */
 /* eslint-disable no-nested-ternary */
 
@@ -7,7 +8,7 @@ import { useRouter } from 'next/router'
 import axios from 'axios'
 import { zustandStore } from '@services'
 
-import { ComponentWrapper, Jumbotron, Link, Button } from '@components'
+import { ComponentWrapper, Jumbotron, Button } from '@components'
 import ProgressBar from './progressBar'
 import FirstStep from './firstStep'
 import FinalStep from './finalStep'
