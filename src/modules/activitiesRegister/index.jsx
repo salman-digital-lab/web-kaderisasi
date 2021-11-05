@@ -1,4 +1,6 @@
+/* eslint-disable no-shadow */
 /* eslint-disable no-nested-ternary */
+
 import React, { useState } from 'react'
 import { useSnackbar } from 'notistack'
 import { useRouter } from 'next/router'
