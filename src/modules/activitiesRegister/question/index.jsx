@@ -171,11 +171,6 @@ const Question = ({
                     }
                 })
             }
-            {currentStep === maxStep - 1 && (
-                <Button type='button' variant='primary'>
-                    Kirim Kuesioner
-                </Button>
-            )}
         </div>
     )
 }

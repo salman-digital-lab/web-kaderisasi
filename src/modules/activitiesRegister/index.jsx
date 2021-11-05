@@ -246,13 +246,14 @@ const ActivitesRegister = ({ status, message, questionnaire }) => {
                                     currentStep={input.currentStep}
                                     maxStep={maxStep}
                                 />
-                                <div className='flex justify-around my-4'>
+                                <div className='flex justify-around my-4 '>
                                     {input.currentStep > 1 &&
                                         input.currentStep < maxStep && (
                                             <Button
                                                 type='button'
-                                                variant='primary'
                                                 onClick={prev}
+                                                className='border border-bmka-primary-blue'
+                                                textClassName='text-bmka-primary-blue'
                                             >
                                                 Kembali
                                             </Button>
@@ -261,12 +262,20 @@ const ActivitesRegister = ({ status, message, questionnaire }) => {
                                         input.currentStep >= 1 && (
                                             <Button
                                                 type='button'
-                                                variant='primary'
+                                                variant='secondary'
                                                 onClick={checkform}
                                             >
                                                 Lanjut
                                             </Button>
                                         )}
+                                    {input.currentStep === maxStep - 1 && (
+                                        <Button
+                                            type='button'
+                                            variant='secondary'
+                                        >
+                                            Kirim Kuesioner
+                                        </Button>
+                                    )}
                                 </div>
                             </form>
                         </div>
