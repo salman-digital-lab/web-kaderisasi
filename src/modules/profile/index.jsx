@@ -6,13 +6,18 @@ import { withUserAuthenticationHOC } from '@hoc'
 import ProfileModuleContent from './content'
 import ProfileModuleUserInfo from './userInfo'
 
-const ProfileModule = ({ educationList, activityCategoryData }) => {
+const ProfileModule = ({
+    educationList,
+    provincesList,
+    activityCategoryData,
+}) => {
     return (
         <ComponentWrapper>
             <div className='flex gap-6 pt-36 pb-12'>
                 <ProfileModuleUserInfo />
                 <ProfileModuleContent
                     educationList={educationList}
+                    provincesList={provincesList}
                     activityCategoryData={activityCategoryData}
                 />
             </div>
