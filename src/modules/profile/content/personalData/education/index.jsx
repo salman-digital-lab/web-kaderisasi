@@ -1,3 +1,5 @@
+/* eslint-disable react/no-array-index-key */
+
 import React from 'react'
 
 import { FormInput, FormSelect } from '@components'
@@ -6,6 +8,7 @@ import ProfileModuleContentPersonalDataCard from '../card'
 
 const ProfileModuleContentPersonalDataEducation = ({
     formData,
+    educationList,
     formOnChangeHandler,
 }) => {
     return (
@@ -21,14 +24,19 @@ const ProfileModuleContentPersonalDataEducation = ({
             />
             <FormSelect
                 label='Kampus'
+                name='university_id'
                 value={formData.university_id}
                 onChange={formOnChangeHandler}
                 placeholder='-- Pilih kampus anda --'
                 required
             >
-                <option value='UNIKOM'>UNIKOM</option>
-                <option value='UNIKOM'>ITB</option>
-                <option value='UNIKOM'>UNPAD</option>
+                {educationList.map((item, index) => {
+                    return (
+                        <option key={index} value={item.name}>
+                            {item.name}
+                        </option>
+                    )
+                })}
             </FormSelect>
             <FormInput
                 type='text'
