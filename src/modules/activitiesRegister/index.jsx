@@ -1,15 +1,21 @@
 /* eslint-disable no-nested-ternary */
 import React, { useState } from 'react'
-import { ComponentWrapper, Jumbotron, Link, Button } from '@components'
 import { useSnackbar } from 'notistack'
 import { useRouter } from 'next/router'
 import axios from 'axios'
+import { zustandStore } from '@services'
+
+import { ComponentWrapper, Jumbotron, Link, Button } from '@components'
 import ProgressBar from './progressBar'
 import FirstStep from './firstStep'
 import FinalStep from './finalStep'
 import Question from './question'
 
-const ActivitesRegister = ({ status, message, questionnaire, ...props }) => {
+const ActivitesRegister = ({ status, message, questionnaire }) => {
+    console.log(questionnaire)
+    const state = {
+        user: zustandStore((state) => state.user),
+    }
     const { enqueueSnackbar } = useSnackbar()
 
     const displayMessage =
@@ -59,7 +65,6 @@ const ActivitesRegister = ({ status, message, questionnaire, ...props }) => {
             })
         }
     }
-
     /**
      * Function to handle change value in form
      */
@@ -120,7 +125,7 @@ const ActivitesRegister = ({ status, message, questionnaire, ...props }) => {
                     },
                     {
                         headers: {
-                            Authorization: `Bearer ${user.token}`,
+                            Authorization: `Bearer ${state.user.token}`,
                             'Content-Type': 'application/json',
                             'Access-Control-Allow-Origin': '*',
                         },
@@ -187,6 +192,7 @@ const ActivitesRegister = ({ status, message, questionnaire, ...props }) => {
     return (
         <>
             {Object.keys(input.answer).length === 0 && setName()}
+            {console.log(input.answer)}
             <Jumbotron>
                 <h1 className='w-5/6 mx-auto md:w-full text-center text-white px-1 md:px-5 text-3xl md:text-4xl'>
                     Form Pendaftaran
@@ -228,7 +234,7 @@ const ActivitesRegister = ({ status, message, questionnaire, ...props }) => {
                                     currentStep={input.currentStep}
                                     maxStep={input.maxStep}
                                     handleChange={handleChange}
-                                    data={questionnaire}
+                                    questionnaire={questionnaire}
                                     mulai={input.mulai}
                                     akhir={input.akhir}
                                     answer={input.answer}
