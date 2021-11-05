@@ -1,6 +1,5 @@
 import React from 'react'
 import {
-    Button,
     FormInput,
     FormTextArea,
     FormSelect,
@@ -18,12 +17,11 @@ const Question = ({
     mulai,
     akhir,
 }) => {
-    console.log(questionnaire)
     if (currentStep === 1 || currentStep === maxStep) {
         return null
     }
     return (
-        <div className='w-10/12 md:w-10/12 mx-auto my-4 flex flex-col p-4'>
+        <div className='w-full mx-auto my-4 flex flex-col p-2 md:p-4 gap-4'>
             {
                 /**
                  * Map every JSON questionaire to component
@@ -75,72 +73,80 @@ const Question = ({
                         if (item.type === 'radio') {
                             return (
                                 <>
-                                    {item.data.map((element, index2) =>
-                                        index2 === 0 ? (
-                                            <FormRadio
-                                                key={index2}
-                                                type='radio'
-                                                name={item.name}
-                                                value={element.value}
-                                                onChange={handleChange}
-                                                label={item.label}
-                                                required={item.required}
-                                                checked={
-                                                    answer[item.name] ===
-                                                    element.value
-                                                }
-                                            />
-                                        ) : (
-                                            <FormRadio
-                                                key={index2}
-                                                type='radio'
-                                                name={item.name}
-                                                value={element.value}
-                                                onChange={handleChange}
-                                                checked={
-                                                    answer[item.name] ===
-                                                    element.value
-                                                }
-                                            />
-                                        )
-                                    )}
+                                    <div>
+                                        {item.data.map((element, index2) =>
+                                            index2 === 0 ? (
+                                                <FormRadio
+                                                    key={index2}
+                                                    type='radio'
+                                                    name={item.name}
+                                                    value={element.value}
+                                                    onChange={handleChange}
+                                                    label={item.label}
+                                                    required={item.required}
+                                                    checked={
+                                                        answer[item.name] ===
+                                                        element.value
+                                                    }
+                                                />
+                                            ) : (
+                                                <FormRadio
+                                                    key={index2}
+                                                    type='radio'
+                                                    name={item.name}
+                                                    value={element.value}
+                                                    onChange={handleChange}
+                                                    checked={
+                                                        answer[item.name] ===
+                                                        element.value
+                                                    }
+                                                />
+                                            )
+                                        )}
+                                    </div>
                                 </>
                             )
                         }
                         if (item.type === 'option') {
                             return (
                                 <>
-                                    {item.data.map((element, index2) =>
-                                        index2 === 0 ? (
-                                            <FormCheckbox
-                                                key={index2}
-                                                type='checkbox'
-                                                name={item.name}
-                                                value={element.value}
-                                                onChange={handleChange}
-                                                required={item.required}
-                                                label={item.label}
-                                                checked={
-                                                    answer[item.name].indexOf(
-                                                        element.value
-                                                    ) >= 0
-                                                }
-                                            />
-                                        ) : (
-                                            <FormCheckbox
-                                                key={index2}
-                                                type='checkbox'
-                                                name={item.name}
-                                                value={element.value}
-                                                onChange={handleChange}
-                                                checked={
-                                                    answer[item.name].indexOf(
-                                                        element.value
-                                                    ) >= 0
-                                                }
-                                            />
-                                        )
-                                    )}
+                                    <div className=''>
+                                        {item.data.map((element, index2) =>
+                                            index2 === 0 ? (
+                                                <FormCheckbox
+                                                    key={index2}
+                                                    type='checkbox'
+                                                    name={item.name}
+                                                    value={element.value}
+                                                    onChange={handleChange}
+                                                    required={item.required}
+                                                    label={item.label}
+                                                    checked={
+                                                        answer[
+                                                            item.name
+                                                        ].indexOf(
+                                                            element.value
+                                                        ) >= 0
+                                                    }
+                                                />
+                                            ) : (
+                                                <FormCheckbox
+                                                    key={index2}
+                                                    type='checkbox'
+                                                    name={item.name}
+                                                    value={element.value}
+                                                    onChange={handleChange}
+                                                    checked={
+                                                        answer[
+                                                            item.name
+                                                        ].indexOf(
+                                                            element.value
+                                                        ) >= 0
+                                                    }
+                                                />
+                                            )
+                                        )}
+                                    </div>
                                 </>
                             )
                         }
