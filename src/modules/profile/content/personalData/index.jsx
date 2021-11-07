@@ -50,8 +50,8 @@ const ProfileModuleContentPersonalData = ({ educationList, provincesList }) => {
 
     return (
         <form onSubmit={formSubmitHandler}>
-            <h3 className='font-bold'>Profil</h3>
-            <div className='flex flex-wrap gap-6 mt-4'>
+            <h3 className='font-bold text-center'>Profil</h3>
+            <div className='flex flex-wrap justify-center gap-6 mt-4'>
                 <div className='w-full max-w-xs'>
                     <ProfileModuleContentPersonalDataTitle>
                         Personal
