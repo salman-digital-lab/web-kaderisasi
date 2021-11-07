@@ -15,7 +15,7 @@ const ProfileModule = ({
         <div>
             <ProfileModuleUserInfo />
             <ComponentWrapper>
-                <div>
+                <div className='w-full max-w-3xl mx-auto py-10'>
                     <ProfileModuleContent
                         educationList={educationList}
                         provincesList={provincesList}
