@@ -12,16 +12,18 @@ const ProfileModule = ({
     activityCategoryData,
 }) => {
     return (
-        <ComponentWrapper>
-            <div className='flex gap-6 pt-36 pb-12'>
-                <ProfileModuleUserInfo />
-                <ProfileModuleContent
-                    educationList={educationList}
-                    provincesList={provincesList}
-                    activityCategoryData={activityCategoryData}
-                />
-            </div>
-        </ComponentWrapper>
+        <div>
+            <ProfileModuleUserInfo />
+            <ComponentWrapper>
+                <div>
+                    <ProfileModuleContent
+                        educationList={educationList}
+                        provincesList={provincesList}
+                        activityCategoryData={activityCategoryData}
+                    />
+                </div>
+            </ComponentWrapper>
+        </div>
     )
 }
 
