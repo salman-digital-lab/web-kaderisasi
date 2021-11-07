@@ -20,11 +20,13 @@ const ProfileModuleContent = ({
 
     return (
         <div className='w-full'>
-            <ProfileModuleContentMenu
-                menuName={menuName}
-                activeMenu={activeMenu}
-                setActiveMenu={setActiveMenu}
-            />
+            <div className='flex justify-center'>
+                <ProfileModuleContentMenu
+                    menuName={menuName}
+                    activeMenu={activeMenu}
+                    setActiveMenu={setActiveMenu}
+                />
+            </div>
             <div className='w-full pt-10'>
                 {activeMenu === menuName.default && (
                     <ProfileModuleContentPersonalData
