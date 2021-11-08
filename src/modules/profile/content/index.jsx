@@ -106,6 +106,7 @@ const ProfileModuleContent = ({
                     <ProfileModuleContentPersonalData
                         formData={formData}
                         regionData={regionData}
+                        token={state.user.token}
                         setFormData={setFormData}
                         educationList={educationList}
                         provincesList={provincesList}
