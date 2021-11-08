@@ -6,9 +6,12 @@ import ProfileModuleContentPersonalDataCard from '../card'
 
 const ProfileModuleContentPersonalDataDomisili = ({
     formData,
+    regionData,
     provincesList,
     formOnChangeHandler,
 }) => {
+    const { regency } = regionData
+
     return (
         <ProfileModuleContentPersonalDataCard>
             <FormSelect
@@ -26,9 +29,20 @@ const ProfileModuleContentPersonalDataDomisili = ({
                     )
                 })}
             </FormSelect>
-            <FormSelect value='' label='Kota' placeholder='Pilih Kota'>
-                <option value='bandung'>Bandung</option>
-                <option value='jakarta'>Jakarta</option>
+            <FormSelect
+                label='Kota'
+                name='regency_id'
+                value={formData.regency_id}
+                onChange={formOnChangeHandler}
+                placeholder='-- Pilih Kota --'
+            >
+                {regency.map((item) => {
+                    return (
+                        <option key={item.id} value={item.id}>
+                            {item.name}
+                        </option>
+                    )
+                })}
             </FormSelect>
             <FormSelect
                 value=''
