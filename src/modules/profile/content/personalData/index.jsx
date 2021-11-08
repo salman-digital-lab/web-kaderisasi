@@ -37,7 +37,7 @@ const ProfileModuleContentPersonalData = ({
         enqueueSnackbar('Updating your profile...', { variant: 'info' })
 
         try {
-            const response = await axios.post(
+            const response = await axios.put(
                 `${baseURL}/${baseURLVersion}/account/update`,
                 { ...formData },
                 {
