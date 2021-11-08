@@ -74,7 +74,14 @@ const ProfileModuleContentPersonalDataDomisili = ({
                     )
                 })}
             </FormSelect>
-            <FormInput type='text' label='Alamat' />
+            <FormInput
+                type='text'
+                label='Alamat'
+                name='current_address'
+                onChange={formOnChangeHandler}
+                value={formData.current_address}
+                placeholder='-- Ketikkan alamat anda --'
+            />
         </ProfileModuleContentPersonalDataCard>
     )
 }
