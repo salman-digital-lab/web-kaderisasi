@@ -10,7 +10,7 @@ const ProfileModuleContentPersonalDataDomisili = ({
     provincesList,
     formOnChangeHandler,
 }) => {
-    const { regency } = regionData
+    const { regency, district, village } = regionData
 
     return (
         <ProfileModuleContentPersonalDataCard>
@@ -45,20 +45,34 @@ const ProfileModuleContentPersonalDataDomisili = ({
                 })}
             </FormSelect>
             <FormSelect
-                value=''
                 label='Kecamatan'
-                placeholder='Pilih Kecamatan'
+                name='district_id'
+                value={formData.district_id}
+                onChange={formOnChangeHandler}
+                placeholder='-- Pilih Kecamatan --'
             >
-                <option value='bandung'>Bandung</option>
-                <option value='jakarta'>Jakarta</option>
+                {district.map((item) => {
+                    return (
+                        <option key={item.id} value={item.id}>
+                            {item.name}
+                        </option>
+                    )
+                })}
             </FormSelect>
             <FormSelect
-                value=''
+                name='village_id'
                 label='Kelurahan'
-                placeholder='Pilih Kelurahan'
+                value={formData.village_id}
+                onChange={formOnChangeHandler}
+                placeholder='-- Pilih Kelurahan --'
             >
-                <option value='bandung'>Bandung</option>
-                <option value='jakarta'>Jakarta</option>
+                {village.map((item) => {
+                    return (
+                        <option key={item.id} value={item.id}>
+                            {item.name}
+                        </option>
+                    )
+                })}
             </FormSelect>
             <FormInput type='text' label='Alamat' />
         </ProfileModuleContentPersonalDataCard>
