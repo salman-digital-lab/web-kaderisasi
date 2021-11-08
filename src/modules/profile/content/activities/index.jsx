@@ -2,7 +2,10 @@ import React from 'react'
 
 import { Button, FormInput, FormSelect } from '@components'
 
-const ProfileModuleContentActivities = ({ activityCategoryData }) => {
+const ProfileModuleContentActivities = ({
+    userActivities,
+    activityCategoryData,
+}) => {
     return (
         <div>
             <div className='flex justify-between items-center'>
@@ -17,8 +20,14 @@ const ProfileModuleContentActivities = ({ activityCategoryData }) => {
                     <Button variant='secondary'>Cari</Button>
                 </form>
             </div>
-            <div className='mt-6 max-w-xs'>
-                <p>List Kegiatan</p>
+            <div>
+                {userActivities.length > 0 ? (
+                    <div />
+                ) : (
+                    <div className='w-full py-20 text-center'>
+                        <p>Tidak ada kegiatan</p>
+                    </div>
+                )}
             </div>
         </div>
     )
