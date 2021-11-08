@@ -40,6 +40,22 @@ const ProfileModuleContentPersonalDataPersonal = ({
                 placeholder='-- Ketikkan tempat lahir anda --'
                 required
             />
+            <FormInput
+                type='text'
+                label='Alamat Asal'
+                name='from_address'
+                value={formData.from_address}
+                onChange={formOnChangeHandler}
+                placeholder='-- Ketikkan alamat asal anda --'
+            />
+            <FormInput
+                type='text'
+                label='Alamat Saat Ini'
+                name='current_address'
+                onChange={formOnChangeHandler}
+                value={formData.current_address}
+                placeholder='-- Ketikkan anda alamat saat ini --'
+            />
         </ProfileModuleContentPersonalDataCard>
     )
 }

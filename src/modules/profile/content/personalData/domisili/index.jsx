@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { FormInput, FormSelect } from '@components'
+import { FormSelect } from '@components'
 
 import ProfileModuleContentPersonalDataCard from '../card'
 
@@ -74,14 +74,6 @@ const ProfileModuleContentPersonalDataDomisili = ({
                     )
                 })}
             </FormSelect>
-            <FormInput
-                type='text'
-                label='Alamat'
-                name='current_address'
-                onChange={formOnChangeHandler}
-                value={formData.current_address}
-                placeholder='-- Ketikkan alamat anda --'
-            />
         </ProfileModuleContentPersonalDataCard>
     )
 }
