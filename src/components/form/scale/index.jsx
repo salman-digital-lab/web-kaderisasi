@@ -1,6 +1,6 @@
 import React from 'react'
 
-const FormInput = ({ label, className, ...props }) => {
+const FormScale = ({ label, className, ...props }) => {
     return (
         <div>
             {label && (
@@ -11,15 +11,16 @@ const FormInput = ({ label, className, ...props }) => {
                     )}
                 </p>
             )}
-            <div className='flex gap-2 items-center px-2 py-3 border-2 border-bmka-primary-blue rounded'>
+            <div className='flex gap-2'>
                 <input
                     spellCheck='false'
-                    className={`w-full outline-none ${className ?? ''}`}
+                    className={`w-full ${className ?? ''}`}
                     {...props}
                 />
+                <output id='scala'>{props.value}</output>
             </div>
         </div>
     )
 }
 
-export default FormInput
+export default FormScale
