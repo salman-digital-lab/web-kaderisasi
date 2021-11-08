@@ -1,37 +1,79 @@
 import React from 'react'
 
-import { FormInput, FormSelect } from '@components'
+import { FormSelect } from '@components'
 
 import ProfileModuleContentPersonalDataCard from '../card'
 
-const ProfileModuleContentPersonalDataDomisili = () => {
+const ProfileModuleContentPersonalDataDomisili = ({
+    formData,
+    regionData,
+    provincesList,
+    formOnChangeHandler,
+}) => {
+    const { regency, district, village } = regionData
+
     return (
         <ProfileModuleContentPersonalDataCard>
-            <FormSelect value='' label='Provinsi' placeholder='Pilih provinsi'>
-                <option value='jawaBarat'>Jawa Barat</option>
-                <option value='jawaTengah'>Jawa Tengah</option>
-            </FormSelect>
-            <FormSelect value='' label='Kota' placeholder='Pilih Kota'>
-                <option value='bandung'>Bandung</option>
-                <option value='jakarta'>Jakarta</option>
+            <FormSelect
+                label='Provinsi'
+                name='province_id'
+                value={formData.province_id}
+                onChange={formOnChangeHandler}
+                placeholder='-- Pilih provinsi --'
+            >
+                {provincesList.map((item) => {
+                    return (
+                        <option key={item.id} value={item.id}>
+                            {item.name}
+                        </option>
+                    )
+                })}
             </FormSelect>
             <FormSelect
-                value=''
+                label='Kota'
+                name='regency_id'
+                value={formData.regency_id}
+                onChange={formOnChangeHandler}
+                placeholder='-- Pilih Kota --'
+            >
+                {regency.map((item) => {
+                    return (
+                        <option key={item.id} value={item.id}>
+                            {item.name}
+                        </option>
+                    )
+                })}
+            </FormSelect>
+            <FormSelect
                 label='Kecamatan'
-                placeholder='Pilih Kecamatan'
+                name='district_id'
+                value={formData.district_id}
+                onChange={formOnChangeHandler}
+                placeholder='-- Pilih Kecamatan --'
             >
-                <option value='bandung'>Bandung</option>
-                <option value='jakarta'>Jakarta</option>
+                {district.map((item) => {
+                    return (
+                        <option key={item.id} value={item.id}>
+                            {item.name}
+                        </option>
+                    )
+                })}
             </FormSelect>
             <FormSelect
-                value=''
+                name='village_id'
                 label='Kelurahan'
-                placeholder='Pilih Kelurahan'
+                value={formData.village_id}
+                onChange={formOnChangeHandler}
+                placeholder='-- Pilih Kelurahan --'
             >
-                <option value='bandung'>Bandung</option>
-                <option value='jakarta'>Jakarta</option>
+                {village.map((item) => {
+                    return (
+                        <option key={item.id} value={item.id}>
+                            {item.name}
+                        </option>
+                    )
+                })}
             </FormSelect>
-            <FormInput type='text' label='Alamat' />
         </ProfileModuleContentPersonalDataCard>
     )
 }
