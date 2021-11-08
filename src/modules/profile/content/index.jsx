@@ -1,6 +1,8 @@
 /* eslint-disable no-shadow */
+/* eslint-disable react-hooks/exhaustive-deps */
 
-import React, { useState } from 'react'
+import axios from 'axios'
+import React, { useState, useEffect } from 'react'
 
 import { zustandStore } from '@services'
 
@@ -14,6 +16,9 @@ const ProfileModuleContent = ({
     provincesList,
     activityCategoryData,
 }) => {
+    const baseURL = process.env.NEXT_PUBLIC_BASE_URL
+    const baseURLVersion = process.env.NEXT_PUBLIC_BASE_URL_VERSION
+
     const menuName = {
         default: '',
         handBook: 'handBook',
@@ -27,6 +32,21 @@ const ProfileModuleContent = ({
 
     const [activeMenu, setActiveMenu] = useState('')
     const [formData, setFormData] = useState({ ...state.user })
+    const [regionData, setRegionData] = useState({
+        regency: [],
+    })
+
+    useEffect(async () => {
+        if (!formData.province_id) {
+            return
+        }
+
+        const response = await axios.get(
+            `${baseURL}/${baseURLVersion}/regions/regencies/${formData.province_id}`
+        )
+
+        setRegionData({ ...regionData, regency: response.data.data })
+    }, [formData.province_id])
 
     return (
         <div className='w-full'>
@@ -41,6 +61,7 @@ const ProfileModuleContent = ({
                 {activeMenu === menuName.default && (
                     <ProfileModuleContentPersonalData
                         formData={formData}
+                        regionData={regionData}
                         setFormData={setFormData}
                         educationList={educationList}
                         provincesList={provincesList}
