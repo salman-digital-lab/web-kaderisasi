@@ -34,12 +34,28 @@ const ProfileModuleContent = ({
     }
 
     const [activeMenu, setActiveMenu] = useState('')
+    const [userActivities, setUserActivities] = useState([])
     const [formData, setFormData] = useState({ ...state.user })
     const [regionData, setRegionData] = useState({
         regency: [],
         village: [],
         district: [],
     })
+
+    useEffect(async () => {
+        const { token } = state.user
+
+        const response = await axios.get(
+            `${baseURL}/${baseURLVersion}/account/user/activities`,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        )
+
+        setUserActivities(response.data.data.data)
+    }, [])
 
     // get regencies data
     useEffect(async () => {
@@ -114,6 +130,7 @@ const ProfileModuleContent = ({
                 )}
                 {activeMenu === menuName.activities && (
                     <ProfileModuleContentActivities
+                        userActivities={userActivities}
                         activityCategoryData={activityCategoryData}
                     />
                 )}
