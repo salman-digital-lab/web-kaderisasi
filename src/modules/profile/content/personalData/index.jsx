@@ -15,6 +15,7 @@ import ProfileModuleContentPersonalDataEducation from './education'
 
 const ProfileModuleContentPersonalData = ({
     formData,
+    regionData,
     setFormData,
     educationList,
     provincesList,
@@ -78,6 +79,7 @@ const ProfileModuleContentPersonalData = ({
                     </ProfileModuleContentPersonalDataTitle>
                     <ProfileModuleContentPersonalDataDomisili
                         formData={formData}
+                        regionData={regionData}
                         provincesList={provincesList}
                         formOnChangeHandler={formOnChangeHandler}
                     />
