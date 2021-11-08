@@ -39,7 +39,9 @@ const ProfileModuleContentPersonalData = ({
         try {
             const response = await axios.put(
                 `${baseURL}/${baseURLVersion}/account/update`,
-                { ...formData },
+                {
+                    ...formData,
+                },
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
