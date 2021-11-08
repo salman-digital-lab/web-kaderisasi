@@ -1,5 +1,3 @@
-/* eslint-disable react/no-array-index-key */
-
 import React from 'react'
 
 import { FormInput, FormSelect } from '@components'
@@ -30,9 +28,9 @@ const ProfileModuleContentPersonalDataEducation = ({
                 placeholder='-- Pilih kampus anda --'
                 required
             >
-                {educationList.map((item, index) => {
+                {educationList.map((item) => {
                     return (
-                        <option key={index} value={item.name}>
+                        <option key={item.id} value={item.id}>
                             {item.name}
                         </option>
                     )
