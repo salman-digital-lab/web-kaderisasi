@@ -1,4 +1,8 @@
+/* eslint-disable no-shadow */
+
 import React, { useState } from 'react'
+
+import { zustandStore } from '@services'
 
 import ProfileModuleContentMenu from './menu'
 import ProfileModuleContentHandBook from './handBook'
@@ -16,7 +20,13 @@ const ProfileModuleContent = ({
         activities: 'activities',
     }
 
+    const state = {
+        user: zustandStore((state) => state.user),
+        setUser: zustandStore((state) => state.setUser),
+    }
+
     const [activeMenu, setActiveMenu] = useState('')
+    const [formData, setFormData] = useState({ ...state.user })
 
     return (
         <div className='w-full'>
@@ -30,6 +40,8 @@ const ProfileModuleContent = ({
             <div className='w-full pt-10'>
                 {activeMenu === menuName.default && (
                     <ProfileModuleContentPersonalData
+                        formData={formData}
+                        setFormData={setFormData}
                         educationList={educationList}
                         provincesList={provincesList}
                     />
