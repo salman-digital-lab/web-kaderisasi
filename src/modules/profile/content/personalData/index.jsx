@@ -1,6 +1,7 @@
 /* eslint-disable no-shadow */
 
 import React from 'react'
+import axios from 'axios'
 import cookies from 'js-cookie'
 import { useSnackbar } from 'notistack'
 
@@ -14,6 +15,7 @@ import ProfileModuleContentPersonalDataDomisili from './domisili'
 import ProfileModuleContentPersonalDataEducation from './education'
 
 const ProfileModuleContentPersonalData = ({
+    token,
     formData,
     regionData,
     setFormData,
@@ -26,8 +28,29 @@ const ProfileModuleContentPersonalData = ({
 
     const { enqueueSnackbar } = useSnackbar()
 
-    const formSubmitHandler = (e) => {
+    const formSubmitHandler = async (e) => {
         e.preventDefault()
+
+        const baseURL = process.env.NEXT_PUBLIC_BASE_URL
+        const baseURLVersion = process.env.NEXT_PUBLIC_BASE_URL_VERSION
+
+        enqueueSnackbar('Updating your profile...', { variant: 'info' })
+
+        try {
+            const response = await axios.post(
+                `${baseURL}/${baseURLVersion}/account/update`,
+                { ...formData },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            )
+
+            enqueueSnackbar(response.data.message, { variant: 'success' })
+        } catch {
+            enqueueSnackbar('Oops! Something wrong', { variant: 'error' })
+        }
     }
 
     const formOnChangeHandler = (e) => {
