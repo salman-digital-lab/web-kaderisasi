@@ -20,9 +20,9 @@ const getStaticProps = async () => {
     const baseURL = process.env.NEXT_PUBLIC_BASE_URL
     const baseURLVersion = process.env.NEXT_PUBLIC_BASE_URL_VERSION
 
-    // const activitiesCategoryResponse = await axios.get(
-    //     `${baseURL}/${baseURLVersion}/activity-categories`
-    // )
+    const activitiesCategoryResponse = await axios.get(
+        `${baseURL}/${baseURLVersion}/activity/categories`
+    )
 
     const educationResponse = await axios.get(
         `${baseURL}/${baseURLVersion}/universities`
@@ -35,9 +35,9 @@ const getStaticProps = async () => {
     return {
         props: {
             revalidate: 10,
-            activityCategory: [],
             educationList: educationResponse.data.data,
             provincesList: provincesResponse.data.data,
+            activityCategory: activitiesCategoryResponse.data.data,
         },
     }
 }
