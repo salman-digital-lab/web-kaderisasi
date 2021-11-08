@@ -1,8 +1,8 @@
 /* eslint-disable no-shadow */
 
+import React from 'react'
 import cookies from 'js-cookie'
 import { useSnackbar } from 'notistack'
-import React, { useState } from 'react'
 
 import { Button } from '@components'
 import { zustandStore } from '@services'
@@ -13,15 +13,17 @@ import ProfileModuleContentPersonalDataPersonal from './personal'
 import ProfileModuleContentPersonalDataDomisili from './domisili'
 import ProfileModuleContentPersonalDataEducation from './education'
 
-const ProfileModuleContentPersonalData = ({ educationList, provincesList }) => {
+const ProfileModuleContentPersonalData = ({
+    formData,
+    setFormData,
+    educationList,
+    provincesList,
+}) => {
     const state = {
-        user: zustandStore((state) => state.user),
         setUser: zustandStore((state) => state.setUser),
     }
 
     const { enqueueSnackbar } = useSnackbar()
-
-    const [formData, setFormData] = useState({ ...state.user })
 
     const formSubmitHandler = (e) => {
         e.preventDefault()
