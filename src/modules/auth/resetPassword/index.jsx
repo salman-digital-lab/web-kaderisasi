@@ -3,7 +3,6 @@ import { Button, AuthTemplate } from '@components'
 import axios from 'axios'
 import router, { useRouter } from 'next/router'
 import { useSnackbar } from 'notistack'
-
 import ResetPasswordModuleForm from './form'
 
 const ResetPasswordModule = () => {
@@ -56,8 +55,19 @@ const ResetPasswordModule = () => {
         }
     }
 
+    const backButtonHandler = () => {
+        router.push('/')
+    }
+
     return (
         <AuthTemplate>
+            <Button
+                className='md:hidden'
+                onClick={backButtonHandler}
+                textClassName='font-bold text-bmka-primary-blue'
+            >
+                Kembali ke portal utama
+            </Button>
             <div className='w-full h-full grid place-items-center'>
                 <form
                     onSubmit={submitHandler}
