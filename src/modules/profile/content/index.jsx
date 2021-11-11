@@ -36,11 +36,9 @@ const ProfileModuleContent = ({
     const [activeMenu, setActiveMenu] = useState('')
     const [userActivities, setUserActivities] = useState([])
     const [formData, setFormData] = useState({ ...state.user })
-    const [regionData, setRegionData] = useState({
-        regency: [],
-        village: [],
-        district: [],
-    })
+    const [regencyData, setRegencyData] = useState([])
+    const [villageData, setVillageData] = useState([])
+    const [districtData, setDistrictData] = useState([])
 
     useEffect(async () => {
         const { token } = state.user
@@ -68,7 +66,7 @@ const ProfileModuleContent = ({
                 `${baseURL}/${baseURLVersion}/regions/regencies/${formData.province_id}`
             )
 
-            setRegionData({ ...regionData, regency: response.data.data })
+            setRegencyData(response.data.data)
         } catch {
             enqueueSnackbar('Failed to get region data', { variant: 'error' })
         }
@@ -85,7 +83,7 @@ const ProfileModuleContent = ({
                 `${baseURL}/${baseURLVersion}/regions/districts/${formData.regency_id}`
             )
 
-            setRegionData({ ...regionData, district: response.data.data })
+            setDistrictData(response.data.data)
         } catch {
             enqueueSnackbar('Failed to get region data', { variant: 'error' })
         }
@@ -102,7 +100,7 @@ const ProfileModuleContent = ({
                 `${baseURL}/${baseURLVersion}/regions/villages/${formData.district_id}`
             )
 
-            setRegionData({ ...regionData, village: response.data.data })
+            setVillageData(response.data.data)
         } catch {
             enqueueSnackbar('Failed to get region data', { variant: 'error' })
         }
@@ -121,11 +119,15 @@ const ProfileModuleContent = ({
                 {activeMenu === menuName.default && (
                     <ProfileModuleContentPersonalData
                         formData={formData}
-                        regionData={regionData}
                         token={state.user.token}
                         setFormData={setFormData}
                         educationList={educationList}
                         provincesList={provincesList}
+                        regionData={{
+                            regency: regencyData,
+                            district: districtData,
+                            village: villageData,
+                        }}
                     />
                 )}
                 {activeMenu === menuName.activities && (
