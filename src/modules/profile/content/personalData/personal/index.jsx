@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 
 import React from 'react'
+import moment from 'moment'
 
 import { FormInput, FormSelect } from '@components'
 
@@ -10,6 +11,14 @@ const ProfileModuleContentPersonalDataPersonal = ({
     formData,
     formOnChangeHandler,
 }) => {
+    const formattedDate = (date) => {
+        if (!date) {
+            return ''
+        }
+
+        return moment(date).format('YYYY-MM-DD')
+    }
+
     return (
         <ProfileModuleContentPersonalDataCard>
             <FormSelect
@@ -28,7 +37,7 @@ const ProfileModuleContentPersonalDataPersonal = ({
                 label='Tanggal Lahir'
                 name='date_of_birthday'
                 onChange={formOnChangeHandler}
-                value={formData.date_of_birthday}
+                value={formattedDate(formData.date_of_birthday)}
                 required
             />
             <FormInput
