@@ -11,7 +11,7 @@ const FirstStep = ({ currentStep, questionaire }) => {
                     </h3>
                     <div className='text-center'>
                         <Button
-                            type='button'
+                            type='submit'
                             className='w-1/2'
                             variant='primary'
                         >

@@ -33,7 +33,7 @@ const FinalStep = ({ currentStep, maxStep }) => {
                         type='button'
                         className='w-2/3'
                         variant='primary'
-                        callbackFunc={goHome}
+                        onClick={goHome}
                     >
                         Kembali ke Home
                     </Button>
