@@ -29,7 +29,7 @@ const Question = ({
                 /**
                  * Map every JSON questionaire to component
                  */
-                questionnaire.data.map((item, index) => {
+                questionnaire.map((item, index) => {
                     if (index >= mulai && index <= akhir) {
                         if (item.type === 'text' || item.type === 'number') {
                             return (

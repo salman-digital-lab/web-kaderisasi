@@ -6,7 +6,6 @@ import { ActivitesRegisterModule } from '@modules'
 import axios from 'axios'
 
 const activitiesRegister = ({ form }) => {
-    console.log(form)
     return (
         <>
             <PageWrapper title='Pendaftaran Kegiatan'>

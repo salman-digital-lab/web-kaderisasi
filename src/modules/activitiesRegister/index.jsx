@@ -15,7 +15,6 @@ import FinalStep from './finalStep'
 import Question from './question'
 
 const ActivitesRegister = ({ status, message, questionnaire }) => {
-    // console.log(questionnaire)
     const state = {
         user: zustandStore((state) => state.user),
     }
@@ -28,7 +27,7 @@ const ActivitesRegister = ({ status, message, questionnaire }) => {
 
     const router = useRouter()
     const { slug } = router.query
-    const maxPerPage = Math.ceil(questionnaire.data.length / 3)
+    const maxPerPage = Math.ceil(questionnaire.length / 3)
     const maxStep = maxPerPage + 2
     const baseURL = process.env.NEXT_PUBLIC_BASE_URL
 
@@ -53,7 +52,7 @@ const ActivitesRegister = ({ status, message, questionnaire }) => {
     const setName = () => {
         if (Object.keys(input.answer) <= 0) {
             const initAnswer = {}
-            questionnaire.data.map((item) => {
+            questionnaire.map((item) => {
                 if (item.type === 'scale') {
                     const maxScale = parseInt(item.data[0].Max, 10)
                     initAnswer[item.name] = maxScale / 2
