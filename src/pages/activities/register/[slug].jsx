@@ -29,7 +29,7 @@ export async function getServerSideProps(ctx) {
     const { slug } = ctx.params
 
     const questionnaire = await axios
-        .get(`${baseURL}/v1/activity/register/${slug}`, {
+        .get(`${baseURL}/v1/activity/${slug}/register`, {
             headers: {
                 Authorization: `Bearer ${cookies.user}`,
                 'Content-Type': 'application/json',
