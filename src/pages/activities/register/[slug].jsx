@@ -6,7 +6,17 @@ import { ActivitesRegisterModule } from '@modules'
 import axios from 'axios'
 
 const activitiesRegister = ({ form }) => {
-    console.log(form)
+    let length = 0
+    if (form.status === 'SUCCESS') {
+        if (form.message === 'Pendaftaran tanpa kuisioner.') {
+            length = 0
+        } else {
+            length = form.data.length
+        }
+    } else if (form.status === 'FAILED') {
+        length = 0
+    }
+
     return (
         <>
             <PageWrapper title='Pendaftaran Kegiatan'>
@@ -14,6 +24,7 @@ const activitiesRegister = ({ form }) => {
                     status={form.status}
                     message={form.message}
                     questionnaire={form.data}
+                    length={length}
                 />
             </PageWrapper>
         </>
@@ -29,7 +40,7 @@ export async function getServerSideProps(ctx) {
     const { slug } = ctx.params
 
     const questionnaire = await axios
-        .get(`${baseURL}/v1/activity/register/${slug}`, {
+        .get(`${baseURL}/v1/activity/${slug}/register`, {
             headers: {
                 Authorization: `Bearer ${cookies.user}`,
                 'Content-Type': 'application/json',

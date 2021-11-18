@@ -14,8 +14,7 @@ import FirstStep from './firstStep'
 import FinalStep from './finalStep'
 import Question from './question'
 
-const ActivitesRegister = ({ status, message, questionnaire }) => {
-    // console.log(questionnaire)
+const ActivitesRegister = ({ status, message, questionnaire, length }) => {
     const state = {
         user: zustandStore((state) => state.user),
     }
@@ -28,7 +27,7 @@ const ActivitesRegister = ({ status, message, questionnaire }) => {
 
     const router = useRouter()
     const { slug } = router.query
-    const maxPerPage = Math.ceil(questionnaire.data.length / 3)
+    const maxPerPage = Math.ceil(length / 3)
     const maxStep = maxPerPage + 2
     const baseURL = process.env.NEXT_PUBLIC_BASE_URL
 
@@ -53,7 +52,7 @@ const ActivitesRegister = ({ status, message, questionnaire }) => {
     const setName = () => {
         if (Object.keys(input.answer) <= 0) {
             const initAnswer = {}
-            questionnaire.data.map((item) => {
+            questionnaire.map((item) => {
                 if (item.type === 'scale') {
                     const maxScale = parseInt(item.data[0].Max, 10)
                     initAnswer[item.name] = maxScale / 2
@@ -123,7 +122,7 @@ const ActivitesRegister = ({ status, message, questionnaire }) => {
 
             await axios
                 .post(
-                    `${baseURL}/v1/activity/register/submit/${slug}`,
+                    `${baseURL}/v1/activity/${slug}/register/submit`,
                     {
                         answer,
                     },
@@ -195,7 +194,7 @@ const ActivitesRegister = ({ status, message, questionnaire }) => {
 
     return (
         <>
-            {Object.keys(input.answer).length === 0 && setName()}
+            {Object.keys(input.answer).length === 0 && length > 0 && setName()}
             <Jumbotron>
                 <h1 className='w-5/6 mx-auto md:w-full text-center text-white px-1 md:px-5 text-3xl md:text-4xl'>
                     Form Pendaftaran
@@ -231,7 +230,7 @@ const ActivitesRegister = ({ status, message, questionnaire }) => {
                             <form className='' onSubmit={handleSubmit}>
                                 <FirstStep
                                     currentStep={input.currentStep}
-                                    questionaire={questionnaire.length}
+                                    questionaire={length}
                                 />
                                 <Question
                                     currentStep={input.currentStep}
@@ -241,6 +240,7 @@ const ActivitesRegister = ({ status, message, questionnaire }) => {
                                     mulai={input.mulai}
                                     akhir={input.akhir}
                                     answer={input.answer}
+                                    length={length}
                                 />
                                 <FinalStep
                                     currentStep={input.currentStep}
@@ -268,14 +268,15 @@ const ActivitesRegister = ({ status, message, questionnaire }) => {
                                                 Lanjut
                                             </Button>
                                         )}
-                                    {input.currentStep === maxStep - 1 && (
-                                        <Button
-                                            type='submit'
-                                            variant='secondary'
-                                        >
-                                            Kirim Kuesioner
-                                        </Button>
-                                    )}
+                                    {input.currentStep === maxStep - 1 &&
+                                        length > 0 && (
+                                            <Button
+                                                type='submit'
+                                                variant='secondary'
+                                            >
+                                                Kirim Kuesioner
+                                            </Button>
+                                        )}
                                 </div>
                             </form>
                         </div>
