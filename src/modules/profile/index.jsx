@@ -6,16 +6,24 @@ import { withUserAuthenticationHOC } from '@hoc'
 import ProfileModuleContent from './content'
 import ProfileModuleUserInfo from './userInfo'
 
-const ProfileModule = ({ activityCategoryData }) => {
+const ProfileModule = ({
+    educationList,
+    provincesList,
+    activityCategoryData,
+}) => {
     return (
-        <ComponentWrapper>
-            <div className='py-36 grid grid-cols-profile gap-8'>
-                <ProfileModuleUserInfo />
-                <ProfileModuleContent
-                    activityCategoryData={activityCategoryData}
-                />
-            </div>
-        </ComponentWrapper>
+        <div>
+            <ProfileModuleUserInfo />
+            <ComponentWrapper>
+                <div className='w-full max-w-3xl mx-auto py-10'>
+                    <ProfileModuleContent
+                        educationList={educationList}
+                        provincesList={provincesList}
+                        activityCategoryData={activityCategoryData}
+                    />
+                </div>
+            </ComponentWrapper>
+        </div>
     )
 }
 

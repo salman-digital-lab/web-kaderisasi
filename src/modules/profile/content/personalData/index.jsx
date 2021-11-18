@@ -1,6 +1,7 @@
 /* eslint-disable no-shadow */
 
 import React from 'react'
+import axios from 'axios'
 import cookies from 'js-cookie'
 import { useSnackbar } from 'notistack'
 
@@ -13,15 +14,54 @@ import ProfileModuleContentPersonalDataPersonal from './personal'
 import ProfileModuleContentPersonalDataDomisili from './domisili'
 import ProfileModuleContentPersonalDataEducation from './education'
 
-const ProfileModuleContentPersonalData = () => {
-    const { enqueueSnackbar } = useSnackbar()
-
+const ProfileModuleContentPersonalData = ({
+    token,
+    formData,
+    regionData,
+    setFormData,
+    educationList,
+    provincesList,
+}) => {
     const state = {
         setUser: zustandStore((state) => state.setUser),
     }
 
-    const formSubmitHandler = (e) => {
+    const { enqueueSnackbar } = useSnackbar()
+
+    const formSubmitHandler = async (e) => {
         e.preventDefault()
+
+        const baseURL = process.env.NEXT_PUBLIC_BASE_URL
+        const baseURLVersion = process.env.NEXT_PUBLIC_BASE_URL_VERSION
+
+        enqueueSnackbar('Updating your profile...', { variant: 'info' })
+
+        try {
+            const response = await axios.put(
+                `${baseURL}/${baseURLVersion}/account/update`,
+                {
+                    ...formData,
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            )
+
+            enqueueSnackbar(response.data.message, { variant: 'success' })
+        } catch {
+            enqueueSnackbar('Oops! Something wrong', { variant: 'error' })
+        }
+    }
+
+    const formOnChangeHandler = (e) => {
+        const { name, value } = e.target
+
+        setFormData({
+            ...formData,
+            [name]: value,
+        })
     }
 
     const logOutButtonHandler = () => {
@@ -38,31 +78,45 @@ const ProfileModuleContentPersonalData = () => {
 
     return (
         <form onSubmit={formSubmitHandler}>
-            <h3 className='font-bold'>Profil</h3>
-            <div className='flex flex-wrap gap-6 mt-4'>
-                <div className='w-full max-w-sm'>
+            <div className='flex flex-wrap justify-center gap-6 mt-4'>
+                <div className='w-full max-w-xs'>
                     <ProfileModuleContentPersonalDataTitle>
                         Personal
                     </ProfileModuleContentPersonalDataTitle>
-                    <ProfileModuleContentPersonalDataPersonal />
+                    <ProfileModuleContentPersonalDataPersonal
+                        formData={formData}
+                        formOnChangeHandler={formOnChangeHandler}
+                    />
                 </div>
-                <div className='w-full max-w-sm'>
+                <div className='w-full max-w-xs'>
                     <ProfileModuleContentPersonalDataTitle>
                         Kampus
                     </ProfileModuleContentPersonalDataTitle>
-                    <ProfileModuleContentPersonalDataEducation />
+                    <ProfileModuleContentPersonalDataEducation
+                        formData={formData}
+                        educationList={educationList}
+                        formOnChangeHandler={formOnChangeHandler}
+                    />
                 </div>
-                <div className='w-full max-w-sm'>
+                <div className='w-full max-w-xs'>
                     <ProfileModuleContentPersonalDataTitle>
                         Domisili
                     </ProfileModuleContentPersonalDataTitle>
-                    <ProfileModuleContentPersonalDataDomisili />
+                    <ProfileModuleContentPersonalDataDomisili
+                        formData={formData}
+                        regionData={regionData}
+                        provincesList={provincesList}
+                        formOnChangeHandler={formOnChangeHandler}
+                    />
                 </div>
-                <div className='w-full max-w-sm'>
+                <div className='w-full max-w-xs'>
                     <ProfileModuleContentPersonalDataTitle>
                         Kontak
                     </ProfileModuleContentPersonalDataTitle>
-                    <ProfileModuleContentPersonalDataContact />
+                    <ProfileModuleContentPersonalDataContact
+                        formData={formData}
+                        formOnChangeHandler={formOnChangeHandler}
+                    />
                 </div>
             </div>
             <div className='flex justify-end gap-4 mt-8'>
