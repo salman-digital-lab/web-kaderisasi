@@ -1,13 +1,14 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable no-shadow */
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/interactive-supports-focus */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable no-shadow */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
-import { BMKAFullIcon, MenuIcon } from '@assets'
 import { zustandStore } from '@services'
 import { ComponentWrapper } from '@components'
+import { BMKAFullIcon, MenuIcon } from '@assets'
 
 import Route from './route'
 
@@ -16,6 +17,10 @@ const Navigation = () => {
 
     const state = {
         user: zustandStore((state) => state.user),
+        isNavbarScrolling: zustandStore((state) => state.isNavbarScrolling),
+        setIsNavbarScrolling: zustandStore(
+            (state) => state.setIsNavbarScrolling
+        ),
     }
 
     const formatName = (name) => {
@@ -34,8 +39,24 @@ const Navigation = () => {
         return name
     }
 
+    useEffect(() => {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY >= 10) {
+                state.setIsNavbarScrolling(true)
+
+                return
+            }
+
+            state.setIsNavbarScrolling(false)
+        })
+    }, [])
+
     return (
-        <nav className='fixed left-0 top-0 w-full py-4 bg-bmka-primary-blue z-50'>
+        <nav
+            className={`fixed left-0 top-0 w-full py-4 bg-bmka-primary-blue z-50 transition-all duration-500 ${
+                state.isNavbarScrolling ? 'shadow-level-1' : ''
+            }`}
+        >
             <ComponentWrapper>
                 <div className='flex justify-between items-center'>
                     <div className='flex items-center w-32'>
