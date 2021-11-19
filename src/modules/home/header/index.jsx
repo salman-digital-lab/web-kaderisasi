@@ -6,7 +6,7 @@ import { Link, Button, Jumbotron } from '@components'
 const HomeModuleHeader = () => {
     return (
         <Jumbotron>
-            <div className='flex justify-between'>
+            <div className='mb-8 flex justify-between'>
                 <div className='flex items-center'>
                     <div className='max-w-xl flex flex-col gap-6'>
                         <div className='flex flex-col gap-4'>
