@@ -6,7 +6,7 @@ import { Button, Jumbotron } from '@components'
 const ActivitiesModuleHeader = () => {
     return (
         <Jumbotron>
-            <div className='flex justify-center md:justify-between'>
+            <div className='mb-6 flex justify-center md:justify-between'>
                 <div className='flex items-center'>
                     <div className='max-w-xl flex flex-col gap-6'>
                         <div className='flex flex-col gap-4'>
