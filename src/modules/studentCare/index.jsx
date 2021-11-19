@@ -15,7 +15,7 @@ const StudentCareModule = () => {
     return (
         <div>
             <Jumbotron>
-                <div className='w-full max-w-2xl mx-auto text-center flex flex-col gap-6'>
+                <div className='mb-8 w-full max-w-2xl mx-auto text-center flex flex-col gap-6'>
                     <h1 className='text-white'>Ruang Curhat</h1>
                     <p className='text-white'>
                         Ruang Curhat adalah layanan pengajuan dan pendampingan
