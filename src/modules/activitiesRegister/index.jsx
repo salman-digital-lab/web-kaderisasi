@@ -119,12 +119,11 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
             enqueueSnackbar('Mengirim data . . .', {
                 variant: 'info',
             })
-
             await axios
                 .post(
                     `${baseURL}/v1/activity/${slug}/register/submit`,
                     {
-                        answer,
+                        ...answer,
                     },
                     {
                         headers: {
@@ -138,7 +137,6 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
                     enqueueSnackbar(res.data.message, {
                         variant: 'success',
                     })
-
                     next()
                 })
                 .catch((error) => {
