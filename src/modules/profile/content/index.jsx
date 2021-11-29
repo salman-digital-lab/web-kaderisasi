@@ -34,25 +34,29 @@ const ProfileModuleContent = ({
     }
 
     const [activeMenu, setActiveMenu] = useState('')
-    const [userActivities, setUserActivities] = useState([])
-    const [formData, setFormData] = useState({ ...state.user })
     const [regencyData, setRegencyData] = useState([])
     const [villageData, setVillageData] = useState([])
     const [districtData, setDistrictData] = useState([])
+    const [userActivities, setUserActivities] = useState([])
+    const [formData, setFormData] = useState({ ...state.user })
 
     useEffect(async () => {
-        const { token } = state.user
+        try {
+            const { token } = state.user
 
-        const response = await axios.get(
-            `${baseURL}/${baseURLVersion}/account/user/activities`,
-            {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            }
-        )
+            const response = await axios.get(
+                `${baseURL}/${baseURLVersion}/account/user/activities`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            )
 
-        setUserActivities(response.data.data.data)
+            setUserActivities(response.data.data.data)
+        } catch {
+            setUserActivities([])
+        }
     }, [])
 
     // get regencies data
