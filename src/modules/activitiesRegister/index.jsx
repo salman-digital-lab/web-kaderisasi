@@ -119,12 +119,11 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
             enqueueSnackbar('Mengirim data . . .', {
                 variant: 'info',
             })
-
             await axios
                 .post(
                     `${baseURL}/v1/activity/${slug}/register/submit`,
                     {
-                        answer,
+                        ...answer,
                     },
                     {
                         headers: {
@@ -138,7 +137,6 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
                     enqueueSnackbar(res.data.message, {
                         variant: 'success',
                     })
-
                     next()
                 })
                 .catch((error) => {
@@ -205,7 +203,7 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
                 </p>
             </Jumbotron>
             <ComponentWrapper>
-                <div className='w-full'>
+                <div className='w-full mt-5'>
                     {status === 'FAILED' ? (
                         <div className='w-3/4 md:w-1/3 mx-auto flex flex-col gap-6 text-center rounded-lg shadow-lg p-6 my-10'>
                             <h3 className='font-bold text-bmka-primary-blue'>
