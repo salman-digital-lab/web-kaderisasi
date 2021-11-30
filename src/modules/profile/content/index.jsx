@@ -37,6 +37,8 @@ const ProfileModuleContent = ({
     const [regencyData, setRegencyData] = useState([])
     const [villageData, setVillageData] = useState([])
     const [districtData, setDistrictData] = useState([])
+    const [listChecklist, setListChecklist] = useState([])
+    const [userChecklist, setUserChecklist] = useState([])
     const [userActivities, setUserActivities] = useState([])
     const [formData, setFormData] = useState({ ...state.user })
 
@@ -44,7 +46,7 @@ const ProfileModuleContent = ({
         try {
             const { token } = state.user
 
-            const response = await axios.get(
+            const activitiesResponse = await axios.get(
                 `${baseURL}/${baseURLVersion}/account/user/activities`,
                 {
                     headers: {
@@ -53,8 +55,30 @@ const ProfileModuleContent = ({
                 }
             )
 
-            setUserActivities(response.data.data.data)
+            const checklistResponse = await axios.get(
+                `${baseURL}/${baseURLVersion}/checklist`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            )
+
+            const checklistMemberResponse = await axios.get(
+                `${baseURL}/${baseURLVersion}/checklist/member`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            )
+
+            setListChecklist(checklistResponse.data.data.data)
+            setUserChecklist(checklistMemberResponse.data.data)
+            setUserActivities(activitiesResponse.data.data.data)
         } catch {
+            setListChecklist([])
+            setUserChecklist([])
             setUserActivities([])
         }
     }, [])
@@ -141,7 +165,11 @@ const ProfileModuleContent = ({
                     />
                 )}
                 {activeMenu === menuName.handBook && (
-                    <ProfileModuleContentHandBook />
+                    <ProfileModuleContentHandBook
+                        listChecklist={listChecklist}
+                        userChecklist={userChecklist}
+                        setUserChecklist={setUserChecklist}
+                    />
                 )}
             </div>
         </div>
