@@ -3,6 +3,7 @@ import React from 'react'
 import HandbookCheckbox from './checkbox'
 
 const ProfileModuleContentHandBook = ({
+    token,
     listChecklist,
     userChecklist,
     setUserChecklist,
@@ -22,6 +23,7 @@ const ProfileModuleContentHandBook = ({
                             <HandbookCheckbox
                                 id={item.id}
                                 value={false}
+                                token={token}
                                 name={item.checklist_name}
                             />
                         )
