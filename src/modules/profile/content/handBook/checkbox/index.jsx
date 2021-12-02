@@ -1,12 +1,43 @@
+import axios from 'axios'
 import { motion } from 'framer-motion'
+import { useSnackbar } from 'notistack'
 import React, { useRef, useState } from 'react'
 
-const HandbookCheckbox = ({ id, name, value }) => {
+const HandbookCheckbox = ({ id, name, token, value }) => {
     const checkboxRef = useRef()
+    const { enqueueSnackbar } = useSnackbar()
     const [checkboxValue, setCheckboxValue] = useState(value)
 
     const checkboxOnClick = () => {
+        const baseURL = process.env.NEXT_PUBLIC_BASE_URL
+        const baseURLVersion = process.env.NEXT_PUBLIC_BASE_URL_VERSION
+
         setCheckboxValue(!checkboxValue)
+
+        try {
+            if (checkboxValue) {
+                axios.post(
+                    `${baseURL}/${baseURLVersion}/checklist/tick/${id}`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                    }
+                )
+            } else {
+                axios.delete(
+                    `${baseURL}/${baseURLVersion}/checklist/untick/${id}`,
+                    null,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                    }
+                )
+            }
+        } catch {
+            enqueueSnackbar('Failed update task', { variant: 'error' })
+        }
     }
 
     return (
