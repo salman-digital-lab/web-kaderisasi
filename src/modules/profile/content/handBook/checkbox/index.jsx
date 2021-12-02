@@ -15,7 +15,7 @@ const HandbookCheckbox = ({ id, name, value }) => {
             type='button'
             onClick={checkboxOnClick}
             whileTap={{ scale: 0.98 }}
-            className={`p-4 flex gap-6 items-center border-2 rounded cursor-pointer ${
+            className={`p-4 flex gap-6 items-center border-2 rounded cursor-pointer transition-all ${
                 checkboxValue ? 'bg-gray-200' : 'bg-white'
             }`}
         >
