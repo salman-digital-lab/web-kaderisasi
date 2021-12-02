@@ -8,7 +8,7 @@ const HandbookCheckbox = ({ id, name, token, value }) => {
     const { enqueueSnackbar } = useSnackbar()
     const [checkboxValue, setCheckboxValue] = useState(value)
 
-    const checkboxOnClick = () => {
+    const checkboxOnClick = async () => {
         const baseURL = process.env.NEXT_PUBLIC_BASE_URL
         const baseURLVersion = process.env.NEXT_PUBLIC_BASE_URL_VERSION
 
@@ -16,7 +16,7 @@ const HandbookCheckbox = ({ id, name, token, value }) => {
 
         try {
             if (checkboxValue) {
-                axios.post(
+                await axios.post(
                     `${baseURL}/${baseURLVersion}/checklist/tick/${id}`,
                     null,
                     {
@@ -26,7 +26,7 @@ const HandbookCheckbox = ({ id, name, token, value }) => {
                     }
                 )
             } else {
-                axios.delete(
+                await axios.delete(
                     `${baseURL}/${baseURLVersion}/checklist/untick/${id}`,
                     null,
                     {
@@ -57,7 +57,7 @@ const HandbookCheckbox = ({ id, name, token, value }) => {
                 id={`task-${id}`}
                 name={`task-${id}`}
                 checked={checkboxValue}
-                onClick={checkboxOnClick}
+                onChange={checkboxOnClick}
                 className='cursor-pointer'
             />
             <p className={`${checkboxValue ? 'line-through' : ''}`}>{name}</p>
