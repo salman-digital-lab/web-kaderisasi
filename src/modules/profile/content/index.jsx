@@ -166,6 +166,7 @@ const ProfileModuleContent = ({
                 )}
                 {activeMenu === menuName.handBook && (
                     <ProfileModuleContentHandBook
+                        token={state.user.token}
                         listChecklist={listChecklist}
                         userChecklist={userChecklist}
                         setUserChecklist={setUserChecklist}
