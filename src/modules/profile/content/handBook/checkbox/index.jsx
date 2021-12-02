@@ -18,6 +18,7 @@ const HandbookCheckbox = ({ id, name, token, value }) => {
             if (checkboxValue) {
                 axios.post(
                     `${baseURL}/${baseURLVersion}/checklist/tick/${id}`,
+                    null,
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,
