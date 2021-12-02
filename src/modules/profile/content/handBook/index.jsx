@@ -21,6 +21,7 @@ const ProfileModuleContentHandBook = ({
                         return (
                             <HandbookCheckbox
                                 id={item.id}
+                                value={false}
                                 name={item.checklist_name}
                             />
                         )
