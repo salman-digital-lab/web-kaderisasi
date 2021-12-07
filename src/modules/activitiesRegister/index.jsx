@@ -54,7 +54,7 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
             const initAnswer = {}
             questionnaire.map((item) => {
                 if (item.type === 'scale') {
-                    const maxScale = parseInt(item.data[0].Max, 10)
+                    const maxScale = parseInt(item.data[0].max, 10)
                     initAnswer[item.name] = maxScale / 2
                 } else if (item.type === 'dropdown') {
                     initAnswer[item.name] = item.data[0].value
@@ -86,11 +86,17 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
                 checkbox: newArray,
                 answer: { ...input.answer, [name]: newArray },
             })
+        } else if (type === 'range') {
+            document.getElementById('scala').innerHTML = value
+            setInput({
+                ...input,
+                answer: { ...input.answer, [name]: parseInt(value, 10) },
+            })
         } else {
-            if (type === 'range') {
-                document.getElementById('scala').innerHTML = value
-            }
-            setInput({ ...input, answer: { ...input.answer, [name]: value } })
+            setInput({
+                ...input,
+                answer: { ...input.answer, [name]: value },
+            })
         }
     }
 
