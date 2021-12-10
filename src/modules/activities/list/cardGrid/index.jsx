@@ -22,19 +22,22 @@ const ActivitiesModuleListCardGrid = ({
                     name,
                     role,
                     slug,
-                    banner,
+                    banner_url,
                     created_at,
                     category_id,
                     register_end_date,
+                    banner_file,
                 } = item
 
+                // handle if banner_file is null
+                const banner = banner_file ? banner_file.filename : banner_url
                 return (
                     <div key={index} className='flex justify-center'>
                         <ActivityCard
                             name={name}
-                            role={role}
+                            role={role.name}
                             slug={slug}
-                            banner={banner}
+                            banner={`${banner_url}${banner}`}
                             categoryId={category_id}
                             createdAt={formatDate(created_at)}
                             activityCategoryData={activityCategoryData}
