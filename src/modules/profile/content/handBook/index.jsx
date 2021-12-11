@@ -10,8 +10,6 @@ const ProfileModuleContentHandBook = ({
     userChecklist,
     setUserChecklist,
 }) => {
-    console.log(userChecklist)
-
     const isChecklisted = (id) => {
         const filteredChecklist = userChecklist.filter((item) => item.id === id)
 
