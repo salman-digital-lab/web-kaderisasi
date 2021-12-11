@@ -34,25 +34,53 @@ const ProfileModuleContent = ({
     }
 
     const [activeMenu, setActiveMenu] = useState('')
-    const [userActivities, setUserActivities] = useState([])
-    const [formData, setFormData] = useState({ ...state.user })
     const [regencyData, setRegencyData] = useState([])
     const [villageData, setVillageData] = useState([])
     const [districtData, setDistrictData] = useState([])
+    const [listChecklist, setListChecklist] = useState([])
+    const [userChecklist, setUserChecklist] = useState([])
+    const [userActivities, setUserActivities] = useState([])
+    const [formData, setFormData] = useState({ ...state.user })
 
     useEffect(async () => {
-        const { token } = state.user
+        try {
+            const { token } = state.user
 
-        const response = await axios.get(
-            `${baseURL}/${baseURLVersion}/account/user/activities`,
-            {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            }
-        )
+            const activitiesResponse = await axios.get(
+                `${baseURL}/${baseURLVersion}/account/user/activities`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            )
 
-        setUserActivities(response.data.data.data)
+            const checklistResponse = await axios.get(
+                `${baseURL}/${baseURLVersion}/checklist`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            )
+
+            const checklistMemberResponse = await axios.get(
+                `${baseURL}/${baseURLVersion}/checklist/member`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            )
+
+            setListChecklist(checklistResponse.data.data.data)
+            setUserChecklist(checklistMemberResponse.data.data)
+            setUserActivities(activitiesResponse.data.data.data)
+        } catch {
+            setListChecklist([])
+            setUserChecklist([])
+            setUserActivities([])
+        }
     }, [])
 
     // get regencies data
@@ -137,7 +165,12 @@ const ProfileModuleContent = ({
                     />
                 )}
                 {activeMenu === menuName.handBook && (
-                    <ProfileModuleContentHandBook />
+                    <ProfileModuleContentHandBook
+                        token={state.user.token}
+                        listChecklist={listChecklist}
+                        userChecklist={userChecklist}
+                        setUserChecklist={setUserChecklist}
+                    />
                 )}
             </div>
         </div>

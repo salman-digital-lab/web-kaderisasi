@@ -22,8 +22,9 @@ const FirstStep = ({ currentStep, questionaire }) => {
             )
         }
         return (
-            <h3 className='mx-auto text-center text-lg my-5'>
-                Isi kuisioner berikut sebagai syarat untuk mengikuti kegiatan
+            <h3 className='mx-auto text-center text-lg my-5 font-semibold'>
+                Kuesioner dengan tanda <span style={{ color: 'red' }}> *</span>{' '}
+                wajib untuk diisi
             </h3>
         )
     }

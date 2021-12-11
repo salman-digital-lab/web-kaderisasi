@@ -83,10 +83,7 @@ const ProfileModuleUserInfo = () => {
                     />
                     <img
                         alt='Profile'
-                        src={
-                            `${process.env.NEXT_PUBLIC_BASE_URL_IMAGE}/${profilePicURL}` ||
-                            '/assets/user_placeholder.png'
-                        }
+                        src={profilePicURL || '/assets/user_placeholder.png'}
                         className='w-32 h-32 object-cover rounded-full border-4 border-white bg-gray-300'
                     />
                 </div>

@@ -56,6 +56,7 @@ const ProfileModuleContentPersonalDataPersonal = ({
                 value={formData.from_address}
                 onChange={formOnChangeHandler}
                 placeholder='-- Ketikkan alamat asal anda --'
+                required
             />
             <FormInput
                 type='text'
@@ -64,6 +65,7 @@ const ProfileModuleContentPersonalDataPersonal = ({
                 onChange={formOnChangeHandler}
                 value={formData.current_address}
                 placeholder='-- Ketikkan anda alamat saat ini --'
+                required
             />
         </ProfileModuleContentPersonalDataCard>
     )
