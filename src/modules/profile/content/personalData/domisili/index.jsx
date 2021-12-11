@@ -20,6 +20,7 @@ const ProfileModuleContentPersonalDataDomisili = ({
                 value={formData.province_id}
                 onChange={formOnChangeHandler}
                 placeholder='-- Pilih provinsi --'
+                required
             >
                 {provincesList.map((item) => {
                     return (
@@ -35,6 +36,7 @@ const ProfileModuleContentPersonalDataDomisili = ({
                 value={formData.regency_id}
                 onChange={formOnChangeHandler}
                 placeholder='-- Pilih Kota --'
+                required
             >
                 {regency.map((item) => {
                     return (
@@ -50,6 +52,7 @@ const ProfileModuleContentPersonalDataDomisili = ({
                 value={formData.district_id}
                 onChange={formOnChangeHandler}
                 placeholder='-- Pilih Kecamatan --'
+                required
             >
                 {district.map((item) => {
                     return (
@@ -65,6 +68,7 @@ const ProfileModuleContentPersonalDataDomisili = ({
                 value={formData.village_id}
                 onChange={formOnChangeHandler}
                 placeholder='-- Pilih Kelurahan --'
+                required
             >
                 {village.map((item) => {
                     return (
