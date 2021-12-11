@@ -37,6 +37,7 @@ const LoginModule = () => {
 
         const { setUser } = state
         const baseURL = process.env.NEXT_PUBLIC_BASE_URL
+        const baseURLImage = process.env.NEXT_PUBLIC_BASE_URL_IMAGE
         const userCookieName = process.env.NEXT_PUBLIC_KEY_COOKIES_USER
         const baseURLVersion = process.env.NEXT_PUBLIC_BASE_URL_VERSION
 
@@ -50,7 +51,11 @@ const LoginModule = () => {
 
             const { data, token, message } = response.data
 
-            setUser({ ...data, token })
+            setUser({
+                ...data,
+                token,
+                file_image: `${baseURLImage}/${data.file_image}`,
+            })
 
             cookies.set(userCookieName, token)
 

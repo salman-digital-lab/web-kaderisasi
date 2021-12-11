@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { FormInput } from '@components'
+import { FormInput, FormSelect } from '@components'
 
 import ProfileModuleContentPersonalDataCard from '../card'
 
@@ -38,6 +38,15 @@ const ProfileModuleContentPersonalDataContact = ({
                 placeholder='-- Ketikkan LINE ID anda --'
                 required
             />
+            <FormSelect
+                label='Newsletter'
+                name='is_subscribing'
+                onChange={formOnChangeHandler}
+                value={formData.is_subscribing}
+            >
+                <option value='0'>Subscribe</option>
+                <option value='1'>Unsubscribe</option>
+            </FormSelect>
         </ProfileModuleContentPersonalDataCard>
     )
 }
