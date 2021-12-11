@@ -1,12 +1,12 @@
 import React from 'react'
 
-const FormInput = ({ label, className, ...props }) => {
+const FormInput = ({ label, className, required, ...props }) => {
     return (
         <div>
             {label && (
                 <p>
                     {label}
-                    {props.required === true && (
+                    {required === true && (
                         <span style={{ color: 'red' }}> *</span>
                     )}
                 </p>
@@ -14,7 +14,9 @@ const FormInput = ({ label, className, ...props }) => {
             <div className='flex gap-2 items-center px-2 py-3 border-2 border-bmka-primary-blue rounded'>
                 <input
                     spellCheck='false'
-                    className={`w-full outline-none ${className ?? ''}`}
+                    className={`w-full outline-none text-base ${
+                        className ?? ''
+                    }`}
                     {...props}
                 />
             </div>
