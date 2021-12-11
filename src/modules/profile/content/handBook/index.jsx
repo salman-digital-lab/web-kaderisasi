@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React from 'react'
 
 import HandbookCheckbox from './checkbox'
@@ -8,6 +10,14 @@ const ProfileModuleContentHandBook = ({
     userChecklist,
     setUserChecklist,
 }) => {
+    console.log(userChecklist)
+
+    const isChecklisted = (id) => {
+        const filteredChecklist = userChecklist.filter((item) => item.id === id)
+
+        return filteredChecklist.length > 0
+    }
+
     return (
         <div>
             <div
@@ -23,9 +33,11 @@ const ProfileModuleContentHandBook = ({
                             <HandbookCheckbox
                                 id={item.id}
                                 key={item.id}
-                                value={false}
                                 token={token}
                                 name={item.checklist_name}
+                                userChecklist={userChecklist}
+                                value={isChecklisted(item.id)}
+                                setUserChecklist={setUserChecklist}
                             />
                         )
                     })}
