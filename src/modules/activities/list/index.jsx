@@ -1,5 +1,7 @@
-import React from 'react'
+import axios from 'axios'
+import { useSnackbar } from 'notistack'
 import ReactPaginate from 'react-paginate'
+import React, { useState } from 'react'
 
 import { InfoIcon } from '@assets'
 import { Button } from '@components'
@@ -11,17 +13,51 @@ const ActivitiesModuleList = ({
     clearFilterHandler,
     currentActivityInfo,
     activityCategoryData,
+    setCurrentActivityData,
+    activitiesModuleSearchRef,
 }) => {
+    const { enqueueSnackbar } = useSnackbar()
+
+    const [isLoading, setIsLoading] = useState(false)
+
+    const pageChangeHandler = async (e) => {
+        setIsLoading(true)
+
+        const { selected } = e
+
+        const baseURL = process.env.NEXT_PUBLIC_BASE_URL
+        const baseURLVersion = process.env.NEXT_PUBLIC_BASE_URL_VERSION
+
+        try {
+            const response = await axios.get(
+                `${baseURL}/${baseURLVersion}/activity?page=${selected + 1}`
+            )
+
+            setCurrentActivityData(response.data.data.data)
+            activitiesModuleSearchRef.current.scrollIntoView({
+                block: 'start',
+                behavior: 'smooth',
+            })
+        } catch {
+            enqueueSnackbar('Failed fetch activity data', { variant: 'error' })
+        }
+
+        setIsLoading(false)
+    }
+
     return (
         <div className='my-8'>
             {activityData.length > 0 ? (
                 <div>
                     <ActivitiesModuleListCardGrid
+                        isLoading={isLoading}
                         activityData={activityData}
                         activityCategoryData={activityCategoryData}
                     />
                     <ReactPaginate
+                        breakLabel='...'
                         pageRangeDisplayed={3}
+                        onPageChange={pageChangeHandler}
                         pageCount={currentActivityInfo.lastPage}
                         nextClassName='font-bold text-bmka-accent-orange'
                         previousClassName='font-bold text-bmka-accent-orange'
