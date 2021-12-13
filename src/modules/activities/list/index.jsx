@@ -59,9 +59,10 @@ const ActivitiesModuleList = ({
                         pageRangeDisplayed={3}
                         onPageChange={pageChangeHandler}
                         pageCount={currentActivityInfo.lastPage}
+                        pageLinkClassName='py-2 px-3 rounded'
                         nextClassName='font-bold text-bmka-accent-orange'
                         previousClassName='font-bold text-bmka-accent-orange'
-                        pageLinkClassName='py-2 px-3 bg-bmka-primary-blue text-white rounded'
+                        activeLinkClassName='bg-bmka-primary-blue text-white rounded'
                         containerClassName='w-min p-4 flex gap-6 mt-10 mx-auto  rounded'
                     />
                 </div>
