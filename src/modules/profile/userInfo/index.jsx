@@ -83,7 +83,11 @@ const ProfileModuleUserInfo = () => {
                     />
                     <img
                         alt='Profile'
-                        src={profilePicURL || '/assets/user_placeholder.png'}
+                        src={
+                            profilePicURL.includes('null')
+                                ? '/assets/user_placeholder.png'
+                                : profilePicURL
+                        }
                         className='w-32 h-32 object-cover rounded-full border-4 border-white bg-gray-300'
                     />
                 </div>

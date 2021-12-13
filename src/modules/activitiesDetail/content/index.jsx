@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, Link } from '@components'
 import { useRouter } from 'next/router'
+import { sanitize } from '@utils'
 
 const ActivitiesDetailModuleContent = ({ description }) => {
     const router = useRouter()
@@ -12,7 +13,12 @@ const ActivitiesDetailModuleContent = ({ description }) => {
                     Deskripsi
                 </h2>
                 {description ? (
-                    <p>{description}</p>
+                    <div
+                        // eslint-disable-next-line react/no-danger
+                        dangerouslySetInnerHTML={{
+                            __html: sanitize(description),
+                        }}
+                    />
                 ) : (
                     <p className='md:text-left text-center pt-6 text-gray-500'>
                         Belum ada deskripsi mengenai kegiatan ini.
