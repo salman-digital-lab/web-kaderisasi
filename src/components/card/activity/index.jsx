@@ -40,7 +40,7 @@ const ActivityCard = ({
                 </div>
                 <Link href={`/activities/${slug}`}>
                     <Button type='button' className='w-full' variant='primary'>
-                        Daftar
+                        Lihat
                     </Button>
                 </Link>
             </div>

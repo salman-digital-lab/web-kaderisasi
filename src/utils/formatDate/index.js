@@ -1,7 +1,7 @@
 import moment from 'moment'
 
-const formatDate = ({ date }) => {
-    return moment(date).format('DD MMMM YYYY')
+const formatDate = (date) => {
+    return moment(date).format('LL')
 }
 
 export default formatDate

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 
 import { ComponentWrapper } from '@components'
 
@@ -11,6 +11,8 @@ const ActivitiesModule = ({
     activityInfo,
     activityCategoryData,
 }) => {
+    const activitiesModuleSearchRef = useRef()
+
     const [searchKeyword, setSearchKeyword] = useState('')
     const [currentCategory, setCurrentCategory] = useState('')
     const [currentActivityInfo, setCurrentActivityInfo] = useState({
@@ -31,6 +33,7 @@ const ActivitiesModule = ({
             <ActivitiesModuleHeader />
             <ComponentWrapper>
                 <ActivitiesModuleSearch
+                    ref={activitiesModuleSearchRef}
                     searchKeyword={searchKeyword}
                     currentCategory={currentCategory}
                     setSearchKeyword={setSearchKeyword}
@@ -44,6 +47,8 @@ const ActivitiesModule = ({
                     currentActivityInfo={currentActivityInfo}
                     activityCategoryData={activityCategoryData}
                     setCurrentActivityInfo={setCurrentActivityInfo}
+                    setCurrentActivityData={setCurrentActivityData}
+                    activitiesModuleSearchRef={activitiesModuleSearchRef}
                 />
             </ComponentWrapper>
         </div>
