@@ -21,7 +21,7 @@ const ActivityCard = ({
     return (
         <div
             style={{ width: '270px' }}
-            className='p-2 flex flex-col justify-between gap-4 border-2 border-bmka-primary-blue rounded'
+            className='p-2 flex flex-col justify-between gap-4 border-2 bg-white cursor-default border-bmka-primary-blue rounded'
         >
             <div className='flex flex-col gap-4'>
                 <img
