@@ -14,6 +14,10 @@ const ActivityCard = ({
     registerEndDate,
     activityCategoryData,
 }) => {
+    const imageOnErrorHandler = (e) => {
+        e.target.src = '/assets/image_activities_placeholder.png'
+    }
+
     return (
         <div
             style={{ width: '270px' }}
@@ -23,6 +27,7 @@ const ActivityCard = ({
                 <img
                     src={banner}
                     alt='Activity Banner'
+                    onError={imageOnErrorHandler}
                     className='w-full h-48 object-cover rounded'
                 />
                 <p className='font-bold'>{name}</p>
