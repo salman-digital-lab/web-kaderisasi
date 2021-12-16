@@ -14,15 +14,20 @@ const ActivityCard = ({
     registerEndDate,
     activityCategoryData,
 }) => {
+    const imageOnErrorHandler = (e) => {
+        e.target.src = '/assets/image_activities_placeholder.png'
+    }
+
     return (
         <div
             style={{ width: '270px' }}
-            className='p-2 flex flex-col justify-between gap-4 border-2 border-bmka-primary-blue rounded'
+            className='p-2 flex flex-col justify-between gap-4 border-2 bg-white cursor-default border-bmka-primary-blue rounded'
         >
             <div className='flex flex-col gap-4'>
                 <img
                     src={banner}
                     alt='Activity Banner'
+                    onError={imageOnErrorHandler}
                     className='w-full h-48 object-cover rounded'
                 />
                 <p className='font-bold'>{name}</p>
