@@ -2,7 +2,7 @@ import React from 'react'
 import NextProgress from 'nextjs-progressbar'
 import { SnackbarProvider } from 'notistack'
 
-import '@fontsource/roboto'
+import 'typeface-roboto'
 import 'tailwindcss/tailwind.css'
 
 import '@styles/global.css'
