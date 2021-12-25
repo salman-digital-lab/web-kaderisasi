@@ -6,8 +6,8 @@ import { Link, Button, Jumbotron } from '@components'
 const RegenerationFlowModuleHeader = () => {
     return (
         <Jumbotron>
-            <div className='flex items-center justify-between'>
-                <div className='w-full max-w-lg flex flex-col gap-6'>
+            <div className='flex items-center justify-center md:justify-between'>
+                <div className='w-full max-w-lg flex flex-col gap-6 text-center md:text-left'>
                     <h1 className='text-white'>Alur Kaderisasi</h1>
                     <p className='text-white'>
                         Demi melahirkan kader teladan pelopor peradaban Islam,
@@ -24,7 +24,7 @@ const RegenerationFlowModuleHeader = () => {
                         </Link>
                     </div>
                 </div>
-                <div className='w-56'>
+                <div className='w-56 hidden md:block'>
                     <BMKAFullVerticalIcon />
                 </div>
             </div>

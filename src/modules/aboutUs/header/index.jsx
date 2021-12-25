@@ -8,7 +8,7 @@ const AboutUsModuleHeader = () => {
     return (
         <div>
             <Jumbotron>
-                <div className='flex flex-col md:flex-row justify-between items-center gap-12'>
+                <div className='flex flex-col justify-between items-center gap-12 md:flex-row'>
                     <div className='w-full max-w-lg flex flex-col gap-6'>
                         <h1 className='text-white leading-snug'>
                             Sebenarnya, apasih BMKA Salman ITB itu ?
@@ -19,7 +19,7 @@ const AboutUsModuleHeader = () => {
                             di bawah ini yaa.{' '}
                         </p>
                     </div>
-                    <div className='w-full flex justify-center md:justify-end'>
+                    <div className='w-full justify-end hidden md:flex'>
                         <div className='w-full max-w-xs'>
                             <AboutUsModuleIllustration />
                         </div>

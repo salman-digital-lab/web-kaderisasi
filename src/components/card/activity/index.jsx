@@ -10,6 +10,7 @@ const ActivityCard = ({
     role,
     name,
     banner,
+    fullWidth,
     categoryId,
     registerEndDate,
     activityCategoryData,
@@ -20,7 +21,7 @@ const ActivityCard = ({
 
     return (
         <div
-            style={{ width: '270px' }}
+            style={!fullWidth ? { width: '270px' } : { width: '100%' }}
             className='p-2 flex flex-col justify-between gap-4 border-2 bg-white cursor-default border-bmka-primary-blue rounded'
         >
             <div className='flex flex-col gap-4'>

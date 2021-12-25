@@ -16,15 +16,9 @@ const HomeModuleStudentCare = () => {
                     Psikologi dan Psikoterapi.
                 </p>
             </div>
-            <div
-                className='mx-14 mt-4 md:mt-0 px-4 py-6 bg-white rounded-lg'
-                style={{
-                    transform: 'translate(0%,-50%)',
-                    boxShadow: '0px 1px 15px rgba(0, 0, 0, 0.15)',
-                }}
-            >
-                <div className='flex items-center justify-between'>
-                    <p className='font-bold px-1 md:px-0'>
+            <div className='mx-14 px-4 py-6 bg-white rounded-lg transform -translate-y-10 shadow-level-1'>
+                <div className='flex flex-col gap-4 items-center justify-between md:flex-row'>
+                    <p className='font-bold text-center'>
                         Ayo menuju ruang curhat dan ceritakan masalahmu
                     </p>
                     <div>

@@ -7,7 +7,7 @@ import FooterTitle from '../../title'
 
 const info = () => {
     return (
-        <div className='max-w-sm flex flex-col'>
+        <div className='md:max-w-sm flex flex-col'>
             <FooterTitle>Platform Aktivis Salman ITB (BMKA)</FooterTitle>
             <div className='flex flex-col gap-4'>
                 <div className='w-32'>

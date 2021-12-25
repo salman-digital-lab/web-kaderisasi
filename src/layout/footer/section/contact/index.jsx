@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { LineIcon, InstagramIcon, PhoneIcon, MailIcon } from '@assets'
+import { InstagramIcon, PhoneIcon, MailIcon } from '@assets'
 
 import FooterText from '../../text'
 import FooterTitle from '../../title'
@@ -11,12 +11,8 @@ const ContactSection = () => {
             <FooterTitle>Kontak</FooterTitle>
             <div className='flex flex-col gap-4'>
                 <div className='flex items-center gap-4'>
-                    <LineIcon className='w-6 h-6 text-white' />
-                    <FooterText>@bmkasalman</FooterText>
-                </div>
-                <div className='flex items-center gap-4'>
                     <InstagramIcon className='w-6 h-6 text-white' />
-                    <FooterText>@bmkasalman</FooterText>
+                    <FooterText>@kaderisasisalman</FooterText>
                 </div>
                 <div className='flex items-center gap-4'>
                     <MailIcon className='w-6 h-6 text-white' />

@@ -14,12 +14,10 @@ const HomeModule = ({ activityData, activityCategoryData }) => {
             <ComponentWrapper>
                 <HomeModuleStatistics />
             </ComponentWrapper>
-            <div className='mt-14'>
-                <HomeModuleActivity
-                    activityData={activityData}
-                    activityCategoryData={activityCategoryData}
-                />
-            </div>
+            <HomeModuleActivity
+                activityData={activityData}
+                activityCategoryData={activityCategoryData}
+            />
             <div className='my-28'>
                 <ComponentWrapper>
                     <HomeModuleStudentCare />

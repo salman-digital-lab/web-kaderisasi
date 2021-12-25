@@ -8,9 +8,9 @@ const Footer = () => {
     return (
         <footer className='py-10 bg-bmka-shade-dark-purple'>
             <ComponentWrapper>
-                <div className='flex flex-col md:flex-row justify-between gap-4 md:gap-0'>
+                <div className='flex flex-col justify-between gap-6 md:flex-row md:gap-4'>
                     <InfoSection />
-                    <div className='flex gap-10'>
+                    <div className='flex gap-10 flex-col sm:flex-row'>
                         <ContactSection />
                         <AddressSection />
                     </div>
