@@ -7,7 +7,7 @@ const AddressSection = () => {
     return (
         <div>
             <FooterTitle>Alamat</FooterTitle>
-            <div className='max-w-xs'>
+            <div className='sm:max-w-xs'>
                 <FooterText>
                     Jl. Ganesa No.7, Lb. Siliwangi, Kecamatan Coblong, Kota
                     Bandung, Jawa Barat 40132

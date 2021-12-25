@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import axios from 'axios'
-import React, { useRef, useEffect, useState, forwardRef } from 'react'
+import React, { useRef, useEffect, forwardRef } from 'react'
 
-import { Button } from '@components'
-import { SearchIcon, DropdownIcon } from '@assets'
+import { SearchIcon } from '@assets'
+import { Button, FormSelect } from '@components'
 
 const ActivitiesModuleSearch = forwardRef(
     (
@@ -18,7 +18,6 @@ const ActivitiesModuleSearch = forwardRef(
         },
         ref
     ) => {
-        const [active, setActive] = useState({ active: true })
         const firstRender = useRef(true)
 
         const updateActivityData = async () => {
@@ -38,6 +37,12 @@ const ActivitiesModuleSearch = forwardRef(
             setCurrentCategory(category)
         }
 
+        const categorySelectHandler = (e) => {
+            const { value } = e.target
+
+            setCurrentCategory(value)
+        }
+
         const searchInputHandler = (e) => {
             const { value } = e.target
 
@@ -48,11 +53,6 @@ const ActivitiesModuleSearch = forwardRef(
             e.preventDefault()
 
             updateActivityData()
-        }
-
-        const toggleFilter = (evt) => {
-            evt.preventDefault()
-            setActive(!active)
         }
 
         useEffect(() => {
@@ -88,23 +88,24 @@ const ActivitiesModuleSearch = forwardRef(
                         Cari
                     </Button>
                 </form>
-                <div className='w-full flex justify-center md:hidden my-4'>
-                    <Button
-                        variant='primary'
-                        className='w-full py-1'
-                        onClick={(evt) => toggleFilter(evt)}
+
+                <div className='w-full md:hidden my-4'>
+                    <FormSelect
+                        className='w-full'
+                        onChange={categorySelectHandler}
                     >
-                        <div className='flex justify-center items-center'>
-                            Kategori <DropdownIcon />
-                        </div>
-                    </Button>
+                        <option value=''>Semua</option>
+                        {activityCategoryData.map((item) => {
+                            return (
+                                <option key={item.id} value={item.name}>
+                                    {item.name}
+                                </option>
+                            )
+                        })}
+                    </FormSelect>
                 </div>
 
-                <div
-                    className={`w-full flex flex-col md:flex-row justify-center gap-2 pb-6 ${
-                        active ? '' : 'hidden'
-                    }`}
-                >
+                <div className='w-full flex-row flex-wrap justify-center gap-2 pb-6 hidden md:flex'>
                     <Button
                         onClick={() => categoryButtonHandler('')}
                         variant={
