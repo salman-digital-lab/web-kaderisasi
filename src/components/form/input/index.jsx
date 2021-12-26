@@ -1,8 +1,8 @@
 import React from 'react'
 
-const FormInput = ({ label, className, required, ...props }) => {
+const FormInput = ({ label, className, required, fullWidth, ...props }) => {
     return (
-        <div>
+        <div className={`${fullWidth ? 'w-full' : ''}`}>
             {label && (
                 <p>
                     {label}
@@ -11,7 +11,11 @@ const FormInput = ({ label, className, required, ...props }) => {
                     )}
                 </p>
             )}
-            <div className='flex gap-2 items-center px-2 py-3 border-2 border-bmka-primary-blue rounded'>
+            <div
+                className={`${
+                    fullWidth ? 'w-full' : ''
+                } flex gap-2 items-center px-2 py-3 border-2 border-bmka-primary-blue rounded`}
+            >
                 <input
                     spellCheck='false'
                     className={`w-full outline-none text-base ${
