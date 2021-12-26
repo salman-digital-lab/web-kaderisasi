@@ -9,7 +9,7 @@ const ActivitiesDetailModuleContent = ({ description }) => {
     return (
         <div className='w-full flex flex-col md:flex-row gap-4 justify-center'>
             <div className='w-full'>
-                <h2 className='font-bold md:text-left text-center'>
+                <h2 className='mb-2 font-bold text-center md:text-left'>
                     Deskripsi
                 </h2>
                 {description ? (
@@ -25,7 +25,7 @@ const ActivitiesDetailModuleContent = ({ description }) => {
                     </p>
                 )}
             </div>
-            <div className='w-full max-w-xs mt-12 md:mt-0 flex flex-col gap-4 text-center p-4 rounded shadow-level-1 mx-auto md:mx-0'>
+            <div className='w-full mt-12 md:mt-0 flex flex-col gap-4 text-center p-4 rounded shadow-level-1 mx-auto md:mx-0 md:max-w-xs'>
                 <p className='font-bold'>
                     Tertarik untuk mengikuti kegiatan ini ?
                 </p>
