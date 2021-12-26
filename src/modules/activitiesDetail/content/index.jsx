@@ -25,7 +25,7 @@ const ActivitiesDetailModuleContent = ({ description }) => {
                     </p>
                 )}
             </div>
-            <div className='w-full mt-12 md:mt-0 flex flex-col gap-4 text-center p-4 rounded shadow-level-1 mx-auto md:mx-0 md:max-w-xs'>
+            <div className='w-full mt-12 md:mt-0 flex flex-col gap-4 text-center p-4 rounded shadow-level-1 md:mx-0 md:max-w-xs'>
                 <p className='font-bold'>
                     Tertarik untuk mengikuti kegiatan ini ?
                 </p>
