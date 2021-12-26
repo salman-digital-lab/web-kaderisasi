@@ -5,7 +5,7 @@ import { Button } from '@components'
 const HomeModuleStudentCare = () => {
     return (
         <div>
-            <div className='flex flex-col md:flex-row items-center justify-between px-14 py-10 md:py-24 bg-bmka-accent-orange rounded-3xl'>
+            <div className='flex flex-col items-center justify-between px-8 py-10 bg-bmka-accent-orange rounded-3xl md:px-14 md:py-24 md:flex-row'>
                 <p className='text-3xl text-white font-extrabold'>
                     Ruang Curhat
                 </p>
