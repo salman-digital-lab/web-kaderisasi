@@ -16,6 +16,7 @@ const ActivitiesDetailModuleBannerSlider = ({ images }) => {
                 arrows={true}
                 infinite={true}
                 slidesToShow={1}
+                className='w-full'
                 slidesToScroll={1}
                 focusOnSelect={false}
             >
@@ -25,7 +26,7 @@ const ActivitiesDetailModuleBannerSlider = ({ images }) => {
                             key={item}
                             src={item}
                             alt='Banner'
-                            className='w-full object-fill'
+                            className='w-full object-contain'
                         />
                     )
                 })}

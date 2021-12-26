@@ -15,7 +15,7 @@ const ActivitiesDetailModuleBanner = ({
     activityCategory,
 }) => {
     return (
-        <div className='w-full max-w-lg rounded transform -translate-y-16 mx-auto bg-white'>
+        <div className='w-full max-w-md rounded transform -translate-y-16 mx-auto bg-white sm:max-w-lg'>
             <div className='w-full px-4 py-10 shadow-level-1 overflow-hidden rounded'>
                 <ActivitiesDetailModuleBannerSlider images={images} />
             </div>

@@ -119,7 +119,7 @@ const ProfileModuleContentPersonalData = ({
                     />
                 </div>
             </div>
-            <div className='flex justify-end gap-4 mt-8'>
+            <div className='flex justify-center gap-4 mt-8 md:justify-end'>
                 <Button
                     onClick={logOutButtonHandler}
                     textClassName='text-white font-bold'

@@ -6,6 +6,7 @@ import { useSnackbar } from 'notistack'
 import React, { useState } from 'react'
 import { useRouter } from 'next/router'
 
+import { ArrowLeftIcon } from '@assets'
 import { zustandStore } from '@services'
 import { withoutUserAuthentication } from '@hoc'
 import { Link, Button, AuthTemplate } from '@components'
@@ -78,7 +79,12 @@ const LoginModule = () => {
                 onClick={backButtonHandler}
                 textClassName='font-bold text-bmka-primary-blue'
             >
-                Kembali ke portal utama
+                <div className='flex gap-1 items-center'>
+                    <div className='w-4'>
+                        <ArrowLeftIcon />
+                    </div>
+                    Kembali ke portal utama
+                </div>
             </Button>
             <div className='w-full h-full grid place-items-center'>
                 <form
