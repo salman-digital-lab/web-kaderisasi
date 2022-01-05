@@ -4,9 +4,10 @@
     "private": true,
     "scripts": {
         "dev": "next dev",
+        "lint": "next lint",
         "build": "next build",
         "start": "next start",
-        "lint": "next lint"
+        "cypress:open": "cypress open"
     },
     "dependencies": {
         "@emotion/react": "^11.4.1",
