@@ -20,16 +20,23 @@ const ActivitiesDetailModuleBannerSlider = ({ images }) => {
                 slidesToScroll={1}
                 focusOnSelect={false}
             >
-                {images.map((item) => {
-                    return (
-                        <img
-                            key={item}
-                            src={item}
-                            alt='Banner'
-                            className='w-full object-contain'
-                        />
-                    )
-                })}
+                {images.length > 0 ? (
+                    images.map((image) => (
+                        <div key={image}>
+                            <img
+                                src={image}
+                                alt='Activity Banner'
+                                className='w-full object-contain'
+                            />
+                        </div>
+                    ))
+                ) : (
+                    <img
+                        src='/assets/image_activities_placeholder.png'
+                        alt='Activity Banner'
+                        className='w-full object-contain'
+                    />
+                )}
             </Slider>
         </div>
     )
