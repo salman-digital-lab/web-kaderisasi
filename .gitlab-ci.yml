@@ -1,9 +1,9 @@
 stages:
-    - test
+    - integration-testing
 
 test:
     image: cypress/browsers:node16.13.0-chrome95-ff94
-    stage: test
+    stage: integration-testing
     script:
         # install dependencies
         - yarn install --immutable --immutable-cache --check-cache
