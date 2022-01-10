@@ -8,8 +8,5 @@ test:
         # install dependencies
         - yarn install --immutable --immutable-cache --check-cache
 
-        # start the server in the background
-        - yarn run start:ci &
-
         # run Cypress tests
-        - yarn run e2e
+        - yarn run e2e:headless
