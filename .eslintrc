@@ -1,5 +1,5 @@
 {
-    "extends": ["next/core-web-vitals", "airbnb", "prettier"],
+    "extends": ["next/core-web-vitals", "airbnb", "prettier", "cypress"],
     "rules": {
         "arrow-body-style": "off",
         "react/prop-types": "off",
