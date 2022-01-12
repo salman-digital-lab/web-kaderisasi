@@ -40,13 +40,13 @@ const ProfileModuleContentActivities = ({
                 </form>
             </div>
             <div>
-                {userActivities.length > 0 ? (
+                {/* {userActivities.length > 0 ? (
                     <div />
                 ) : (
                     <div className='w-full py-20 text-center'>
                         <p>Tidak ada kegiatan</p>
                     </div>
-                )}
+                )} */}
             </div>
         </div>
     )
