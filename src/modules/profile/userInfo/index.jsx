@@ -17,7 +17,7 @@ const ProfileModuleUserInfo = () => {
     const inputImageRef = useRef()
 
     const { enqueueSnackbar } = useSnackbar()
-    const [profilePicURL, setProfilePicURL] = useState(state.user.file_image)
+    const [profilePicURL, setProfilePicURL] = useState(state.user?.file_image)
 
     const uploadImageOnClickHandler = () => {
         inputImageRef.current.click()
@@ -84,9 +84,9 @@ const ProfileModuleUserInfo = () => {
                     <img
                         alt='Profile'
                         src={
-                            profilePicURL.includes('null')
-                                ? '/assets/user_placeholder.png'
-                                : profilePicURL
+                            profilePicURL
+                                ? profilePicURL
+                                : '/assets/user_placeholder.png'
                         }
                         className='w-32 h-32 object-cover rounded-full border-4 border-white bg-gray-300'
                     />
