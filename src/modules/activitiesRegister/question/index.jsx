@@ -100,6 +100,7 @@ const Question = ({
                             delete inputProps.type
                             delete inputProps.placeholder
                             delete inputProps.label
+                            delete inputProps.required
                             return (
                                 <>
                                     <div className=''>
@@ -111,6 +112,7 @@ const Question = ({
                                                     value={element.value}
                                                     label={item.label}
                                                     {...inputProps}
+                                                    required={item.required}
                                                     checked={
                                                         answer[
                                                             item.name
@@ -140,6 +142,8 @@ const Question = ({
                             )
                         }
                         if (item.type === 'dropdown') {
+                            delete inputProps.value
+                            delete inputProps.type
                             return (
                                 <FormSelect {...inputProps}>
                                     {item.data.map((element, indexOption) => (
