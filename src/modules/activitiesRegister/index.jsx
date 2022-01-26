@@ -56,7 +56,7 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
                 if (item.type === 'scale') {
                     const maxScale = parseInt(item.data[0].max, 10)
                     initAnswer[item.name] = maxScale / 2
-                } else if (item.type === 'dropdown') {
+                } else if (item.type === 'dropdown' && item.required) {
                     initAnswer[item.name] = item.data[0].value
                 } else {
                     initAnswer[item.name] = ''
