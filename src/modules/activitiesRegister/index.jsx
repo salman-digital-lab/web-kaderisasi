@@ -172,20 +172,49 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
      * Function to validate required form is filled or not
      */
     const checkform = () => {
-        let empty = 0
-        // get all the inputs within the submitted form
-        const inputs = document.getElementsByTagName('input')
-        for (let i = 0; i < inputs.length; i += 1) {
-            // only validate the inputs that have the required attribute
-            if (inputs[i].hasAttribute('required')) {
-                if (inputs[i].value === '') {
-                    // found an empty field that is required
-                    empty += 1
-                }
+        const { answer } = input
+        let empty = false
+
+        // get input element inside form
+        const inputs = document.querySelectorAll('input')
+        // loop over input elements
+        inputs.forEach((input) => {
+            // check if input is empty
+            if (input.value === '') {
+                empty = true
             }
-        }
-        if (empty === 0) {
+        })
+
+        // get radio element inside form
+        const radios = document?.querySelectorAll('input[type=radio]')
+        // loop over radio elements
+        radios.forEach((radio) => {
+            //get name of radio
+            const name = radio.getAttribute('name')
+            // check if answer radio is empty
+            if (answer[name] === '') {
+                empty = true
+            }
+        })
+
+        console.log(radios)
+
+        // get checkbox element inside form
+        const checkboxes = document?.querySelectorAll('input[type=checkbox]')
+        // loop over checkbox elements
+        checkboxes.forEach((checkbox) => {
+            // check if checkbox is empty
+            if (!checkbox.checked) {
+                empty = true
+            }
+        })
+
+        if (empty === false) {
             next()
+        } else {
+            enqueueSnackbar('Silahkan isi form yang dibutuhkan', {
+                variant: 'error',
+            })
         }
     }
 
@@ -277,6 +306,7 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
                                             <Button
                                                 type='submit'
                                                 variant='secondary'
+                                                onClick={checkform}
                                             >
                                                 Kirim Kuesioner
                                             </Button>
