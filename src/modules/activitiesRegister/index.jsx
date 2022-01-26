@@ -179,8 +179,9 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
         const inputs = document.querySelectorAll('input')
         // loop over input elements
         inputs.forEach((input) => {
-            // check if input is empty
-            if (input.value === '' && input.required) {
+            // check if input is empty and if input has required attribute
+            if (input.value === '' && input.hasAttribute('required')) {
+                // add class to input
                 empty = true
             }
         })
@@ -192,7 +193,7 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
             //get name of radio
             const name = radio.getAttribute('name')
             // check if answer radio is empty
-            if (answer[name] === '' && radio.required) {
+            if (answer[name] === '' && radio.hasAttribute('required')) {
                 empty = true
             }
         })
