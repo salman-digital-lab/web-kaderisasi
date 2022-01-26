@@ -127,6 +127,7 @@ const Question = ({
                                                     type='checkbox'
                                                     value={element.value}
                                                     {...inputProps}
+                                                    required={item.required}
                                                     checked={
                                                         answer[
                                                             item.name
@@ -144,8 +145,13 @@ const Question = ({
                         if (item.type === 'dropdown') {
                             delete inputProps.value
                             delete inputProps.type
+                            delete inputProps.placeholder
                             return (
                                 <FormSelect {...inputProps}>
+                                    <option disabled selected hidden value=''>
+                                        {item.label}
+                                    </option>
+
                                     {item.data.map((element, indexOption) => (
                                         <option
                                             value={element.value}
