@@ -180,7 +180,7 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
         // loop over input elements
         inputs.forEach((input) => {
             // check if input is empty
-            if (input.value === '') {
+            if (input.value === '' && input.required) {
                 empty = true
             }
         })
@@ -192,7 +192,7 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
             //get name of radio
             const name = radio.getAttribute('name')
             // check if answer radio is empty
-            if (answer[name] === '') {
+            if (answer[name] === '' && radio.required) {
                 empty = true
             }
         })
