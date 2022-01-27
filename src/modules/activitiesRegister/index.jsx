@@ -116,12 +116,32 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
     }
 
     /**
+     * Function to parse number string answer to number
+     */
+    const parseAnswer = () => {
+        const { answer } = input
+        const newAnswer = {}
+        Object.keys(answer).map((key) => {
+            // check if type of question is number
+            if (
+                questionnaire.find((item) => item.name === key).type ===
+                'number'
+            ) {
+                newAnswer[key] = parseFloat(answer[key])
+            } else {
+                newAnswer[key] = answer[key]
+            }
+        })
+        return newAnswer
+    }
+
+    /**
      * Function to submit form answer
      */
     const handleSubmit = async (event) => {
         event.preventDefault()
         if (input.currentStep === maxStep - 1) {
-            const { answer } = input
+            const answer = parseAnswer()
             enqueueSnackbar('Mengirim data . . .', {
                 variant: 'info',
             })
