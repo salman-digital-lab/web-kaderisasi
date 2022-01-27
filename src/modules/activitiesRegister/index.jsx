@@ -176,7 +176,7 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
         let empty = false
 
         // get input element inside form
-        const inputs = document.querySelectorAll('input')
+        const inputs = document?.querySelectorAll('input')
         // loop over input elements
         inputs.forEach((input) => {
             // check if input is empty and if input has required attribute
@@ -198,19 +198,40 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
             }
         })
 
-        console.log(radios)
-
-        // get checkbox element inside form
+        // get checkbox based on name
         const checkboxes = document?.querySelectorAll('input[type=checkbox]')
-        // loop over checkbox elements
+
+        // group checkbox based on name
+        const checkboxGroup = {}
         checkboxes.forEach((checkbox) => {
-            // check if checkbox is empty
-            if (!checkbox.checked) {
-                empty = true
+            const name = checkbox.getAttribute('name')
+            if (checkboxGroup[name] === undefined) {
+                checkboxGroup[name] = []
+            }
+            checkboxGroup[name].push(checkbox)
+        })
+
+        //check atleast one checkbox is checked in each group
+        Object.keys(checkboxGroup).forEach((key) => {
+            const checkbox = checkboxGroup[key]
+            let checked = false
+            checkbox.forEach((item) => {
+                if (item.checked) {
+                    checked = true
+                }
+            })
+            // remove attribute required if atleast one checkbox is checked in the same group
+            if (checked) {
+                checkbox.forEach((item) => {
+                    // remove attribute in not checked checkbox
+                    if (!item.checked) {
+                        item.removeAttribute('required')
+                    }
+                })
             }
         })
 
-        if (empty === false) {
+        if (empty === false && input.currentStep !== maxStep - 1) {
             next()
         } else {
             enqueueSnackbar('Silahkan isi form yang dibutuhkan', {
