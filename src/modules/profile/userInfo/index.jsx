@@ -17,7 +17,7 @@ const ProfileModuleUserInfo = () => {
     const inputImageRef = useRef()
 
     const { enqueueSnackbar } = useSnackbar()
-    const [profilePicURL, setProfilePicURL] = useState(state.user.file_image)
+    const [profilePicURL, setProfilePicURL] = useState(state.user?.file_image)
 
     const uploadImageOnClickHandler = () => {
         inputImageRef.current.click()
@@ -27,6 +27,10 @@ const ProfileModuleUserInfo = () => {
         const temp = imageName.split('.')
 
         return temp[temp.length - 1]
+    }
+
+    const imageOnErrorHandler = (e) => {
+        e.target.src = '/assets/user_placeholder.png'
     }
 
     const inputImageOnChangeHandler = async (e) => {
@@ -83,12 +87,13 @@ const ProfileModuleUserInfo = () => {
                     />
                     <img
                         alt='Profile'
-                        src={
-                            profilePicURL.includes('null')
-                                ? '/assets/user_placeholder.png'
-                                : profilePicURL
-                        }
+                        onError={imageOnErrorHandler}
                         className='w-32 h-32 object-cover rounded-full border-4 border-white bg-gray-300'
+                        src={
+                            profilePicURL
+                                ? profilePicURL
+                                : '/assets/user_placeholder.png'
+                        }
                     />
                 </div>
                 <div className='text-center'>

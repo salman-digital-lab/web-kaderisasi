@@ -15,6 +15,9 @@ const ActivityCard = ({
     registerEndDate,
     activityCategoryData,
 }) => {
+    const BASE_URL_ACTIVITY_IMAGE =
+        process.env.NEXT_PUBLIC_BASE_URL_ACTIVITY_IMAGE
+
     const imageOnErrorHandler = (e) => {
         e.target.src = '/assets/image_activities_placeholder.png'
     }
@@ -26,7 +29,7 @@ const ActivityCard = ({
         >
             <div className='flex flex-col gap-4'>
                 <img
-                    src={banner}
+                    src={`${BASE_URL_ACTIVITY_IMAGE}/${banner}`}
                     alt='Activity Banner'
                     onError={imageOnErrorHandler}
                     className='w-full h-48 object-cover rounded'
