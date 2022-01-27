@@ -29,6 +29,10 @@ const ProfileModuleUserInfo = () => {
         return temp[temp.length - 1]
     }
 
+    const imageOnErrorHandler = (e) => {
+        e.target.src = '/assets/user_placeholder.png'
+    }
+
     const inputImageOnChangeHandler = async (e) => {
         const { id, token } = state.user
         const baseURL = process.env.NEXT_PUBLIC_BASE_URL
@@ -83,12 +87,13 @@ const ProfileModuleUserInfo = () => {
                     />
                     <img
                         alt='Profile'
+                        onError={imageOnErrorHandler}
+                        className='w-32 h-32 object-cover rounded-full border-4 border-white bg-gray-300'
                         src={
                             profilePicURL
                                 ? profilePicURL
                                 : '/assets/user_placeholder.png'
                         }
-                        className='w-32 h-32 object-cover rounded-full border-4 border-white bg-gray-300'
                     />
                 </div>
                 <div className='text-center'>
