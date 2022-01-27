@@ -147,18 +147,22 @@ const Question = ({
                             delete inputProps.type
                             delete inputProps.placeholder
                             return (
-                                <FormSelect {...inputProps}>
-                                    <option disabled selected hidden value=''>
+                                <FormSelect
+                                    {...inputProps}
+                                    defaultValue={answer[item.name]}
+                                >
+                                    <option
+                                        disabled
+                                        defaultValue
+                                        hidden
+                                        value=''
+                                    >
                                         {item.label}
                                     </option>
 
                                     {item.data.map((element, indexOption) => (
                                         <option
                                             value={element.value}
-                                            selected={
-                                                answer[item.name] ===
-                                                element.value
-                                            }
                                             key={indexOption}
                                         >
                                             {element.label}
