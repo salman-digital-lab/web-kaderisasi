@@ -42,7 +42,8 @@ const Question = ({
                     }
                     if (index >= mulai && index <= akhir) {
                         if (item.type === 'text' || item.type === 'number') {
-                            return <FormInput {...inputProps} />
+                            delete inputProps.type
+                            return <FormInput {...inputProps} type='text' />
                         }
                         if (item.type === 'scale') {
                             delete inputProps.type
