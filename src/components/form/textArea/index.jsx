@@ -4,7 +4,7 @@ const FormTextArea = ({ label, required, className, ...props }) => {
     return (
         <div>
             {label && (
-                <p>
+                <p className='font-semibold'>
                     {label}
                     {required === true && (
                         <span style={{ color: 'red' }}> *</span>
