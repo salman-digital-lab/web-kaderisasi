@@ -35,7 +35,7 @@ const Question = ({
                         name: item.name,
                         label: item.label,
                         onChange: handleChange,
-                        required: item.required,
+                        required: true,
                         placeholder: item.label,
                         value: answer[item.name],
                         type: item.type,
@@ -101,7 +101,7 @@ const Question = ({
                             delete inputProps.type
                             delete inputProps.placeholder
                             delete inputProps.label
-                            delete inputProps.required
+
                             return (
                                 <>
                                     <div className=''>
@@ -113,7 +113,6 @@ const Question = ({
                                                     value={element.value}
                                                     label={item.label}
                                                     {...inputProps}
-                                                    required={item.required}
                                                     checked={
                                                         answer[
                                                             item.name
@@ -128,7 +127,6 @@ const Question = ({
                                                     type='checkbox'
                                                     value={element.value}
                                                     {...inputProps}
-                                                    required={item.required}
                                                     checked={
                                                         answer[
                                                             item.name
