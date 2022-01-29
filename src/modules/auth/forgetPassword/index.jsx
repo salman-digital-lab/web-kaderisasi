@@ -27,22 +27,18 @@ const ForgetPasswordModule = () => {
         const baseURL = process.env.NEXT_PUBLIC_BASE_URL
         const baseURLVersion = process.env.NEXT_PUBLIC_BASE_URL_VERSION
 
-        try {
-            const data = await axios.post(
-                `${baseURL}/${baseURLVersion}/account/forgot_password`,
-                {
-                    email,
-                }
-            )
+        await axios
+            .post(`${baseURL}/${baseURLVersion}/account/forgot_password`, {
+                email,
+            })
+            .then((res) => {
+                enqueueSnackbar(res.data.message, { variant: 'success' })
 
-            const { message } = await data.data
-
-            enqueueSnackbar(message, { variant: 'success' })
-
-            setFormData({ ...formDataDefault })
-        } catch {
-            enqueueSnackbar('Oops! Something wrong', { variant: 'error' })
-        }
+                setFormData({ ...formDataDefault })
+            })
+            .catch((err) => {
+                enqueueSnackbar(err.response.data.message, { variant: 'error' })
+            })
     }
 
     const inputFormHandler = (e) => {
