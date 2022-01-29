@@ -36,7 +36,6 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
         maxStep,
         mulai: 0,
         akhir: 2,
-        checkbox: [],
         answer: {},
     })
 
@@ -56,8 +55,10 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
                 if (item.type === 'scale') {
                     const maxScale = parseInt(item.data[0].max, 10)
                     initAnswer[item.name] = maxScale / 2
-                } else if (item.type === 'dropdown' && item.required) {
+                } else if (item.type === 'dropdown') {
                     initAnswer[item.name] = item.data[0].value
+                } else if (item.type === 'checkbox') {
+                    initAnswer[item.name] = []
                 } else {
                     initAnswer[item.name] = ''
                 }
@@ -77,8 +78,8 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
         const { name } = event.target
 
         if (type === 'checkbox') {
-            let newArray = [...input.checkbox, value]
-            if (input.checkbox.includes(value)) {
+            let newArray = [...input.answer[name], value]
+            if (input.answer[name].includes(value)) {
                 newArray = newArray.filter((target) => target !== value)
             }
             setInput({
@@ -195,6 +196,8 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
         const { answer } = input
         let empty = false
 
+        console.log(empty)
+
         // get input element inside form
         const inputs = document?.querySelectorAll('input')
         // loop over input elements
@@ -205,6 +208,8 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
                 empty = true
             }
         })
+
+        console.log(empty)
 
         // get radio element inside form
         const radios = document?.querySelectorAll('input[type=radio]')
@@ -221,33 +226,18 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
         // get checkbox based on name
         const checkboxes = document?.querySelectorAll('input[type=checkbox]')
 
-        // group checkbox based on name
-        const checkboxGroup = {}
+        // make sure there is at least one checkbox checked
         checkboxes.forEach((checkbox) => {
+            // get name of checkbox
             const name = checkbox.getAttribute('name')
-            if (checkboxGroup[name] === undefined) {
-                checkboxGroup[name] = []
+            // check if answer checkbox is empty
+            if (answer[name] === '' && checkbox.hasAttribute('required')) {
+                empty = true
             }
-            checkboxGroup[name].push(checkbox)
-        })
 
-        //check atleast one checkbox is checked in each group
-        Object.keys(checkboxGroup).forEach((key) => {
-            const checkbox = checkboxGroup[key]
-            let checked = false
-            checkbox.forEach((item) => {
-                if (item.checked) {
-                    checked = true
-                }
-            })
-            // remove attribute required if atleast one checkbox is checked in the same group
-            if (checked) {
-                checkbox.forEach((item) => {
-                    // remove attribute in not checked checkbox
-                    if (!item.checked) {
-                        item.removeAttribute('required')
-                    }
-                })
+            //remove attribute if atleast one checkbox is checked
+            if (answer[name].length > 0) {
+                checkbox.removeAttribute('required')
             }
         })
 
