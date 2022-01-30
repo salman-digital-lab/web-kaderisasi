@@ -42,50 +42,47 @@ const ProfileModuleContentActivities = ({
                     <Button variant='secondary'>Cari</Button>
                 </form>
             </div>
-            <div
-                className='w-full grid gap-6 pt-6'
-                style={{
-                    gridTemplateColumns:
-                        'repeat(auto-fill, minmax(270px, 1fr))',
-                }}
-            >
-                {userActivities?.length > 0 ? (
-                    <div>
-                        {userActivities?.map((item) => {
-                            const {
-                                name,
-                                minimum_role,
-                                slug,
-                                created_at,
-                                category_id,
-                                banner_image,
-                                register_end_date,
-                            } = item
 
-                            return (
-                                <ActivityCard
-                                    key={slug}
-                                    name={name}
-                                    slug={slug}
-                                    role={minimum_role?.name}
-                                    categoryId={category_id}
-                                    banner={banner_image?.file}
-                                    createdAt={formatDate(created_at)}
-                                    activityCategoryData={activityCategoryData}
-                                    registerEndDate={formatDate(
-                                        register_end_date
-                                    )}
-                                    fullWidth
-                                />
-                            )
-                        })}
-                    </div>
-                ) : (
-                    <div className='w-full py-20 text-center'>
-                        <p>Tidak ada kegiatan</p>
-                    </div>
-                )}
-            </div>
+            {userActivities?.length > 0 ? (
+                <div
+                    className='w-full grid gap-6 pt-6'
+                    style={{
+                        gridTemplateColumns:
+                            'repeat(auto-fill, minmax(270px, 1fr))',
+                    }}
+                >
+                    {userActivities?.map((item) => {
+                        const {
+                            name,
+                            minimum_role,
+                            slug,
+                            created_at,
+                            category_id,
+                            banner_image,
+                            register_end_date,
+                        } = item
+
+                        return (
+                            <ActivityCard
+                                key={slug}
+                                name={name}
+                                slug={slug}
+                                role={minimum_role?.name}
+                                categoryId={category_id}
+                                banner={banner_image?.file}
+                                createdAt={formatDate(created_at)}
+                                activityCategoryData={activityCategoryData}
+                                registerEndDate={formatDate(register_end_date)}
+                                fullWidth
+                            />
+                        )
+                    })}
+                </div>
+            ) : (
+                <div className='w-full py-20 text-center'>
+                    <p>Tidak ada kegiatan</p>
+                </div>
+            )}
         </div>
     )
 }
