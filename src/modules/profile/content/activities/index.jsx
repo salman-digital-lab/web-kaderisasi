@@ -7,8 +7,6 @@ const ProfileModuleContentActivities = ({
     userActivities,
     activityCategoryData,
 }) => {
-    console.log(userActivities)
-
     return (
         <div>
             <div className='flex flex-col-reverse gap-6 justify-between items-center sm:flex-row'>
