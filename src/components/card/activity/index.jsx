@@ -14,6 +14,7 @@ const ActivityCard = ({
     categoryId,
     registerEndDate,
     activityCategoryData,
+    ...props
 }) => {
     const BASE_URL_ACTIVITY_IMAGE =
         process.env.NEXT_PUBLIC_BASE_URL_ACTIVITY_IMAGE
@@ -41,6 +42,14 @@ const ActivityCard = ({
                         activityCategoryID: categoryId,
                     })}
                 </p>
+                {props?.status && (
+                    <div className='flex gap-1'>
+                        <p className='font-bold'>Status : </p>
+                        <p className='text-bmka-primary-blue font-semibold'>
+                            {props.status}
+                        </p>
+                    </div>
+                )}
             </div>
             <div className='flex flex-col gap-4'>
                 <div>

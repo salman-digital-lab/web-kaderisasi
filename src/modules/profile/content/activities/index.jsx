@@ -58,6 +58,7 @@ const ProfileModuleContentActivities = ({
                             category_id,
                             banner_image,
                             register_end_date,
+                            activity_registration,
                         } = item
 
                         return (
@@ -72,6 +73,7 @@ const ProfileModuleContentActivities = ({
                                 activityCategoryData={activityCategoryData}
                                 registerEndDate={formatDate(register_end_date)}
                                 fullWidth
+                                status={activity_registration?.status}
                             />
                         )
                     })}
