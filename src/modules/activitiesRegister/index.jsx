@@ -36,7 +36,6 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
         maxStep,
         mulai: 0,
         akhir: 2,
-        checkbox: [],
         answer: {},
     })
 
@@ -58,6 +57,8 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
                     initAnswer[item.name] = maxScale / 2
                 } else if (item.type === 'dropdown') {
                     initAnswer[item.name] = item.data[0].value
+                } else if (item.type === 'checkbox') {
+                    initAnswer[item.name] = []
                 } else {
                     initAnswer[item.name] = ''
                 }
@@ -77,8 +78,8 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
         const { name } = event.target
 
         if (type === 'checkbox') {
-            let newArray = [...input.checkbox, value]
-            if (input.checkbox.includes(value)) {
+            let newArray = [...input.answer[name], value]
+            if (input.answer[name].includes(value)) {
                 newArray = newArray.filter((target) => target !== value)
             }
             setInput({
@@ -116,12 +117,32 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
     }
 
     /**
+     * Function to parse number string answer to number
+     */
+    const parseAnswer = () => {
+        const { answer } = input
+        const newAnswer = {}
+        Object.keys(answer).map((key) => {
+            // check if type of question is number
+            if (
+                questionnaire.find((item) => item.name === key).type ===
+                'number'
+            ) {
+                newAnswer[key] = parseFloat(answer[key])
+            } else {
+                newAnswer[key] = answer[key]
+            }
+        })
+        return newAnswer
+    }
+
+    /**
      * Function to submit form answer
      */
     const handleSubmit = async (event) => {
         event.preventDefault()
         if (input.currentStep === maxStep - 1) {
-            const { answer } = input
+            const answer = parseAnswer()
             enqueueSnackbar('Mengirim data . . .', {
                 variant: 'info',
             })
@@ -172,20 +193,60 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
      * Function to validate required form is filled or not
      */
     const checkform = () => {
-        let empty = 0
-        // get all the inputs within the submitted form
-        const inputs = document.getElementsByTagName('input')
-        for (let i = 0; i < inputs.length; i += 1) {
-            // only validate the inputs that have the required attribute
-            if (inputs[i].hasAttribute('required')) {
-                if (inputs[i].value === '') {
-                    // found an empty field that is required
-                    empty += 1
-                }
+        const { answer } = input
+        let empty = false
+
+        console.log(empty)
+
+        // get input element inside form
+        const inputs = document?.querySelectorAll('input')
+        // loop over input elements
+        inputs.forEach((input) => {
+            // check if input is empty and if input has required attribute
+            if (input.value === '' && input.hasAttribute('required')) {
+                // add class to input
+                empty = true
             }
-        }
-        if (empty === 0) {
+        })
+
+        console.log(empty)
+
+        // get radio element inside form
+        const radios = document?.querySelectorAll('input[type=radio]')
+        // loop over radio elements
+        radios.forEach((radio) => {
+            //get name of radio
+            const name = radio.getAttribute('name')
+            // check if answer radio is empty
+            if (answer[name] === '' && radio.hasAttribute('required')) {
+                empty = true
+            }
+        })
+
+        // get checkbox based on name
+        const checkboxes = document?.querySelectorAll('input[type=checkbox]')
+
+        // make sure there is at least one checkbox checked
+        checkboxes.forEach((checkbox) => {
+            // get name of checkbox
+            const name = checkbox.getAttribute('name')
+            // check if answer checkbox is empty
+            if (answer[name] === '' && checkbox.hasAttribute('required')) {
+                empty = true
+            }
+
+            //remove attribute if atleast one checkbox is checked
+            if (answer[name].length > 0) {
+                checkbox.removeAttribute('required')
+            }
+        })
+
+        if (empty === false && input.currentStep !== maxStep - 1) {
             next()
+        } else {
+            enqueueSnackbar('Silahkan isi form yang dibutuhkan', {
+                variant: 'error',
+            })
         }
     }
 
@@ -277,6 +338,7 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
                                             <Button
                                                 type='submit'
                                                 variant='secondary'
+                                                onClick={checkform}
                                             >
                                                 Kirim Kuesioner
                                             </Button>
