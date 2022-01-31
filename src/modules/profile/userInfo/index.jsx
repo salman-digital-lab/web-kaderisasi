@@ -36,7 +36,6 @@ const ProfileModuleUserInfo = () => {
     const inputImageOnChangeHandler = async (e) => {
         const { id, token } = state.user
         const baseURL = process.env.NEXT_PUBLIC_BASE_URL
-        const baseURLImage = process.env.NEXT_PUBLIC_BASE_URL_IMAGE
         const baseURLVersion = process.env.NEXT_PUBLIC_BASE_URL_VERSION
 
         const [file] = e.target.files
