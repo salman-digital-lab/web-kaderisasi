@@ -44,28 +44,29 @@ const LoginModule = () => {
 
         const { email, password } = formData
 
-        try {
-            const response = await axios.post(
-                `${baseURL}/${baseURLVersion}/auth`,
-                { email, password }
-            )
-
-            const { data, token, message } = response.data
-
-            setUser({
-                ...data,
-                token,
-                file_image: `${baseURLImage}/${data.file_image}`,
+        await axios
+            .post(`${baseURL}/${baseURLVersion}/auth`, {
+                email,
+                password,
             })
+            .then((res) => {
+                const { data, token, message } = res.data
 
-            cookies.set(userCookieName, token)
+                setUser({
+                    ...data,
+                    token,
+                    file_image: `${baseURLImage}/${data.file_image}`,
+                })
 
-            enqueueSnackbar(message, { variant: 'success' })
+                cookies.set(userCookieName, token)
 
-            // redirect to profile by withoutUserAuthentication HOC
-        } catch {
-            enqueueSnackbar('Oops! Something wrong.', { variant: 'error' })
-        }
+                enqueueSnackbar(message, { variant: 'success' })
+
+                // redirect to profile by withoutUserAuthentication HOC
+            })
+            .catch((err) => {
+                enqueueSnackbar(err.response.data.message, { variant: 'error' })
+            })
     }
 
     const backButtonHandler = () => {

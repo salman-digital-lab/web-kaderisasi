@@ -3,7 +3,7 @@
 
 import axios from 'axios'
 import { useSnackbar } from 'notistack'
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 
 import { getUserRoleID } from '@utils'
 import { zustandStore } from '@services'
@@ -36,7 +36,6 @@ const ProfileModuleUserInfo = () => {
     const inputImageOnChangeHandler = async (e) => {
         const { id, token } = state.user
         const baseURL = process.env.NEXT_PUBLIC_BASE_URL
-        const baseURLImage = process.env.NEXT_PUBLIC_BASE_URL_IMAGE
         const baseURLVersion = process.env.NEXT_PUBLIC_BASE_URL_VERSION
 
         const [file] = e.target.files
@@ -64,15 +63,23 @@ const ProfileModuleUserInfo = () => {
                 }
             )
 
-            setProfilePicURL(
-                `${baseURLImage}/${id}.${getImageExtension(file.name)}`
-            )
+            setProfilePicURL(response.data.data.file_image)
 
             enqueueSnackbar(`${response.data.message}`, { variant: 'success' })
         } catch (e) {
             enqueueSnackbar('Oops! Something wrong', { variant: 'error' })
         }
     }
+    // use effect to set zustand if profile pic is changed
+    useEffect(() => {
+        //set zustand
+        zustandStore.setState({
+            user: {
+                ...state.user,
+                file_image: profilePicURL,
+            },
+        })
+    }, [profilePicURL])
 
     return (
         <Jumbotron className='p-10'>
