@@ -15,6 +15,8 @@ const ProfileModuleContentActivities = ({
     const [isLoading, setIsLoading] = useState(false)
     const [currentActivityInfo, setCurrentActivityInfo] =
         useState(userActivitiesInfo)
+    const [currentActivityData, setCurrentActivityData] =
+        useState(userActivitiesData)
     const pageChangeHandler = async (e) => {
         setIsLoading(true)
 
@@ -25,10 +27,13 @@ const ProfileModuleContentActivities = ({
 
         try {
             const response = await axios.get(
-                `${baseURL}/${baseURLVersion}/activity?page=${selected + 1}`
+                `${baseURL}/${baseURLVersion}/account/user/activities?page=${
+                    selected + 1
+                }`
             )
 
             setCurrentActivityData(response.data.data.data)
+            setCurrentActivityInfo(response.data.data.meta)
             activitiesModuleSearchRef.current.scrollIntoView({
                 block: 'start',
                 behavior: 'smooth',
@@ -77,7 +82,7 @@ const ProfileModuleContentActivities = ({
                     </form>
                 </div>
 
-                {userActivitiesData?.length > 0 ? (
+                {currentActivityData?.length > 0 ? (
                     <div
                         className='w-full grid gap-6 pt-6'
                         style={{
@@ -85,7 +90,7 @@ const ProfileModuleContentActivities = ({
                                 'repeat(auto-fill, minmax(270px, 1fr))',
                         }}
                     >
-                        {userActivitiesData?.map((item) => {
+                        {currentActivityData?.map((item) => {
                             const {
                                 name,
                                 minimum_role,
