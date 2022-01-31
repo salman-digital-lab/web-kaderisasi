@@ -75,7 +75,7 @@ const ProfileModuleContent = ({
 
             setListChecklist(checklistResponse.data.data.data)
             setUserChecklist(checklistMemberResponse.data.data)
-            setUserActivities(activitiesResponse.data.data.data)
+            setUserActivities(activitiesResponse.data.data)
         } catch {
             setListChecklist([])
             setUserChecklist([])
@@ -160,8 +160,9 @@ const ProfileModuleContent = ({
                 )}
                 {activeMenu === menuName.activities && (
                     <ProfileModuleContentActivities
-                        userActivities={userActivities}
+                        userActivitiesData={userActivities.data}
                         activityCategoryData={activityCategoryData}
+                        userActivitiesInfo={userActivities.meta}
                     />
                 )}
                 {activeMenu === menuName.handBook && (
