@@ -23,7 +23,7 @@ const activitiesEdit = ({ form }) => {
                 <ActivitesRegisterModule
                     status={form.status}
                     message={form.message}
-                    questionnaire={form.data}
+                    questionnaire={form.form}
                     length={length}
                     answers={form.answers}
                 />
