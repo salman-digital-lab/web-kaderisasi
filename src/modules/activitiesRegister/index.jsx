@@ -224,8 +224,6 @@ const ActivitesRegister = ({
             }
         })
 
-        console.log(empty)
-
         // get radio element inside form
         const radios = document?.querySelectorAll('input[type=radio]')
         // loop over radio elements
