@@ -85,6 +85,7 @@ const ProfileModuleContentActivities = ({
                                     )}
                                     fullWidth
                                     status={activity_registration?.status}
+                                    edit={true}
                                 />
                             )
                         })}
