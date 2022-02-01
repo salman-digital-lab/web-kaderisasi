@@ -14,7 +14,13 @@ import FirstStep from './firstStep'
 import FinalStep from './finalStep'
 import Question from './question'
 
-const ActivitesRegister = ({ status, message, questionnaire, length }) => {
+const ActivitesRegister = ({
+    status,
+    message,
+    questionnaire,
+    length,
+    answers,
+}) => {
     const state = {
         user: zustandStore((state) => state.user),
     }
@@ -51,18 +57,27 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
     const setName = () => {
         if (Object.keys(input.answer) <= 0) {
             const initAnswer = {}
-            questionnaire.map((item) => {
-                if (item.type === 'scale') {
-                    const maxScale = parseInt(item.data[0].max, 10)
-                    initAnswer[item.name] = maxScale / 2
-                } else if (item.type === 'dropdown') {
-                    initAnswer[item.name] = item.data[0].value
-                } else if (item.type === 'checkbox') {
-                    initAnswer[item.name] = []
-                } else {
-                    initAnswer[item.name] = ''
-                }
-            })
+
+            //  if answer props exist, use answer to init answer
+            if (answers) {
+                answers.forEach((answer) => {
+                    initAnswer[answer.id_name] = answer.answer
+                })
+            } else {
+                questionnaire.map((item) => {
+                    if (item.type === 'scale') {
+                        const maxScale = parseInt(item.data[0].max, 10)
+                        initAnswer[item.name] = maxScale / 2
+                    } else if (item.type === 'dropdown') {
+                        initAnswer[item.name] = item.data[0].value
+                    } else if (item.type === 'checkbox') {
+                        initAnswer[item.name] = []
+                    } else {
+                        initAnswer[item.name] = ''
+                    }
+                })
+            }
+
             setInput({
                 ...input,
                 answer: { ...initAnswer },
