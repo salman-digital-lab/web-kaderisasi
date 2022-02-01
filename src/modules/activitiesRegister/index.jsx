@@ -182,7 +182,7 @@ const ActivitesRegister = ({
                     next()
                 })
                 .catch((error) => {
-                    enqueueSnackbar(error.response.data.status, {
+                    enqueueSnackbar(error.response.data.message, {
                         variant: 'error',
                     })
                 })
