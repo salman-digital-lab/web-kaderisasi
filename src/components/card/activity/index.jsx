@@ -56,11 +56,30 @@ const ActivityCard = ({
                     <p className='text-sm'>Untuk {role}</p>
                     <p className='text-sm'>Tutup: {registerEndDate}</p>
                 </div>
-                <Link href={`/activities/${slug}`}>
-                    <Button type='button' className='w-full' variant='primary'>
-                        Lihat
-                    </Button>
-                </Link>
+
+                {/* if props edit exist  */}
+                {props?.edit ? (
+                    <Link href={`/activities/edit/${slug}`}>
+                        <Button
+                            className='bg-bmka-primary-blue text-white font-bold'
+                            type='button'
+                            className='w-full'
+                            variant='primary'
+                        >
+                            Edit Pendaftaran
+                        </Button>
+                    </Link>
+                ) : (
+                    <Link href={`/activities/${slug}`}>
+                        <Button
+                            type='button'
+                            className='w-full'
+                            variant='primary'
+                        >
+                            Lihat
+                        </Button>
+                    </Link>
+                )}
             </div>
         </div>
     )
