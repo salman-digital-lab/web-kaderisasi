@@ -28,17 +28,13 @@ const HomeModuleActivity = ({ activityData, activityCategoryData }) => {
                         banner_file,
                     } = item
 
-                    // handle if banner_file is null
-                    const banner = banner_file
-                        ? banner_file.filename
-                        : banner_url
                     return (
                         <div key={index} className='flex justify-center'>
                             <ActivityCard
                                 name={name}
                                 role={role.name}
                                 slug={slug}
-                                banner={`${banner_url}${banner}`}
+                                banner={banner_file?.filename}
                                 categoryId={category_id}
                                 createdAt={formatDate(created_at)}
                                 activityCategoryData={activityCategoryData}
