@@ -14,7 +14,13 @@ import FirstStep from './firstStep'
 import FinalStep from './finalStep'
 import Question from './question'
 
-const ActivitesRegister = ({ status, message, questionnaire, length }) => {
+const ActivitesRegister = ({
+    status,
+    message,
+    questionnaire,
+    length,
+    answers,
+}) => {
     const state = {
         user: zustandStore((state) => state.user),
     }
@@ -51,18 +57,31 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
     const setName = () => {
         if (Object.keys(input.answer) <= 0) {
             const initAnswer = {}
-            questionnaire.map((item) => {
-                if (item.type === 'scale') {
-                    const maxScale = parseInt(item.data[0].max, 10)
-                    initAnswer[item.name] = maxScale / 2
-                } else if (item.type === 'dropdown') {
-                    initAnswer[item.name] = item.data[0].value
-                } else if (item.type === 'checkbox') {
-                    initAnswer[item.name] = []
-                } else {
-                    initAnswer[item.name] = ''
-                }
-            })
+            //  if answer props exist, use answer to init answer
+            if (answers) {
+                //check if answer can be parsed to JSON or not
+                answers.forEach((answer) => {
+                    try {
+                        JSON.parse(answer.answer)
+                        initAnswer[answer.id_name] = JSON.parse(answer.answer)
+                    } catch (e) {
+                        initAnswer[answer.id_name] = answer.answer
+                    }
+                })
+            } else {
+                questionnaire.map((item) => {
+                    if (item.type === 'scale') {
+                        const maxScale = parseInt(item.data[0].max, 10)
+                        initAnswer[item.name] = maxScale / 2
+                    } else if (item.type === 'dropdown') {
+                        initAnswer[item.name] = item.data[0].value
+                    } else if (item.type === 'checkbox') {
+                        initAnswer[item.name] = []
+                    } else {
+                        initAnswer[item.name] = ''
+                    }
+                })
+            }
             setInput({
                 ...input,
                 answer: { ...initAnswer },
@@ -129,6 +148,10 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
                 'number'
             ) {
                 newAnswer[key] = parseFloat(answer[key])
+            } else if (
+                questionnaire.find((item) => item.name === key).type === 'scale'
+            ) {
+                newAnswer[key] = parseInt(answer[key], 10)
             } else {
                 newAnswer[key] = answer[key]
             }
@@ -167,7 +190,45 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
                     next()
                 })
                 .catch((error) => {
-                    enqueueSnackbar(error.response.data.status, {
+                    enqueueSnackbar(error.response.data.message, {
+                        variant: 'error',
+                    })
+                })
+        }
+    }
+
+    /**
+     * Function to submit edit form answer
+     */
+    const handleSubmitEdit = async (event) => {
+        event.preventDefault()
+        if (input.currentStep === maxStep - 1) {
+            const answer = parseAnswer()
+            enqueueSnackbar('Mengirim data . . .', {
+                variant: 'info',
+            })
+            await axios
+                .put(
+                    `${baseURL}/v1/activity/${slug}/form-edit/save`,
+                    {
+                        ...answer,
+                    },
+                    {
+                        headers: {
+                            Authorization: `Bearer ${state.user.token}`,
+                            'Content-Type': 'application/json',
+                            'Access-Control-Allow-Origin': '*',
+                        },
+                    }
+                )
+                .then((res) => {
+                    enqueueSnackbar(res.data.message, {
+                        variant: 'success',
+                    })
+                    next()
+                })
+                .catch((error) => {
+                    enqueueSnackbar(error.response.data.message, {
                         variant: 'error',
                     })
                 })
@@ -196,8 +257,6 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
         const { answer } = input
         let empty = false
 
-        console.log(empty)
-
         // get input element inside form
         const inputs = document?.querySelectorAll('input')
         // loop over input elements
@@ -208,8 +267,6 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
                 empty = true
             }
         })
-
-        console.log(empty)
 
         // get radio element inside form
         const radios = document?.querySelectorAll('input[type=radio]')
@@ -292,7 +349,12 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
                                 currentStep={input.currentStep}
                                 maxStep={maxStep}
                             />
-                            <form className='' onSubmit={handleSubmit}>
+                            <form
+                                className=''
+                                onSubmit={
+                                    answers ? handleSubmitEdit : handleSubmit
+                                }
+                            >
                                 <FirstStep
                                     currentStep={input.currentStep}
                                     questionaire={length}

@@ -73,7 +73,7 @@ const Question = ({
                                                     key={index2}
                                                     value={element.value}
                                                     checked={
-                                                        answer[item.name] ===
+                                                        answer[item.name] ==
                                                         element.value
                                                     }
                                                     label={item.label}
@@ -85,7 +85,7 @@ const Question = ({
                                                     value={element.value}
                                                     {...inputProps}
                                                     checked={
-                                                        answer[item.name] ===
+                                                        answer[item.name] ==
                                                         element.value
                                                     }
                                                 />
