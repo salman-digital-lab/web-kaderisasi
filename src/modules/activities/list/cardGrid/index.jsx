@@ -29,9 +29,6 @@ const ActivitiesModuleListCardGrid = ({
                     register_end_date,
                 } = item
 
-                // handle if banner_file is null
-                const banner = banner_file ? banner_file.filename : banner_url
-
                 return (
                     <ActivityCard
                         key={slug}
@@ -39,7 +36,7 @@ const ActivitiesModuleListCardGrid = ({
                         slug={slug}
                         role={role.name}
                         categoryId={category_id}
-                        banner={`${banner_url}${banner}`}
+                        banner={banner_file?.filename}
                         createdAt={formatDate(created_at)}
                         activityCategoryData={activityCategoryData}
                         registerEndDate={formatDate(register_end_date)}
