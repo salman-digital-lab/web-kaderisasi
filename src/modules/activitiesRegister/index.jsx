@@ -57,11 +57,16 @@ const ActivitesRegister = ({
     const setName = () => {
         if (Object.keys(input.answer) <= 0) {
             const initAnswer = {}
-
             //  if answer props exist, use answer to init answer
             if (answers) {
+                //check if answer can be parsed to JSON or not
                 answers.forEach((answer) => {
-                    initAnswer[answer.id_name] = answer.answer
+                    try {
+                        JSON.parse(answer.answer)
+                        initAnswer[answer.id_name] = JSON.parse(answer.answer)
+                    } catch (e) {
+                        initAnswer[answer.id_name] = answer.answer
+                    }
                 })
             } else {
                 questionnaire.map((item) => {
@@ -77,7 +82,6 @@ const ActivitesRegister = ({
                     }
                 })
             }
-
             setInput({
                 ...input,
                 answer: { ...initAnswer },
@@ -144,6 +148,10 @@ const ActivitesRegister = ({
                 'number'
             ) {
                 newAnswer[key] = parseFloat(answer[key])
+            } else if (
+                questionnaire.find((item) => item.name === key).type === 'scale'
+            ) {
+                newAnswer[key] = parseInt(answer[key], 10)
             } else {
                 newAnswer[key] = answer[key]
             }
@@ -190,6 +198,44 @@ const ActivitesRegister = ({
     }
 
     /**
+     * Function to submit edit form answer
+     */
+    const handleSubmitEdit = async (event) => {
+        event.preventDefault()
+        if (input.currentStep === maxStep - 1) {
+            const answer = parseAnswer()
+            enqueueSnackbar('Mengirim data . . .', {
+                variant: 'info',
+            })
+            await axios
+                .put(
+                    `${baseURL}/v1/activity/${slug}/form-edit/save`,
+                    {
+                        ...answer,
+                    },
+                    {
+                        headers: {
+                            Authorization: `Bearer ${state.user.token}`,
+                            'Content-Type': 'application/json',
+                            'Access-Control-Allow-Origin': '*',
+                        },
+                    }
+                )
+                .then((res) => {
+                    enqueueSnackbar(res.data.message, {
+                        variant: 'success',
+                    })
+                    next()
+                })
+                .catch((error) => {
+                    enqueueSnackbar(error.response.data.message, {
+                        variant: 'error',
+                    })
+                })
+        }
+    }
+
+    /**
      * Function to decrement step
      */
     const prev = () => {
@@ -210,8 +256,6 @@ const ActivitesRegister = ({
     const checkform = () => {
         const { answer } = input
         let empty = false
-
-        console.log(empty)
 
         // get input element inside form
         const inputs = document?.querySelectorAll('input')
@@ -305,7 +349,12 @@ const ActivitesRegister = ({
                                 currentStep={input.currentStep}
                                 maxStep={maxStep}
                             />
-                            <form className='' onSubmit={handleSubmit}>
+                            <form
+                                className=''
+                                onSubmit={
+                                    answers ? handleSubmitEdit : handleSubmit
+                                }
+                            >
                                 <FirstStep
                                     currentStep={input.currentStep}
                                     questionaire={length}
