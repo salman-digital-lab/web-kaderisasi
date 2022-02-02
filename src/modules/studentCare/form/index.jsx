@@ -167,9 +167,17 @@ const StudentCareModuleForm = ({ name, token }) => {
                                 <option value='Keduanya'>Keduanya</option>
                             </FormSelect>
                         </div>
-                        <div className='text-center mt-10'>
-                            <Button variant='secondary'>Submit</Button>
-                        </div>
+                        {!isSending ? (
+                            <div className='text-center mt-10'>
+                                <Button variant='secondary'>Submit</Button>
+                            </div>
+                        ) : (
+                            <div className='text-center mt-10'>
+                                <Button type='submit' variant='disable'>
+                                    sedang mengirim ......
+                                </Button>
+                            </div>
+                        )}
                     </div>
                 ) : (
                     <div className='text-center'>
