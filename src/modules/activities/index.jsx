@@ -21,10 +21,12 @@ const ActivitiesModule = ({
     const [currentActivityData, setCurrentActivityData] = useState([
         ...activityData,
     ])
+    const [currentPage, setCurrentPage] = useState(1)
 
     const clearFilterHandler = () => {
         setSearchKeyword('')
         setCurrentCategory('')
+        setCurrentPage(1)
         setCurrentActivityData(activityData)
     }
 
@@ -36,13 +38,20 @@ const ActivitiesModule = ({
                     ref={activitiesModuleSearchRef}
                     searchKeyword={searchKeyword}
                     currentCategory={currentCategory}
+                    currentPage={currentPage}
                     setSearchKeyword={setSearchKeyword}
                     setCurrentCategory={setCurrentCategory}
+                    setCurrentPage={setCurrentPage}
+                    setCurrentActivityInfo={setCurrentActivityInfo}
                     activityCategoryData={activityCategoryData}
                     setCurrentActivityData={setCurrentActivityData}
                 />
                 <ActivitiesModuleList
                     activityData={currentActivityData}
+                    searchKeyword={searchKeyword}
+                    currentCategory={currentCategory}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
                     clearFilterHandler={clearFilterHandler}
                     currentActivityInfo={currentActivityInfo}
                     activityCategoryData={activityCategoryData}
