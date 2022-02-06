@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Button } from '@components'
+import { Button, Link } from '@components'
 
 const HomeModuleStudentCare = () => {
     return (
@@ -21,9 +21,9 @@ const HomeModuleStudentCare = () => {
                     <p className='font-bold text-center'>
                         Ayo menuju ruang curhat dan ceritakan masalahmu
                     </p>
-                    <div>
+                    <Link href='/student-care'>
                         <Button variant='secondary'>Lanjutkan</Button>
-                    </div>
+                    </Link>
                 </div>
             </div>
         </div>
