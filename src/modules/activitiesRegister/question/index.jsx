@@ -41,9 +41,20 @@ const Question = ({
                         type: item.type,
                     }
                     if (index >= mulai && index <= akhir) {
-                        if (item.type === 'text' || item.type === 'number') {
+                        if (item.type === 'text') {
                             delete inputProps.type
                             return <FormInput {...inputProps} type='text' />
+                        } else if (item.type === 'number') {
+                            delete inputProps.type
+                            delete inputProps.placeholder
+                            inputProps.label = item.label + ' (Angka)'
+                            return (
+                                <FormInput
+                                    {...inputProps}
+                                    type='text'
+                                    placeholder='Isi dengan angka misal: 1, 15, 3.50'
+                                />
+                            )
                         } else if (item.type === 'scale') {
                             delete inputProps.type
                             return (
