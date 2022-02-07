@@ -94,8 +94,8 @@ const StudentCareModuleForm = ({ name, token }) => {
                         {isSending ? (
                             <div className='flex flex-col items-center justify-center animate-bounce'>
                                 <p className='text-center text-lg font font-semibold'>
-                                    Mengirim curhatanmu... Tunggu sebentar ya.
-                                    Jangan tutup halaman ini.
+                                    Kami sedang mengirimkan curhatanmu, tunggu
+                                    sebentar ya. Jangan tutup halaman ini.
                                 </p>
                             </div>
                         ) : (
