@@ -26,10 +26,9 @@ const ActivitesRegister = ({
     }
     const { enqueueSnackbar } = useSnackbar()
 
+    // if user token exist change message
     const displayMessage =
-        message === 'E_INVALID_JWT_TOKEN: jwt must be provided'
-            ? 'Silahkan login terlebih dahulu'
-            : message
+        state.user.token !== null ? 'Silahkan login terlebih dahulu' : message
 
     const router = useRouter()
     const { slug } = router.query
