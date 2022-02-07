@@ -28,7 +28,9 @@ const ActivitesRegister = ({
 
     // if user token exist change message
     const displayMessage =
-        state.user.token !== null ? 'Silahkan login terlebih dahulu' : message
+        state.user?.token === undefined
+            ? 'Silahkan login terlebih dahulu'
+            : message
 
     const router = useRouter()
     const { slug } = router.query
