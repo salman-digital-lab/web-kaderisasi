@@ -4,12 +4,13 @@ import axios from 'axios'
 import { HomeModule } from '@modules'
 import { PageWrapper } from '@layout'
 
-const index = ({ activity, activityCategory }) => {
+const index = ({ activity, activityCategory, statistics }) => {
     return (
         <PageWrapper title='Home'>
             <HomeModule
                 activityData={activity}
                 activityCategoryData={activityCategory}
+                statistics={statistics}
             />
         </PageWrapper>
     )
@@ -25,12 +26,16 @@ const getStaticProps = async () => {
     const activitiesCategoryResponse = await axios.get(
         `${baseURL}/${baseURLVersion}/activity/categories`
     )
+    const statistics = await axios.get(
+        `${baseURL}/${baseURLVersion}/statistics/homepage`
+    )
 
     return {
         props: {
             revalidate: 10,
             activity: activitiesResponse.data.data.data,
             activityCategory: activitiesCategoryResponse.data.data,
+            statistics: statistics.data.data,
         },
     }
 }
