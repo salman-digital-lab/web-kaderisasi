@@ -10,6 +10,8 @@ const activitiesRegister = ({ form }) => {
     if (form.status === 'SUCCESS') {
         if (form.message === 'Pendaftaran tanpa kuisioner.') {
             length = 0
+        } else if (form.data?.length === undefined) {
+            length = 0
         } else {
             length = form.data.length
         }

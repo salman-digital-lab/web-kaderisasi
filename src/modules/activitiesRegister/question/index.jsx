@@ -41,11 +41,21 @@ const Question = ({
                         type: item.type,
                     }
                     if (index >= mulai && index <= akhir) {
-                        if (item.type === 'text' || item.type === 'number') {
+                        if (item.type === 'text') {
                             delete inputProps.type
                             return <FormInput {...inputProps} type='text' />
-                        }
-                        if (item.type === 'scale') {
+                        } else if (item.type === 'number') {
+                            delete inputProps.type
+                            delete inputProps.placeholder
+                            inputProps.label = item.label + ' (Angka)'
+                            return (
+                                <FormInput
+                                    {...inputProps}
+                                    type='text'
+                                    placeholder='Isi dengan angka misal: 1, 15, 3.50'
+                                />
+                            )
+                        } else if (item.type === 'scale') {
                             delete inputProps.type
                             return (
                                 <FormScale
@@ -55,11 +65,9 @@ const Question = ({
                                     {...inputProps}
                                 />
                             )
-                        }
-                        if (item.type === 'paragraph_text') {
+                        } else if (item.type === 'paragraph_text') {
                             return <FormTextArea {...inputProps} />
-                        }
-                        if (item.type === 'radio') {
+                        } else if (item.type === 'radio') {
                             delete inputProps.key
                             delete inputProps.value
                             delete inputProps.placeholder
@@ -94,8 +102,7 @@ const Question = ({
                                     </div>
                                 </>
                             )
-                        }
-                        if (item.type === 'option') {
+                        } else if (item.type === 'option') {
                             delete inputProps.key
                             delete inputProps.value
                             delete inputProps.type
@@ -140,8 +147,7 @@ const Question = ({
                                     </div>
                                 </>
                             )
-                        }
-                        if (item.type === 'dropdown') {
+                        } else if (item.type === 'dropdown') {
                             delete inputProps.value
                             delete inputProps.type
                             delete inputProps.placeholder

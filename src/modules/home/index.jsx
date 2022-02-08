@@ -7,12 +7,16 @@ import HomeModuleActivity from './activity'
 import HomeModuleStatistics from './statistics'
 import HomeModuleStudentCare from './studentCare'
 
-const HomeModule = ({ activityData, activityCategoryData }) => {
+const HomeModule = ({ activityData, activityCategoryData, statistics }) => {
     return (
         <div>
             <HomeModuleHeader />
             <ComponentWrapper>
-                <HomeModuleStatistics />
+                <HomeModuleStatistics
+                    university={statistics.university_count}
+                    kader={statistics.kader_count}
+                    province={statistics.province_count}
+                />
             </ComponentWrapper>
             <HomeModuleActivity
                 activityData={activityData}

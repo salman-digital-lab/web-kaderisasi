@@ -15,6 +15,10 @@ const ActivitiesModuleList = ({
     activityCategoryData,
     setCurrentActivityData,
     activitiesModuleSearchRef,
+    currentCategory,
+    searchKeyword,
+    setCurrentPage,
+    currentPage,
 }) => {
     const { enqueueSnackbar } = useSnackbar()
 
@@ -24,13 +28,16 @@ const ActivitiesModuleList = ({
         setIsLoading(true)
 
         const { selected } = e
+        setCurrentPage(selected + 1)
 
         const baseURL = process.env.NEXT_PUBLIC_BASE_URL
         const baseURLVersion = process.env.NEXT_PUBLIC_BASE_URL_VERSION
 
         try {
             const response = await axios.get(
-                `${baseURL}/${baseURLVersion}/activity?page=${selected + 1}`
+                `${baseURL}/${baseURLVersion}/activity?category=${currentCategory}&keyword=${searchKeyword}&page=${
+                    selected + 1
+                }`
             )
 
             setCurrentActivityData(response.data.data.data)
@@ -64,6 +71,7 @@ const ActivitiesModuleList = ({
                         previousClassName='font-bold text-bmka-accent-orange'
                         activeLinkClassName='bg-bmka-primary-blue text-white rounded'
                         containerClassName='w-min p-4 flex gap-6 mt-10 mx-auto  rounded'
+                        forcePage={currentPage - 1}
                     />
                 </div>
             ) : (
