@@ -8,6 +8,9 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
 const ActivitiesDetailModuleBannerSlider = ({ images }) => {
+    const imageOnErrorHandler = (e) => {
+        e.target.src = '/assets/image_activities_placeholder.png'
+    }
     return (
         <div className='w-full px-3 slider'>
             <Slider
@@ -24,6 +27,7 @@ const ActivitiesDetailModuleBannerSlider = ({ images }) => {
                     images.map((image) => (
                         <div key={image}>
                             <img
+                                onError={imageOnErrorHandler}
                                 src={image}
                                 alt='Activity Banner'
                                 className='w-full object-contain'
