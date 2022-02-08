@@ -63,7 +63,6 @@ const ActivitesRegister = ({
                 //check if answer can be parsed to JSON or not
                 answers.forEach((answer) => {
                     try {
-                        JSON.parse(answer.answer)
                         initAnswer[answer.id_name] = JSON.parse(answer.answer)
                     } catch (e) {
                         initAnswer[answer.id_name] = answer.answer
@@ -137,7 +136,7 @@ const ActivitesRegister = ({
     }
 
     /**
-     * Function to parse number string answer to number
+     * Function to parse number string answer to number and vice versa
      */
     const parseAnswer = () => {
         const { answer } = input
@@ -153,6 +152,10 @@ const ActivitesRegister = ({
                 questionnaire.find((item) => item.name === key).type === 'scale'
             ) {
                 newAnswer[key] = parseInt(answer[key], 10)
+            } else if (
+                questionnaire.find((item) => item.name === key).type === 'text'
+            ) {
+                newAnswer[key] = toString(answer[key])
             } else {
                 newAnswer[key] = answer[key]
             }
