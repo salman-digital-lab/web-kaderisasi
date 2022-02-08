@@ -4,7 +4,7 @@ const FormScale = ({ label, className, ...props }) => {
     return (
         <div>
             {label && (
-                <p>
+                <p className='font-semibold'>
                     {label}
                     {props.required === true && (
                         <span style={{ color: 'red' }}> *</span>

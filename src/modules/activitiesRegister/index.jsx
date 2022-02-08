@@ -14,14 +14,21 @@ import FirstStep from './firstStep'
 import FinalStep from './finalStep'
 import Question from './question'
 
-const ActivitesRegister = ({ status, message, questionnaire, length }) => {
+const ActivitesRegister = ({
+    status,
+    message,
+    questionnaire,
+    length,
+    answers,
+}) => {
     const state = {
         user: zustandStore((state) => state.user),
     }
     const { enqueueSnackbar } = useSnackbar()
 
+    // if user token exist change message
     const displayMessage =
-        message === 'E_INVALID_JWT_TOKEN: jwt must be provided'
+        state.user?.token === undefined
             ? 'Silahkan login terlebih dahulu'
             : message
 
@@ -36,7 +43,6 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
         maxStep,
         mulai: 0,
         akhir: 2,
-        checkbox: [],
         answer: {},
     })
 
@@ -52,16 +58,30 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
     const setName = () => {
         if (Object.keys(input.answer) <= 0) {
             const initAnswer = {}
-            questionnaire.map((item) => {
-                if (item.type === 'scale') {
-                    const maxScale = parseInt(item.data[0].max, 10)
-                    initAnswer[item.name] = maxScale / 2
-                } else if (item.type === 'dropdown') {
-                    initAnswer[item.name] = item.data[0].value
-                } else {
-                    initAnswer[item.name] = ''
-                }
-            })
+            //  if answer props exist, use answer to init answer
+            if (answers) {
+                //check if answer can be parsed to JSON or not
+                answers.forEach((answer) => {
+                    try {
+                        initAnswer[answer.id_name] = JSON.parse(answer.answer)
+                    } catch (e) {
+                        initAnswer[answer.id_name] = answer.answer
+                    }
+                })
+            } else {
+                questionnaire.map((item) => {
+                    if (item.type === 'scale') {
+                        const maxScale = parseInt(item.data[0].max, 10)
+                        initAnswer[item.name] = maxScale / 2
+                    } else if (item.type === 'dropdown') {
+                        initAnswer[item.name] = item.data[0].value
+                    } else if (item.type === 'checkbox') {
+                        initAnswer[item.name] = []
+                    } else {
+                        initAnswer[item.name] = ''
+                    }
+                })
+            }
             setInput({
                 ...input,
                 answer: { ...initAnswer },
@@ -77,8 +97,8 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
         const { name } = event.target
 
         if (type === 'checkbox') {
-            let newArray = [...input.checkbox, value]
-            if (input.checkbox.includes(value)) {
+            let newArray = [...input.answer[name], value]
+            if (input.answer[name].includes(value)) {
                 newArray = newArray.filter((target) => target !== value)
             }
             setInput({
@@ -116,12 +136,40 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
     }
 
     /**
+     * Function to parse number string answer to number and vice versa
+     */
+    const parseAnswer = () => {
+        const { answer } = input
+        const newAnswer = {}
+        Object.keys(answer).map((key) => {
+            // check if type of question is number
+            if (
+                questionnaire.find((item) => item.name === key).type ===
+                'number'
+            ) {
+                newAnswer[key] = parseFloat(answer[key])
+            } else if (
+                questionnaire.find((item) => item.name === key).type === 'scale'
+            ) {
+                newAnswer[key] = parseInt(answer[key], 10)
+            } else if (
+                questionnaire.find((item) => item.name === key).type === 'text'
+            ) {
+                newAnswer[key] = toString(answer[key])
+            } else {
+                newAnswer[key] = answer[key]
+            }
+        })
+        return newAnswer
+    }
+
+    /**
      * Function to submit form answer
      */
     const handleSubmit = async (event) => {
         event.preventDefault()
         if (input.currentStep === maxStep - 1) {
-            const { answer } = input
+            const answer = parseAnswer()
             enqueueSnackbar('Mengirim data . . .', {
                 variant: 'info',
             })
@@ -146,7 +194,45 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
                     next()
                 })
                 .catch((error) => {
-                    enqueueSnackbar(error.response.data.status, {
+                    enqueueSnackbar(error.response.data.message, {
+                        variant: 'error',
+                    })
+                })
+        }
+    }
+
+    /**
+     * Function to submit edit form answer
+     */
+    const handleSubmitEdit = async (event) => {
+        event.preventDefault()
+        if (input.currentStep === maxStep - 1) {
+            const answer = parseAnswer()
+            enqueueSnackbar('Mengirim data . . .', {
+                variant: 'info',
+            })
+            await axios
+                .put(
+                    `${baseURL}/v1/activity/${slug}/form-edit/save`,
+                    {
+                        ...answer,
+                    },
+                    {
+                        headers: {
+                            Authorization: `Bearer ${state.user.token}`,
+                            'Content-Type': 'application/json',
+                            'Access-Control-Allow-Origin': '*',
+                        },
+                    }
+                )
+                .then((res) => {
+                    enqueueSnackbar(res.data.message, {
+                        variant: 'success',
+                    })
+                    next()
+                })
+                .catch((error) => {
+                    enqueueSnackbar(error.response.data.message, {
                         variant: 'error',
                     })
                 })
@@ -172,20 +258,56 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
      * Function to validate required form is filled or not
      */
     const checkform = () => {
-        let empty = 0
-        // get all the inputs within the submitted form
-        const inputs = document.getElementsByTagName('input')
-        for (let i = 0; i < inputs.length; i += 1) {
-            // only validate the inputs that have the required attribute
-            if (inputs[i].hasAttribute('required')) {
-                if (inputs[i].value === '') {
-                    // found an empty field that is required
-                    empty += 1
-                }
+        const { answer } = input
+        let empty = false
+
+        // get input element inside form
+        const inputs = document?.querySelectorAll('input')
+        // loop over input elements
+        inputs.forEach((input) => {
+            // check if input is empty and if input has required attribute
+            if (input.value === '' && input.hasAttribute('required')) {
+                // add class to input
+                empty = true
             }
-        }
-        if (empty === 0) {
+        })
+
+        // get radio element inside form
+        const radios = document?.querySelectorAll('input[type=radio]')
+        // loop over radio elements
+        radios.forEach((radio) => {
+            //get name of radio
+            const name = radio.getAttribute('name')
+            // check if answer radio is empty
+            if (answer[name] === '' && radio.hasAttribute('required')) {
+                empty = true
+            }
+        })
+
+        // get checkbox based on name
+        const checkboxes = document?.querySelectorAll('input[type=checkbox]')
+
+        // make sure there is at least one checkbox checked
+        checkboxes.forEach((checkbox) => {
+            // get name of checkbox
+            const name = checkbox.getAttribute('name')
+            // check if answer checkbox is empty
+            if (answer[name] === '' && checkbox.hasAttribute('required')) {
+                empty = true
+            }
+
+            //remove attribute if atleast one checkbox is checked
+            if (answer[name].length > 0) {
+                checkbox.removeAttribute('required')
+            }
+        })
+
+        if (empty === false && input.currentStep !== maxStep - 1) {
             next()
+        } else {
+            enqueueSnackbar('Silahkan isi form yang dibutuhkan', {
+                variant: 'error',
+            })
         }
     }
 
@@ -231,7 +353,12 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
                                 currentStep={input.currentStep}
                                 maxStep={maxStep}
                             />
-                            <form className='' onSubmit={handleSubmit}>
+                            <form
+                                className=''
+                                onSubmit={
+                                    answers ? handleSubmitEdit : handleSubmit
+                                }
+                            >
                                 <FirstStep
                                     currentStep={input.currentStep}
                                     questionaire={length}
@@ -277,6 +404,7 @@ const ActivitesRegister = ({ status, message, questionnaire, length }) => {
                                             <Button
                                                 type='submit'
                                                 variant='secondary'
+                                                onClick={checkform}
                                             >
                                                 Kirim Kuesioner
                                             </Button>

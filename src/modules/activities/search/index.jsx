@@ -11,10 +11,13 @@ const ActivitiesModuleSearch = forwardRef(
         {
             searchKeyword,
             currentCategory,
+            currentPage,
             setSearchKeyword,
             setCurrentCategory,
+            setCurrentPage,
             activityCategoryData,
             setCurrentActivityData,
+            setCurrentActivityInfo,
         },
         ref
     ) => {
@@ -24,23 +27,32 @@ const ActivitiesModuleSearch = forwardRef(
             const baseURL = process.env.NEXT_PUBLIC_BASE_URL
             const baseURLVersion = process.env.NEXT_PUBLIC_BASE_URL_VERSION
 
-            const response = await axios.get(
-                `${baseURL}/${baseURLVersion}/activity?category=${currentCategory}&keyword=${searchKeyword}`
-            )
+            try {
+                const response = await axios.get(
+                    `${baseURL}/${baseURLVersion}/activity?category=${currentCategory}&keyword=${searchKeyword}&page=${currentPage}`
+                )
 
-            const { data } = response.data.data
+                const { data } = response.data.data
 
-            setCurrentActivityData(data)
+                setCurrentActivityData(data)
+                setCurrentActivityInfo(response.data.data)
+            } catch {
+                enqueueSnackbar('Failed fetch activity data', {
+                    variant: 'error',
+                })
+            }
         }
 
         const categoryButtonHandler = (category) => {
             setCurrentCategory(category)
+            setCurrentPage(1)
         }
 
         const categorySelectHandler = (e) => {
             const { value } = e.target
 
             setCurrentCategory(value)
+            setCurrentPage(1)
         }
 
         const searchInputHandler = (e) => {

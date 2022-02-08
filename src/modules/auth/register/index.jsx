@@ -41,23 +41,22 @@ const RegisterModule = () => {
             return
         }
 
-        try {
-            const response = await axios.post(
-                `${baseURL}/${baseURLVersion}/account/register`,
-                {
-                    name,
-                    email,
-                    password,
-                    is_subscribing: 1,
+        await axios
+            .post(`${baseURL}/${baseURLVersion}/account/register`, {
+                name,
+                email,
+                password,
+                is_subscribing: 1,
+            })
+            .then((res) => {
+                if (res.status === 200) {
+                    enqueueSnackbar(res.data.message, { variant: 'success' })
                 }
-            )
-
-            enqueueSnackbar(response.data.message, { variant: 'success' })
-
-            router.push('/login')
-        } catch {
-            enqueueSnackbar('Oops! Something wrong.', { variant: 'error' })
-        }
+                router.push('/login')
+            })
+            .catch((err) => {
+                enqueueSnackbar(err.response.data.message, { variant: 'error' })
+            })
     }
 
     const backButtonHandler = () => {

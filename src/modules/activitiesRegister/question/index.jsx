@@ -30,50 +30,48 @@ const Question = ({
                  * Map every JSON questionaire to component
                  */
                 questionnaire.map((item, index) => {
+                    const inputProps = {
+                        key: index,
+                        name: item.name,
+                        label: item.label,
+                        onChange: handleChange,
+                        required: true,
+                        placeholder: item.label,
+                        value: answer[item.name],
+                        type: item.type,
+                    }
                     if (index >= mulai && index <= akhir) {
-                        if (item.type === 'text' || item.type === 'number') {
+                        if (item.type === 'text') {
+                            delete inputProps.type
+                            return <FormInput {...inputProps} type='text' />
+                        } else if (item.type === 'number') {
+                            delete inputProps.type
+                            delete inputProps.placeholder
+                            inputProps.label = item.label + ' (Angka)'
                             return (
                                 <FormInput
-                                    key={index}
-                                    type={item.type}
-                                    placeholder={item.label}
-                                    name={item.name}
-                                    label={item.label}
-                                    value={answer[item.name]}
-                                    onChange={handleChange}
-                                    required={item.required}
+                                    {...inputProps}
+                                    type='text'
+                                    placeholder='Isi dengan angka misal: 1, 15, 3.50'
                                 />
                             )
-                        }
-                        if (item.type === 'scale') {
+                        } else if (item.type === 'scale') {
+                            delete inputProps.type
                             return (
                                 <FormScale
-                                    key={index}
                                     type='range'
-                                    placeholder={item.label}
-                                    label={item.label}
-                                    name={item.name}
                                     min={item.data[0].min}
                                     max={item.data[0].max}
-                                    onChange={handleChange}
-                                    required={item.required}
-                                    value={answer[item.name]}
+                                    {...inputProps}
                                 />
                             )
-                        }
-                        if (item.type === 'paragraph_text') {
-                            return (
-                                <FormTextArea
-                                    key={index}
-                                    name={index}
-                                    label={item.question}
-                                    value={answer[item.name]}
-                                    required={item.required}
-                                    onChange={handleChange}
-                                />
-                            )
-                        }
-                        if (item.type === 'radio') {
+                        } else if (item.type === 'paragraph_text') {
+                            return <FormTextArea {...inputProps} />
+                        } else if (item.type === 'radio') {
+                            delete inputProps.key
+                            delete inputProps.value
+                            delete inputProps.placeholder
+                            delete inputProps.label
                             return (
                                 <>
                                     <div>
@@ -81,26 +79,21 @@ const Question = ({
                                             index2 === 0 ? (
                                                 <FormRadio
                                                     key={index2}
-                                                    type='radio'
-                                                    name={item.name}
                                                     value={element.value}
-                                                    onChange={handleChange}
-                                                    label={item.label}
-                                                    required={item.required}
                                                     checked={
-                                                        answer[item.name] ===
+                                                        answer[item.name] ==
                                                         element.value
                                                     }
+                                                    label={item.label}
+                                                    {...inputProps}
                                                 />
                                             ) : (
                                                 <FormRadio
                                                     key={index2}
-                                                    type='radio'
-                                                    name={item.name}
                                                     value={element.value}
-                                                    onChange={handleChange}
+                                                    {...inputProps}
                                                     checked={
-                                                        answer[item.name] ===
+                                                        answer[item.name] ==
                                                         element.value
                                                     }
                                                 />
@@ -109,8 +102,13 @@ const Question = ({
                                     </div>
                                 </>
                             )
-                        }
-                        if (item.type === 'option') {
+                        } else if (item.type === 'option') {
+                            delete inputProps.key
+                            delete inputProps.value
+                            delete inputProps.type
+                            delete inputProps.placeholder
+                            delete inputProps.label
+
                             return (
                                 <>
                                     <div className=''>
@@ -119,11 +117,9 @@ const Question = ({
                                                 <FormCheckbox
                                                     key={index2}
                                                     type='checkbox'
-                                                    name={item.name}
                                                     value={element.value}
-                                                    onChange={handleChange}
-                                                    required={item.required}
                                                     label={item.label}
+                                                    {...inputProps}
                                                     checked={
                                                         answer[
                                                             item.name
@@ -136,9 +132,8 @@ const Question = ({
                                                 <FormCheckbox
                                                     key={index2}
                                                     type='checkbox'
-                                                    name={item.name}
                                                     value={element.value}
-                                                    onChange={handleChange}
+                                                    {...inputProps}
                                                     checked={
                                                         answer[
                                                             item.name
@@ -152,23 +147,27 @@ const Question = ({
                                     </div>
                                 </>
                             )
-                        }
-                        if (item.type === 'dropdown') {
+                        } else if (item.type === 'dropdown') {
+                            delete inputProps.value
+                            delete inputProps.type
+                            delete inputProps.placeholder
                             return (
                                 <FormSelect
-                                    key={index}
-                                    name={item.name}
-                                    label={item.label}
-                                    onChange={handleChange}
-                                    required={item.required}
+                                    {...inputProps}
+                                    defaultValue={answer[item.name]}
                                 >
+                                    <option
+                                        disabled
+                                        defaultValue
+                                        hidden
+                                        value=''
+                                    >
+                                        {item.label}
+                                    </option>
+
                                     {item.data.map((element, indexOption) => (
                                         <option
                                             value={element.value}
-                                            defaultValue={
-                                                answer[item.name] ===
-                                                element.value
-                                            }
                                             key={indexOption}
                                         >
                                             {element.label}

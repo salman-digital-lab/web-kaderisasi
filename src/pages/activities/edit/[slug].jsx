@@ -5,15 +5,13 @@ import { PageWrapper } from '@layout'
 import { ActivitesRegisterModule } from '@modules'
 import axios from 'axios'
 
-const activitiesRegister = ({ form }) => {
+const activitiesEdit = ({ form }) => {
     let length = 0
     if (form.status === 'SUCCESS') {
         if (form.message === 'Pendaftaran tanpa kuisioner.') {
             length = 0
-        } else if (form.data?.length === undefined) {
-            length = 0
         } else {
-            length = form.data.length
+            length = form.form.length
         }
     } else if (form.status === 'FAILED') {
         length = 0
@@ -25,15 +23,16 @@ const activitiesRegister = ({ form }) => {
                 <ActivitesRegisterModule
                     status={form.status}
                     message={form.message}
-                    questionnaire={form.data}
+                    questionnaire={form.form}
                     length={length}
+                    answers={form.answers}
                 />
             </PageWrapper>
         </>
     )
 }
 
-export default activitiesRegister
+export default activitiesEdit
 
 export async function getServerSideProps(ctx) {
     const { req } = ctx
@@ -42,7 +41,7 @@ export async function getServerSideProps(ctx) {
     const { slug } = ctx.params
 
     const questionnaire = await axios
-        .get(`${baseURL}/v1/activity/${slug}/register`, {
+        .get(`${baseURL}/v1/activity/${slug}/form-edit`, {
             headers: {
                 Authorization: `Bearer ${cookies.user}`,
                 'Content-Type': 'application/json',

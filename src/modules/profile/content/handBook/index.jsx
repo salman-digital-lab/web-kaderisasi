@@ -22,7 +22,10 @@ const ProfileModuleContentHandBook = ({
                 className='mb-10 rounded'
                 style={{ backgroundColor: '#F4FAFC' }}
             >
-                <div className='px-6 py-4 rounded bg-bmka-primary-blue'>
+                <h3 className='font-bold text-gray-500 text-center'>
+                    Coming Soon ...
+                </h3>
+                {/* <div className='px-6 py-4 rounded bg-bmka-primary-blue'>
                     <h3 className='font-bold text-white'>Daftar Misi</h3>
                 </div>
                 <div className='p-4 flex flex-col gap-4'>
@@ -39,7 +42,7 @@ const ProfileModuleContentHandBook = ({
                             />
                         )
                     })}
-                </div>
+                </div> */}
             </div>
         </div>
     )

@@ -12,7 +12,7 @@ const FormSelect = ({
     return (
         <div className={`${fullWidth ? 'w-full' : ''}`}>
             {label && (
-                <p>
+                <p className='font-semibold'>
                     {label}
                     {required === true && (
                         <span style={{ color: 'red' }}> *</span>

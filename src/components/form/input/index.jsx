@@ -4,7 +4,7 @@ const FormInput = ({ label, className, required, fullWidth, ...props }) => {
     return (
         <div className={`${fullWidth ? 'w-full' : ''}`}>
             {label && (
-                <p>
+                <p className='font-semibold'>
                     {label}
                     {required === true && (
                         <span style={{ color: 'red' }}> *</span>
@@ -17,6 +17,7 @@ const FormInput = ({ label, className, required, fullWidth, ...props }) => {
                 } flex gap-2 items-center px-2 py-3 border-2 border-bmka-primary-blue rounded`}
             >
                 <input
+                    required={required}
                     spellCheck='false'
                     className={`w-full outline-none text-base ${
                         className ?? ''

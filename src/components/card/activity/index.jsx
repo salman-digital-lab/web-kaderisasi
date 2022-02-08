@@ -14,7 +14,11 @@ const ActivityCard = ({
     categoryId,
     registerEndDate,
     activityCategoryData,
+    ...props
 }) => {
+    const BASE_URL_ACTIVITY_IMAGE =
+        process.env.NEXT_PUBLIC_BASE_URL_ACTIVITY_IMAGE
+
     const imageOnErrorHandler = (e) => {
         e.target.src = '/assets/image_activities_placeholder.png'
     }
@@ -26,7 +30,7 @@ const ActivityCard = ({
         >
             <div className='flex flex-col gap-4'>
                 <img
-                    src={banner}
+                    src={`${BASE_URL_ACTIVITY_IMAGE}/${banner}`}
                     alt='Activity Banner'
                     onError={imageOnErrorHandler}
                     className='w-full h-48 object-cover rounded'
@@ -38,17 +42,44 @@ const ActivityCard = ({
                         activityCategoryID: categoryId,
                     })}
                 </p>
+                {props?.status && (
+                    <div className='flex gap-1'>
+                        <p className='font-bold'>Status : </p>
+                        <p className='text-bmka-primary-blue font-semibold'>
+                            {props.status}
+                        </p>
+                    </div>
+                )}
             </div>
             <div className='flex flex-col gap-4'>
                 <div>
                     <p className='text-sm'>Untuk {role}</p>
                     <p className='text-sm'>Tutup: {registerEndDate}</p>
                 </div>
-                <Link href={`/activities/${slug}`}>
-                    <Button type='button' className='w-full' variant='primary'>
-                        Lihat
-                    </Button>
-                </Link>
+
+                {/* if props edit exist  */}
+                {props?.edit ? (
+                    <Link href={`/activities/edit/${slug}`}>
+                        <Button
+                            className='bg-bmka-primary-blue text-white font-bold'
+                            type='button'
+                            className='w-full'
+                            variant='primary'
+                        >
+                            Edit Pendaftaran
+                        </Button>
+                    </Link>
+                ) : (
+                    <Link href={`/activities/${slug}`}>
+                        <Button
+                            type='button'
+                            className='w-full'
+                            variant='primary'
+                        >
+                            Lihat
+                        </Button>
+                    </Link>
+                )}
             </div>
         </div>
     )

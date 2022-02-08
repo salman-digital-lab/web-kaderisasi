@@ -8,7 +8,7 @@ import { motion } from 'framer-motion'
 import React, { useState, useEffect } from 'react'
 
 import { zustandStore } from '@services'
-import { ComponentWrapper } from '@components'
+import { ComponentWrapper, Link } from '@components'
 import { BMKAFullIcon, MenuIcon, ArrowRightIcon } from '@assets'
 
 import Route from './route'
@@ -60,9 +60,11 @@ const Navigation = () => {
         >
             <ComponentWrapper>
                 <div className='flex justify-between items-center'>
-                    <div className='flex items-center w-32'>
-                        <BMKAFullIcon />
-                    </div>
+                    <Link href='/'>
+                        <div className='flex items-center w-32'>
+                            <BMKAFullIcon />
+                        </div>
+                    </Link>
                     <div className='hidden md:flex justify-center'>
                         <Route href='/'>Home</Route>
                         <Route href='/activities'>Kegiatan</Route>

@@ -8,6 +8,9 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
 const ActivitiesDetailModuleBannerSlider = ({ images }) => {
+    const imageOnErrorHandler = (e) => {
+        e.target.src = '/assets/image_activities_placeholder.png'
+    }
     return (
         <div className='w-full px-3 slider'>
             <Slider
@@ -20,16 +23,24 @@ const ActivitiesDetailModuleBannerSlider = ({ images }) => {
                 slidesToScroll={1}
                 focusOnSelect={false}
             >
-                {images.map((item) => {
-                    return (
-                        <img
-                            key={item}
-                            src={item}
-                            alt='Banner'
-                            className='w-full object-contain'
-                        />
-                    )
-                })}
+                {images.length > 0 ? (
+                    images.map((image) => (
+                        <div key={image}>
+                            <img
+                                onError={imageOnErrorHandler}
+                                src={image}
+                                alt='Activity Banner'
+                                className='w-full object-contain'
+                            />
+                        </div>
+                    ))
+                ) : (
+                    <img
+                        src='/assets/image_activities_placeholder.png'
+                        alt='Activity Banner'
+                        className='w-full object-contain'
+                    />
+                )}
             </Slider>
         </div>
     )
