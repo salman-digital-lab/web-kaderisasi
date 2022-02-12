@@ -156,6 +156,10 @@ const ActivitesRegister = ({
                 questionnaire.find((item) => item.name === key).type === 'text'
             ) {
                 newAnswer[key] = toString(answer[key])
+            } else if (
+                questionnaire.find((item) => item.name === key).type === 'radio'
+            ) {
+                newAnswer[key] = answer[key].toString()
             } else {
                 newAnswer[key] = answer[key]
             }
