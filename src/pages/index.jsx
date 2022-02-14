@@ -16,7 +16,7 @@ const index = ({ activity, activityCategory, statistics }) => {
     )
 }
 
-const getStaticProps = async () => {
+const getServerSideProps = async () => {
     const baseURL = process.env.NEXT_PUBLIC_BASE_URL
     const baseURLVersion = process.env.NEXT_PUBLIC_BASE_URL_VERSION
 
@@ -32,13 +32,12 @@ const getStaticProps = async () => {
 
     return {
         props: {
-            revalidate: 10,
+            statistics: statistics.data.data,
             activity: activitiesResponse.data.data.data,
             activityCategory: activitiesCategoryResponse.data.data,
-            statistics: statistics.data.data,
         },
     }
 }
 
 export default index
-export { getStaticProps }
+export { getServerSideProps }
