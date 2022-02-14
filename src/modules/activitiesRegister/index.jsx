@@ -113,6 +113,7 @@ const ActivitesRegister = ({
                 answer: { ...input.answer, [name]: parseInt(value, 10) },
             })
         } else {
+            // set answer to input
             setInput({
                 ...input,
                 answer: { ...input.answer, [name]: value },
@@ -152,10 +153,6 @@ const ActivitesRegister = ({
                 questionnaire.find((item) => item.name === key).type === 'scale'
             ) {
                 newAnswer[key] = parseInt(answer[key], 10)
-            } else if (
-                questionnaire.find((item) => item.name === key).type === 'text'
-            ) {
-                newAnswer[key] = toString(answer[key])
             } else if (
                 questionnaire.find((item) => item.name === key).type === 'radio'
             ) {
