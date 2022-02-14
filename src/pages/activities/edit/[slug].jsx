@@ -10,6 +10,8 @@ const activitiesEdit = ({ form }) => {
     if (form.status === 'SUCCESS') {
         if (form.message === 'Pendaftaran tanpa kuisioner.') {
             length = 0
+        } else if (form.form?.length === undefined) {
+            length = 0
         } else {
             length = form.form.length
         }
