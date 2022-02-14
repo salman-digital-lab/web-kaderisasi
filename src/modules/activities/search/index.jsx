@@ -5,6 +5,7 @@ import React, { useRef, useEffect, forwardRef } from 'react'
 
 import { SearchIcon } from '@assets'
 import { Button, FormSelect } from '@components'
+import { useSnackbar } from 'notistack'
 
 const ActivitiesModuleSearch = forwardRef(
     (
@@ -22,6 +23,7 @@ const ActivitiesModuleSearch = forwardRef(
         ref
     ) => {
         const firstRender = useRef(true)
+        const { enqueueSnackbar } = useSnackbar()
 
         const updateActivityData = async () => {
             const baseURL = process.env.NEXT_PUBLIC_BASE_URL
@@ -40,6 +42,7 @@ const ActivitiesModuleSearch = forwardRef(
                 enqueueSnackbar('Failed fetch activity data', {
                     variant: 'error',
                 })
+                setCurrentActivityData([])
             }
         }
 
