@@ -113,6 +113,7 @@ const ActivitesRegister = ({
                 answer: { ...input.answer, [name]: parseInt(value, 10) },
             })
         } else {
+            // set answer to input
             setInput({
                 ...input,
                 answer: { ...input.answer, [name]: value },
@@ -155,7 +156,16 @@ const ActivitesRegister = ({
             } else if (
                 questionnaire.find((item) => item.name === key).type === 'text'
             ) {
-                newAnswer[key] = toString(answer[key])
+                // check if typeof answer is string
+                if (typeof answer[key] === 'string') {
+                    newAnswer[key] = answer[key]
+                } else {
+                    newAnswer[key] = answer[key].toString()
+                }
+            } else if (
+                questionnaire.find((item) => item.name === key).type === 'radio'
+            ) {
+                newAnswer[key] = answer[key].toString()
             } else {
                 newAnswer[key] = answer[key]
             }
@@ -260,6 +270,7 @@ const ActivitesRegister = ({
     const checkform = () => {
         const { answer } = input
         let empty = false
+        let message = 'Silahkan isi form yang dibutuhkan'
 
         // get input element inside form
         const inputs = document?.querySelectorAll('input')
@@ -269,6 +280,22 @@ const ActivitesRegister = ({
             if (input.value === '' && input.hasAttribute('required')) {
                 // add class to input
                 empty = true
+            }
+            // check if answer type is number
+            if (
+                questionnaire.find((item) => item.name === input.name).type ===
+                'number'
+            ) {
+                // check if answer is not number or float
+                if (isNaN(parseInt(input.value, 10))) {
+                    //get item label from questionnaire
+                    const label = questionnaire.find(
+                        (item) => item.name === input.name
+                    ).label
+
+                    empty = true
+                    message = "Jawaban pertanyaan '" + label + "' harus angka"
+                }
             }
         })
 
@@ -304,8 +331,8 @@ const ActivitesRegister = ({
 
         if (empty === false && input.currentStep !== maxStep - 1) {
             next()
-        } else {
-            enqueueSnackbar('Silahkan isi form yang dibutuhkan', {
+        } else if (empty) {
+            enqueueSnackbar(message, {
                 variant: 'error',
             })
         }
