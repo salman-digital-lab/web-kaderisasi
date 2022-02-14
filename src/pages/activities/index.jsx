@@ -16,7 +16,7 @@ const activities = ({ activity, activityInfo, activityCategory }) => {
     )
 }
 
-const getStaticProps = async () => {
+const getServerSideProps = async () => {
     const baseURL = process.env.NEXT_PUBLIC_BASE_URL
     const baseURLVersion = process.env.NEXT_PUBLIC_BASE_URL_VERSION
 
@@ -38,4 +38,4 @@ const getStaticProps = async () => {
 }
 
 export default activities
-export { getStaticProps }
+export { getServerSideProps }
