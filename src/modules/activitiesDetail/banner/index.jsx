@@ -19,7 +19,7 @@ const ActivitiesDetailModuleBanner = ({
             <div className='w-full px-4 py-10 shadow-level-1 overflow-hidden rounded'>
                 <ActivitiesDetailModuleBannerSlider images={images} />
             </div>
-            <div className='w-full flex justify-between mt-6'>
+            <div className='w-full flex flex-col gap-4 mt-6 sm:justify-between sm:flex-row'>
                 <div>
                     <p className='text-gray-500 text-sm'>Kategori</p>
                     <p className='text-lg font-bold text-bmka-primary-blue'>
