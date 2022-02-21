@@ -61,18 +61,21 @@ const ActivitiesModuleList = ({
                         activityData={activityData}
                         activityCategoryData={activityCategoryData}
                     />
-                    <ReactPaginate
-                        breakLabel='...'
-                        pageRangeDisplayed={3}
-                        onPageChange={pageChangeHandler}
-                        pageCount={currentActivityInfo.lastPage}
-                        pageLinkClassName='py-2 px-3 rounded'
-                        nextClassName='font-bold text-bmka-accent-orange'
-                        previousClassName='font-bold text-bmka-accent-orange'
-                        activeLinkClassName='bg-bmka-primary-blue text-white rounded'
-                        containerClassName='w-min p-4 flex gap-6 mt-10 mx-auto  rounded'
-                        forcePage={currentPage - 1}
-                    />
+                    <div className='w-full flex justify-center'>
+                        <ReactPaginate
+                            breakLabel='...'
+                            pageRangeDisplayed={1}
+                            marginPagesDisplayed={1}
+                            onPageChange={pageChangeHandler}
+                            pageCount={currentActivityInfo.lastPage}
+                            pageLinkClassName='py-2 px-3 rounded'
+                            nextClassName='font-bold text-bmka-accent-orange'
+                            previousClassName='font-bold text-bmka-accent-orange'
+                            activeLinkClassName='bg-bmka-primary-blue text-white rounded'
+                            containerClassName='p-4 flex gap-6 mt-10 mx-auto rounded'
+                            forcePage={currentPage - 1}
+                        />
+                    </div>
                 </div>
             ) : (
                 <div className='w-full py-28'>
