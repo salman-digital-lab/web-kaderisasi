@@ -15,6 +15,20 @@ import Route from './route'
 
 const Navigation = () => {
     const [isActive, setIsActive] = useState(false)
+    const [productChild] = useState([
+        {
+            name: 'Leaderboard',
+            url: 'https://leaderboard.salmanitb.com/',
+        },
+        {
+            name: 'Inventra',
+            url: 'https://inventra.salmanitb.com/',
+        },
+        {
+            name: 'Unit Salman',
+            url: 'https://ohu.salmanitb.com/',
+        },
+    ])
 
     const state = {
         user: zustandStore((state) => state.user),
@@ -70,6 +84,7 @@ const Navigation = () => {
                         <Route href='/activities'>Kegiatan</Route>
                         <Route href='/student-care'>Ruang Curhat</Route>
                         <Route href='/about-us'>Tentang Kami</Route>
+                        <Route child={productChild}>Products</Route>
                     </div>
                     <div className='hidden md:flex justify-center items-center'>
                         {!state.user ? (

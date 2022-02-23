@@ -34,3 +34,7 @@
         height: 30vw;
     }
 }
+
+.css-uwcd5u.SnackbarContainer-bottom {
+    bottom: 80px !important;
+}
