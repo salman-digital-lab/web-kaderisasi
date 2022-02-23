@@ -7,7 +7,7 @@ import Link from 'next/link'
 const link = ({ href, children, external }) => {
     if (external) {
         return (
-            <a href={href} target='_blank'>
+            <a href={href} rel='noopener noreferrer' target='_blank'>
                 {children}
             </a>
         )

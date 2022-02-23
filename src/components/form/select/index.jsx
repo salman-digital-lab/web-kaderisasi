@@ -25,7 +25,7 @@ const FormSelect = ({
                 } flex gap-2 items-center px-2 py-3 border-2 border-bmka-primary-blue rounded`}
             >
                 <select
-                    className={`w-full outline-none text-base ${
+                    className={`w-full outline-none text-base bg-white ${
                         className ?? ''
                     }`}
                     {...props}
