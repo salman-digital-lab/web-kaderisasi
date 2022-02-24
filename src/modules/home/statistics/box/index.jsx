@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import { animate } from 'framer-motion'
+// import { animate } from 'framer-motion'
 
 const Box = ({ number, title }) => {
     //animation
@@ -7,21 +7,23 @@ const Box = ({ number, title }) => {
         const ref = useRef()
 
         useEffect(() => {
-            const controls = animate(from, to, {
-                duration: 5,
-                onUpdate(value) {
-                    //remove .0 from number
-                    ref.current.textContent = value.toFixed(0)
-                },
-            })
-            return () => controls.stop()
+            // const controls = animate(from, to, {
+            //     duration: 5,
+            //     onUpdate(value) {
+            //         //remove .0 from number
+            //         ref.current.textContent = value.toFixed(0)
+            //     },
+            // })
+            // return () => controls.stop()
         }, [from, to])
 
         return (
             <p
                 className='text-3xl text-bmka-accent-orange font-extrabold'
                 ref={ref}
-            />
+            >
+                {number}
+            </p>
         )
     }
     return (
