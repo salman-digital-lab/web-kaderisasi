@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { BMKAActivitiesIcon } from '@assets'
-import { Button, Jumbotron } from '@components'
+import { Link, Button, Jumbotron } from '@components'
 
 const ActivitiesModuleHeader = () => {
     return (
@@ -21,7 +21,11 @@ const ActivitiesModuleHeader = () => {
                             kaderisasi, pelatihan, keasramaan dan lain-lain.
                         </p>
                         <div className='mx-auto md:mx-0'>
-                            <Button variant='primary'>Cari Kegiatan</Button>
+                            <Link href='/regeneration-flow'>
+                                <Button type='button' variant='primary'>
+                                    Alur Kaderisasi
+                                </Button>
+                            </Link>
                         </div>
                     </div>
                 </div>
