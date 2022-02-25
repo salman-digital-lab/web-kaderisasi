@@ -10,11 +10,8 @@ const HomeModuleHeader = () => {
                 <div className='flex items-center'>
                     <div className='max-w-xl flex flex-col gap-6'>
                         <div className='flex flex-col gap-4'>
-                            <h1 className='text-white text-center md:text-left'>
-                                Selamat Datang di
-                            </h1>
-                            <h1 className='text-white text-center md:text-left'>
-                                Kaderisasi Salman ITB
+                            <h1 className='text-white text-center leading-tight md:text-left'>
+                                Selamat Datang di Kaderisasi Salman ITB
                             </h1>
                         </div>
                         <p className='text-white text-center md:text-left'>

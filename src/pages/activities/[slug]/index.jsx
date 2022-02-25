@@ -2,7 +2,6 @@
 
 import React from 'react'
 import axios from 'axios'
-import { useRouter } from 'next/router'
 
 import { PageWrapper } from '@layout'
 import { ActivitiesDetailModule } from '@modules'
@@ -12,11 +11,8 @@ const activitiesDetail = ({
     activityCategory,
     activityDetailData,
 }) => {
-    const router = useRouter()
-    const { slug } = router.query
-
     return (
-        <PageWrapper title={slug}>
+        <PageWrapper title={activityDetailData.name}>
             <ActivitiesDetailModule
                 activityList={activityList}
                 activityCategory={activityCategory}

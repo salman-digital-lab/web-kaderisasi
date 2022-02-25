@@ -44,8 +44,8 @@ const ProfileModuleContentPersonalDataContact = ({
                 onChange={formOnChangeHandler}
                 value={formData.is_subscribing}
             >
-                <option value='0'>Subscribe</option>
-                <option value='1'>Unsubscribe</option>
+                <option value='0'>Unsubscribe</option>
+                <option value='1'>Subscribe</option>
             </FormSelect>
         </ProfileModuleContentPersonalDataCard>
     )

@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { BMKAActivitiesIcon } from '@assets'
-import { Button, Jumbotron } from '@components'
+import { Link, Button, Jumbotron } from '@components'
 
 const ActivitiesModuleHeader = () => {
     return (
@@ -10,11 +10,8 @@ const ActivitiesModuleHeader = () => {
                 <div className='flex items-center'>
                     <div className='max-w-xl flex flex-col gap-6'>
                         <div className='flex flex-col gap-4'>
-                            <h1 className='text-white text-center md:text-left'>
-                                Ayo Daftar Kegiatan di
-                            </h1>
-                            <h1 className='text-white text-center md:text-left'>
-                                Kaderisasi Salman ITB
+                            <h1 className='text-white text-center leading-tight md:text-left'>
+                                Ayo Daftar Kegiatan di Kaderisasi Salman ITB
                             </h1>
                         </div>
                         <p className='text-white text-center md:text-left'>
@@ -24,7 +21,11 @@ const ActivitiesModuleHeader = () => {
                             kaderisasi, pelatihan, keasramaan dan lain-lain.
                         </p>
                         <div className='mx-auto md:mx-0'>
-                            <Button variant='primary'>Cari Kegiatan</Button>
+                            <Link href='/regeneration-flow'>
+                                <Button type='button' variant='primary'>
+                                    Alur Kaderisasi
+                                </Button>
+                            </Link>
                         </div>
                     </div>
                 </div>

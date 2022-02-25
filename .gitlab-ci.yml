@@ -12,4 +12,4 @@ integration-testing:
         - yarn
 
         # run Cypress tests
-        - yarn run e2e:headless
+        # - yarn run e2e:headless
