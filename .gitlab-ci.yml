@@ -9,7 +9,7 @@ integration-testing:
         - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "dev"'
     script:
         # install dependencies
-        - yarn
+        # - yarn
 
         # run Cypress tests
         # - yarn run e2e:headless
