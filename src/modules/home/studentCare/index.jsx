@@ -10,10 +10,11 @@ const HomeModuleStudentCare = () => {
                     Ruang Curhat
                 </p>
                 <p className='text-white max-w-lg my-4 md:my-0'>
-                    Ruang Curhat adalah layanan pengajuan dan pendampingan
-                    masalah untuk aktivis Salman ITB. Kamu akan ditemani
-                    langsung oleh tim Kaderisasi Salman yang berlatar belakang
-                    Psikologi dan Psikoterapi.
+                    Ruang Curhat merupakan layanan konseling sebaya yang
+                    diberikan oleh sesama aktivis salman. Aktivis salman yang
+                    akan membersamai kamu, sudah mendapatkan pelatihan dan
+                    bekal-bekal pengetahuan psikologi praktis untuk menjadi
+                    seorang konselor lho.
                 </p>
             </div>
             <div className='mx-14 px-4 py-6 bg-white rounded-lg transform -translate-y-10 shadow-level-1'>
