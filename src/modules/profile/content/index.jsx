@@ -3,7 +3,7 @@
 
 import axios from 'axios'
 import { useSnackbar } from 'notistack'
-import React, { useState, useEffect } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 
 import { zustandStore } from '@services'
 
@@ -26,6 +26,8 @@ const ProfileModuleContent = ({
         activities: 'activities',
     }
 
+    const firstRender = useRef(true)
+
     const { enqueueSnackbar } = useSnackbar()
 
     const state = {
@@ -40,7 +42,32 @@ const ProfileModuleContent = ({
     const [listChecklist, setListChecklist] = useState([])
     const [userChecklist, setUserChecklist] = useState([])
     const [userActivities, setUserActivities] = useState([])
+    const [isLoadingRegion, setIsLoadingRegion] = useState(true)
     const [formData, setFormData] = useState({ ...state.user })
+
+    const getRegencyData = async (id) => {
+        const response = await axios.get(
+            `${baseURL}/${baseURLVersion}/regions/regencies/${id}`
+        )
+
+        return await response.data.data
+    }
+
+    const getDistrictData = async (id) => {
+        const response = await axios.get(
+            `${baseURL}/${baseURLVersion}/regions/districts/${id}`
+        )
+
+        return await response.data.data
+    }
+
+    const getVillageData = async (id) => {
+        const response = await axios.get(
+            `${baseURL}/${baseURLVersion}/regions/villages/${id}`
+        )
+
+        return await response.data.data
+    }
 
     useEffect(async () => {
         try {
@@ -83,56 +110,118 @@ const ProfileModuleContent = ({
         }
     }, [])
 
-    // get regencies data
     useEffect(async () => {
-        if (!formData.province_id) {
+        const { province_id, regency_id, district_id } = formData
+
+        try {
+            if (province_id) {
+                const regencyResponse = await getRegencyData(province_id)
+
+                setRegencyData([...regencyResponse])
+            }
+
+            if (regency_id) {
+                const districtResponse = await getDistrictData(regency_id)
+
+                setDistrictData([...districtResponse])
+            }
+
+            if (district_id) {
+                const villageResponse = await getVillageData(district_id)
+
+                setVillageData([...villageResponse])
+            }
+        } catch (error) {
+            enqueueSnackbar('Error getting region data', { variant: 'error' })
+        }
+    }, [])
+
+    // Province Change Listener
+    useEffect(async () => {
+        const { province_id } = formData
+
+        if (firstRender.current) {
             return
         }
 
         try {
-            const response = await axios.get(
-                `${baseURL}/${baseURLVersion}/regions/regencies/${formData.province_id}`
+            const regencyResponse = await getRegencyData(province_id)
+            const districtResponse = await getDistrictData(
+                regencyResponse[0].id
             )
+            const villageResponse = await getVillageData(districtResponse[0].id)
 
-            setRegencyData(response.data.data)
-        } catch {
-            enqueueSnackbar('Failed to get region data', { variant: 'error' })
+            setFormData({
+                ...formData,
+                regency_id: regencyResponse[0].id,
+                district_id: districtResponse[0].id,
+                village_id: villageResponse[0].id,
+            })
+
+            setRegencyData([...regencyResponse])
+            setDistrictData([...districtResponse])
+            setVillageData([...villageResponse])
+        } catch (error) {
+            enqueueSnackbar('Error getting region data', { variant: 'error' })
         }
     }, [formData.province_id])
 
-    // get district data
+    // Regency Change Listerner
     useEffect(async () => {
-        if (!formData.regency_id) {
+        const { regency_id } = formData
+
+        if (firstRender.current) {
             return
         }
 
         try {
-            const response = await axios.get(
-                `${baseURL}/${baseURLVersion}/regions/districts/${formData.regency_id}`
-            )
+            const districtResponse = await getDistrictData(regency_id)
+            const villageResponse = await getVillageData(districtResponse[0].id)
 
-            setDistrictData(response.data.data)
-        } catch {
-            enqueueSnackbar('Failed to get region data', { variant: 'error' })
+            setFormData({
+                ...formData,
+                district_id: districtResponse[0].id,
+                village_id: villageResponse[0].id,
+            })
+
+            setDistrictData([...districtResponse])
+            setVillageData([...villageResponse])
+        } catch (error) {
+            enqueueSnackbar('Error getting region data', { variant: 'error' })
         }
     }, [formData.regency_id])
 
-    // get village data
+    // Village Change Listener
     useEffect(async () => {
-        if (!formData.district_id) {
+        const { district_id } = formData
+
+        if (firstRender.current) {
             return
         }
 
         try {
-            const response = await axios.get(
-                `${baseURL}/${baseURLVersion}/regions/villages/${formData.district_id}`
-            )
+            const villageResponse = await getVillageData(district_id)
 
-            setVillageData(response.data.data)
-        } catch {
-            enqueueSnackbar('Failed to get region data', { variant: 'error' })
+            setFormData({
+                ...formData,
+                village_id: villageResponse[0].id,
+            })
+
+            setVillageData([...villageResponse])
+        } catch (error) {
+            enqueueSnackbar('Error getting region data', { variant: 'error' })
         }
     }, [formData.district_id])
+
+    useEffect(() => {
+        if (firstRender.current) {
+            firstRender.current = false
+        }
+    })
+
+    useEffect(() => {
+        console.log(formData)
+    }, [formData])
 
     return (
         <div className='w-full'>
