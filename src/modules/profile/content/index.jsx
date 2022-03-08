@@ -219,10 +219,6 @@ const ProfileModuleContent = ({
         }
     })
 
-    useEffect(() => {
-        console.log(formData)
-    }, [formData])
-
     return (
         <div className='w-full'>
             <div className='flex justify-center'>
