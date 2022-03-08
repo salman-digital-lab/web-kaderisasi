@@ -1,10 +1,16 @@
+// eslint-disable-next-line react/no-danger
+
 import React from 'react'
 import { Button, Link } from '@components'
 import { useRouter } from 'next/router'
 import { sanitize } from '@utils'
 
+import styles from './styles.module.css'
+
 const ActivitiesDetailModuleContent = ({ description }) => {
     const router = useRouter()
+
+    console.log(description)
 
     return (
         <div className='w-full flex flex-col md:flex-row gap-4 justify-center'>
@@ -14,7 +20,7 @@ const ActivitiesDetailModuleContent = ({ description }) => {
                 </h2>
                 {description ? (
                     <div
-                        // eslint-disable-next-line react/no-danger
+                        className={styles.description}
                         dangerouslySetInnerHTML={{
                             __html: sanitize(description),
                         }}

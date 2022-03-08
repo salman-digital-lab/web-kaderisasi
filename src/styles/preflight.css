@@ -5,11 +5,21 @@
         @apply text-5xl;
         @apply font-bold;
     }
+
     h2 {
         @apply text-3xl;
     }
+
     h3 {
         @apply text-2xl;
+    }
+
+    ul > li {
+        @apply list-disc ml-10;
+    }
+
+    ol > li {
+        @apply list-decimal ml-10;
     }
 }
 

@@ -1,0 +1,7 @@
+.description {
+    white-space: pre-line;
+}
+
+.description > li {
+    list-style: circle;
+}
