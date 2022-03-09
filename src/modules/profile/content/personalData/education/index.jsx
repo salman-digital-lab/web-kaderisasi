@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { FormInput, FormSelect } from '@components'
+import { FormInput, FormSelect, FormDatalist } from '@components'
 
 import ProfileModuleContentPersonalDataCard from '../card'
 
@@ -9,6 +9,9 @@ const ProfileModuleContentPersonalDataEducation = ({
     educationList,
     formOnChangeHandler,
 }) => {
+    let educationName = educationList.find(
+        (education) => education.id == formData.university_id
+    )
     return (
         <ProfileModuleContentPersonalDataCard>
             <FormInput
@@ -20,12 +23,13 @@ const ProfileModuleContentPersonalDataEducation = ({
                 placeholder='-- Ketikkan nomor induk mahasiswa --'
                 required
             />
-            <FormSelect
+            <FormDatalist
                 label='Kampus'
                 name='university_id'
-                value={formData.university_id}
+                defaultValue={formData.university_id}
                 onChange={formOnChangeHandler}
                 placeholder='-- Pilih kampus anda --'
+                campusName={educationName?.name}
                 required
             >
                 {educationList.map((item) => {
@@ -35,7 +39,7 @@ const ProfileModuleContentPersonalDataEducation = ({
                         </option>
                     )
                 })}
-            </FormSelect>
+            </FormDatalist>
             <FormInput
                 type='text'
                 name='faculty'
