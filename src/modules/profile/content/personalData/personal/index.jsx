@@ -24,7 +24,7 @@ const ProfileModuleContentPersonalDataPersonal = ({
             <FormSelect
                 name='gender'
                 label='Jenis Kelamin'
-                value={formData.gender}
+                value={formData.gender ?? ''}
                 onChange={formOnChangeHandler}
                 placeholder='-- Pilih Jenis Kelamin --'
                 required
