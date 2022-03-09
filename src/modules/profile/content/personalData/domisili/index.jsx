@@ -17,7 +17,7 @@ const ProfileModuleContentPersonalDataDomisili = ({
             <FormSelect
                 label='Provinsi'
                 name='province_id'
-                value={formData.province_id}
+                value={formData.province_id ?? ''}
                 onChange={formOnChangeHandler}
                 placeholder='-- Pilih provinsi --'
                 required
@@ -33,7 +33,7 @@ const ProfileModuleContentPersonalDataDomisili = ({
             <FormSelect
                 label='Kota'
                 name='regency_id'
-                value={formData.regency_id}
+                value={formData.regency_id ?? ''}
                 onChange={formOnChangeHandler}
                 placeholder='-- Pilih Kota --'
                 required
@@ -49,7 +49,7 @@ const ProfileModuleContentPersonalDataDomisili = ({
             <FormSelect
                 label='Kecamatan'
                 name='district_id'
-                value={formData.district_id}
+                value={formData.district_id ?? ''}
                 onChange={formOnChangeHandler}
                 placeholder='-- Pilih Kecamatan --'
                 required
@@ -65,7 +65,7 @@ const ProfileModuleContentPersonalDataDomisili = ({
             <FormSelect
                 name='village_id'
                 label='Kelurahan'
-                value={formData.village_id}
+                value={formData.village_id ?? ''}
                 onChange={formOnChangeHandler}
                 placeholder='-- Pilih Kelurahan --'
                 required
