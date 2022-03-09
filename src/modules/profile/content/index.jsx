@@ -217,7 +217,7 @@ const ProfileModuleContent = ({
         if (firstRender.current) {
             firstRender.current = false
         }
-    })
+    }, [])
 
     return (
         <div className='w-full'>
