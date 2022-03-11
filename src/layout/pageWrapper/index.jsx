@@ -5,8 +5,21 @@ import { Head, Footer, Navigation } from '@layout'
 import TawkTo from 'tawkto-react'
 
 const PageWrapper = ({ title, children, plain }) => {
+    const tawktoID = process.env.NEXT_PUBLIC_TAWKTO_ID
+    const sleekplanID = process.env.NEXT_PUBLIC_SLEEKPLAN_ID
+
     useEffect(() => {
-        var tawk = new TawkTo('5e36a790a89cda5a1883af2f', 'default')
+        var tawk = new TawkTo(tawktoID, 'default')
+
+        window.$sleek = []
+        window.SLEEK_PRODUCT_ID = sleekplanID
+        ;(function () {
+            let d = document
+            let s = d.createElement('script')
+            s.src = 'https://client.sleekplan.com/sdk/e.js'
+            s.async = 1
+            d.getElementsByTagName('head')[0].appendChild(s)
+        })()
     }, [])
     return (
         <>
