@@ -6,19 +6,19 @@
         @apply font-bold;
     }
 
-    h2 {
+    .activityDescription > h2 {
         @apply text-3xl;
     }
 
-    h3 {
+    .activityDescription > h3 {
         @apply text-2xl;
     }
 
-    ul > li {
+    .activityDescription > ul > li {
         @apply list-disc ml-10;
     }
 
-    ol > li {
+    .activityDescription > ol > li {
         @apply list-decimal ml-10;
     }
 }
