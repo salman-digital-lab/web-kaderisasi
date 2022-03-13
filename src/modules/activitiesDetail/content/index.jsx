@@ -5,8 +5,6 @@ import { Button, Link } from '@components'
 import { useRouter } from 'next/router'
 import { sanitize } from '@utils'
 
-import styles from './styles.module.css'
-
 const ActivitiesDetailModuleContent = ({ description }) => {
     const router = useRouter()
 
@@ -20,7 +18,7 @@ const ActivitiesDetailModuleContent = ({ description }) => {
                 </h2>
                 {description ? (
                     <div
-                        className={styles.description}
+                        className='activityDescription'
                         dangerouslySetInnerHTML={{
                             __html: sanitize(description),
                         }}
