@@ -15,7 +15,7 @@ const FormRadio = ({ label, className, ...props }) => {
             <input {...props} />
 
             <label className='ml-1' htmlFor={props.value}>
-                {props.value}
+                {props.value.replace(/_/g, ' ')}
             </label>
         </div>
     )
