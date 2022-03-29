@@ -6,7 +6,7 @@ build:
     stage: build
     rules:
         # Only trigger when target merge request branch name is dev
-        - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "dev"'
+        - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main"'
     script:
         # install dependencies
         - yarn
@@ -16,4 +16,4 @@ build:
 
     artifacts:
         paths:
-            - ./next
+            - ./.next
