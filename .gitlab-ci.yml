@@ -1,9 +1,9 @@
 stages:
-    - test
+    - build
 
-integration-testing:
-    image: cypress/browsers:node16.13.0-chrome95-ff94
-    stage: test
+build:
+    image: node:latest
+    stage: build
     rules:
         # Only trigger when target merge request branch name is dev
         - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "dev"'
@@ -11,5 +11,9 @@ integration-testing:
         # install dependencies
         - yarn
 
-        # run Cypress tests
-        # - yarn run e2e:headless
+        # build
+        - yarn run build
+
+    artifacts:
+        paths:
+            - ./next
