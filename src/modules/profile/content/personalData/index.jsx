@@ -1,6 +1,6 @@
 /* eslint-disable no-shadow */
 
-import React from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import cookies from 'js-cookie'
 import { useSnackbar } from 'notistack'
@@ -25,6 +25,8 @@ const ProfileModuleContentPersonalData = ({
     const state = {
         setUser: zustandStore((state) => state.setUser),
     }
+
+    const [options, setOptions] = useState([])
 
     const { enqueueSnackbar } = useSnackbar()
 
@@ -57,6 +59,11 @@ const ProfileModuleContentPersonalData = ({
 
     const formOnChangeHandler = (e) => {
         const { name, value } = e.target
+        setOptions(
+            educationList.filter((item) =>
+                item.name.toLowerCase().includes(value)
+            )
+        )
 
         setFormData({
             ...formData,
@@ -94,7 +101,7 @@ const ProfileModuleContentPersonalData = ({
                     </ProfileModuleContentPersonalDataTitle>
                     <ProfileModuleContentPersonalDataEducation
                         formData={formData}
-                        educationList={educationList}
+                        educationList={options}
                         formOnChangeHandler={formOnChangeHandler}
                     />
                 </div>

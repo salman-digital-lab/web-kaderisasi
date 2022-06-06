@@ -1,6 +1,7 @@
 import React from 'react'
+import Downshift from 'downshift'
 
-const FormDatalist = ({
+const FormDropdown = ({
     label,
     children,
     required,
@@ -27,38 +28,31 @@ const FormDatalist = ({
             <div
                 className={`${
                     fullWidth ? 'w-full' : ''
-                } flex gap-2 items-center px-2 py-3 border-2 border-bmka-primary-blue rounded`}
+                } flex flex-col gap-2 items-center px-2 py-3 border-2 border-bmka-primary-blue rounded`}
             >
                 <input
-                    list='datalist'
-                    className='w-full outline-none text-base bg-white '
-                    onChange={onChange}
+                    type='text'
+                    className='outline-none text-base bg-blue-100 '
                     name={name}
-                    value={campusName}
+                    defaultValue={campusName || ''}
+                    onChange={onChange}
                 />
-                <datalist
-                    className={`w-full outline-none text-base bg-white ${
-                        className ?? ''
-                    }`}
-                    id='datalist'
-                    {...props}
-                >
-                    {placeholder && (
-                        <option value='' disabled>
-                            {placeholder}
-                        </option>
-                    )}
+                <ul className='absolute max-w-sm mt-10 ml-20 bg-white border-2 border-bmka-primary-blue rounded'>
                     {options.map((item) => {
                         return (
-                            <option key={item.id} value={item.id}>
+                            <button
+                                key={item.id}
+                                className=' border-b-2 text-left outline-none text-sm bg-white hover:bg-blue-100 '
+                                type='button'
+                            >
                                 {item.name}
-                            </option>
+                            </button>
                         )
                     })}
-                </datalist>
+                </ul>
             </div>
         </div>
     )
 }
 
-export default FormDatalist
+export default FormDropdown
