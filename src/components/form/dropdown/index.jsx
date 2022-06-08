@@ -21,16 +21,25 @@ const FormDropdown = ({
     const [isOpen, setIsOpen] = useState(false)
 
     const handleInputType = (input) => {
-        setData(
-            options.filter((item) =>
-                item.name.toLowerCase().includes(input.target.value)
-            )
+        let filteredData = options.filter((item) =>
+            item.name.toLowerCase().includes(input.target.value)
         )
+        setData(filteredData)
+        setIsOpen(true)
     }
 
     const handleClick = (e, selected) => {
+        console.log(e)
         inputRef.current.value = selected.name
         onChange(e)
+    }
+
+    const handleBlur = () => {
+        if (isOpen) {
+            setTimeout(() => {
+                setIsOpen(false)
+            }, 100)
+        }
     }
 
     return (
@@ -49,20 +58,21 @@ const FormDropdown = ({
                 } flex flex-col gap-2 items-center px-2 py-3 border-2 border-bmka-primary-blue rounded`}
             >
                 <input
-                    className={`group w-full outline-none text-base focus:bg-red-100`}
+                    className={`group w-full outline-none text-base`}
                     type='text'
                     ref={inputRef}
                     name={name}
                     defaultValue={defaultName || ''}
+                    placeholder={placeholder}
                     onChange={handleInputType}
-                    onClick={() => setIsOpen(true)}
+                    // onClick={() => (inputRef.current.value = '')}
+                    onBlur={handleBlur}
                     {...props}
                 />
-
                 {isOpen ? (
                     <ul
                         className='absolute max-w-sm mt-10 ml-15 bg-white border-2 border-bmka-primary-blue rounded group-focus:bg-red-300'
-                        onClick={() => setIsOpen(false)}
+                        // onClick={() => setIsOpen(false)}
                     >
                         {data.length > 0
                             ? data.map((item) => {
