@@ -26,8 +26,6 @@ const ProfileModuleContentPersonalData = ({
         setUser: zustandStore((state) => state.setUser),
     }
 
-    const [options, setOptions] = useState([])
-
     const { enqueueSnackbar } = useSnackbar()
 
     const formSubmitHandler = async (e) => {
@@ -50,7 +48,6 @@ const ProfileModuleContentPersonalData = ({
                     },
                 }
             )
-
             enqueueSnackbar(response.data.message, { variant: 'success' })
         } catch {
             enqueueSnackbar('Oops! Something wrong', { variant: 'error' })
@@ -59,11 +56,6 @@ const ProfileModuleContentPersonalData = ({
 
     const formOnChangeHandler = (e) => {
         const { name, value } = e.target
-        setOptions(
-            educationList.filter((item) =>
-                item.name.toLowerCase().includes(value)
-            )
-        )
 
         setFormData({
             ...formData,
@@ -101,7 +93,7 @@ const ProfileModuleContentPersonalData = ({
                     </ProfileModuleContentPersonalDataTitle>
                     <ProfileModuleContentPersonalDataEducation
                         formData={formData}
-                        educationList={options}
+                        educationList={educationList}
                         formOnChangeHandler={formOnChangeHandler}
                     />
                 </div>

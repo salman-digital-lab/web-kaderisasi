@@ -39,7 +39,7 @@ const ProfileModuleContentPersonalDataEducation = ({
                 defaultValue={formData.university_id}
                 onChange={formOnChangeHandler}
                 placeholder='-- Pilih kampus anda --'
-                campusName={educationName?.name}
+                defaultName={educationName?.name}
                 options={educationList}
                 required
             />
