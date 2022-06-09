@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { FormInput, FormSelect, FormDatalist, FormDropdown } from '@components'
+import { FormInput, FormSearchableDropdown } from '@components'
 
 import ProfileModuleContentPersonalDataCard from '../card'
 
@@ -33,7 +33,7 @@ const ProfileModuleContentPersonalDataEducation = ({
                 options={educationList}
                 required
             ></FormDatalist> */}
-            <FormDropdown
+            <FormSearchableDropdown
                 label='Kampus'
                 name='university_id'
                 defaultValue={formData.university_id}

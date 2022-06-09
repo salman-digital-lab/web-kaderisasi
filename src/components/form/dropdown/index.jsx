@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react'
 import { DropdownIcon } from '@assets'
 
-const FormDropdown = ({
+const FormSearchableDropdown = ({
     label,
     children,
     required,
@@ -112,4 +112,4 @@ const FormDropdown = ({
     )
 }
 
-export default FormDropdown
+export default FormSearchableDropdown

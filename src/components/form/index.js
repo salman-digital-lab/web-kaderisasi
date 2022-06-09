@@ -6,7 +6,7 @@ import FormRadio from './radio'
 import FormCheckbox from './checkbox'
 import FormScale from './scale'
 import FormDatalist from './datalist'
-import FormDropdown from './dropdown'
+import FormSearchableDropdown from './dropdown'
 
 export {
     FormInput,
@@ -17,5 +17,5 @@ export {
     FormCheckbox,
     FormScale,
     FormDatalist,
-    FormDropdown,
+    FormSearchableDropdown,
 }

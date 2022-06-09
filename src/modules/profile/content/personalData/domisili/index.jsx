@@ -1,9 +1,8 @@
 import React from 'react'
 
-import { FormSelect } from '@components'
+import { FormSearchableDropdown } from '@components'
 
 import ProfileModuleContentPersonalDataCard from '../card'
-import FormDropdown from '../../../../../components/form/dropdown'
 
 const ProfileModuleContentPersonalDataDomisili = ({
     formData,
@@ -28,7 +27,7 @@ const ProfileModuleContentPersonalDataDomisili = ({
 
     return (
         <ProfileModuleContentPersonalDataCard>
-            <FormDropdown
+            <FormSearchableDropdown
                 label='Provinsi'
                 name='province_id'
                 defaultValue={formData.province_id}
@@ -38,7 +37,7 @@ const ProfileModuleContentPersonalDataDomisili = ({
                 options={provincesList}
                 required
             />
-            <FormDropdown
+            <FormSearchableDropdown
                 label='Kota'
                 name='regency_id'
                 defaultValue={formData.regency_id}
@@ -48,7 +47,7 @@ const ProfileModuleContentPersonalDataDomisili = ({
                 options={regency}
                 required
             />
-            <FormDropdown
+            <FormSearchableDropdown
                 label='Kecamatan'
                 name='district_id'
                 defaultValue={formData.district_id}
@@ -58,7 +57,7 @@ const ProfileModuleContentPersonalDataDomisili = ({
                 options={district}
                 required
             />
-            <FormDropdown
+            <FormSearchableDropdown
                 label='Desa'
                 name='village_id'
                 defaultValue={formData.village_id}
