@@ -19,7 +19,6 @@
         "@mui/material": "^5.0.3",
         "axios": "^0.22.0",
         "dompurify": "^2.3.4",
-        "downshift": "^6.1.7",
         "eslint-config-airbnb-base": "^14.2.1",
         "framer-motion": "^4.1.17",
         "js-cookie": "^3.0.1",

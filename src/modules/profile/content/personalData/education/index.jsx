@@ -23,16 +23,6 @@ const ProfileModuleContentPersonalDataEducation = ({
                 placeholder='-- Ketikkan nomor induk mahasiswa --'
                 required
             />
-            {/* <FormDatalist
-                label='Kampus'
-                name='university_id'
-                defaultValue={formData.university_id}
-                onChange={formOnChangeHandler}
-                placeholder='-- Pilih kampus anda --'
-                campusName={educationName?.name}
-                options={educationList}
-                required
-            ></FormDatalist> */}
             <FormSearchableDropdown
                 label='Kampus'
                 name='university_id'
