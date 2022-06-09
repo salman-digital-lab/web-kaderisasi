@@ -11,6 +11,7 @@ const FormDatalist = ({
     onChange,
     name,
     campusName,
+    options,
     ...props
 }) => {
     return (
@@ -47,7 +48,13 @@ const FormDatalist = ({
                             {placeholder}
                         </option>
                     )}
-                    {children}
+                    {options.map((item) => {
+                        return (
+                            <option key={item.id} value={item.id}>
+                                {item.name}
+                            </option>
+                        )
+                    })}
                 </datalist>
             </div>
         </div>

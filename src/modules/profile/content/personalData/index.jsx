@@ -1,6 +1,6 @@
 /* eslint-disable no-shadow */
 
-import React from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import cookies from 'js-cookie'
 import { useSnackbar } from 'notistack'
@@ -48,7 +48,6 @@ const ProfileModuleContentPersonalData = ({
                     },
                 }
             )
-
             enqueueSnackbar(response.data.message, { variant: 'success' })
         } catch {
             enqueueSnackbar('Oops! Something wrong', { variant: 'error' })
