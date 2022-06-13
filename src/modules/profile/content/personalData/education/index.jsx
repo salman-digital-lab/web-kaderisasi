@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { FormInput, FormSelect, FormDatalist } from '@components'
+import { FormInput, FormSearchableDropdown } from '@components'
 
 import ProfileModuleContentPersonalDataCard from '../card'
 
@@ -23,23 +23,16 @@ const ProfileModuleContentPersonalDataEducation = ({
                 placeholder='-- Ketikkan nomor induk mahasiswa --'
                 required
             />
-            <FormDatalist
+            <FormSearchableDropdown
                 label='Kampus'
                 name='university_id'
                 defaultValue={formData.university_id}
                 onChange={formOnChangeHandler}
                 placeholder='-- Pilih kampus anda --'
-                campusName={educationName?.name}
+                defaultName={educationName?.name}
+                options={educationList}
                 required
-            >
-                {educationList.map((item) => {
-                    return (
-                        <option key={item.id} value={item.id}>
-                            {item.name}
-                        </option>
-                    )
-                })}
-            </FormDatalist>
+            />
             <FormInput
                 type='text'
                 name='faculty'
