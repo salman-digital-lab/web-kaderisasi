@@ -23,7 +23,7 @@ const FormSearchableDropdown = ({
 
     const handleInputType = (input) => {
         let filteredData = options.filter((item) =>
-            item.name.toLowerCase().includes(input.target.value)
+            item.name.toLowerCase().includes(input.target.value.toLowerCase())
         )
         if (filteredData.length === 0) {
             setIsEmpty(true)
