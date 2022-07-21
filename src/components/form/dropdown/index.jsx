@@ -84,7 +84,7 @@ const FormSearchableDropdown = ({
                                             ref={itemRef}
                                             name={name}
                                             key={item.id}
-                                            className='flex flex-col p-1 text-left outline-none text-sm  '
+                                            className='flex flex-col p-1 text-left outline-none text-sm hover:cursor-pointer'
                                             type='button'
                                             onClick={(e) =>
                                                 handleClick(e, item)
