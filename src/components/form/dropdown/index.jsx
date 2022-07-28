@@ -39,11 +39,14 @@ const FormSearchableDropdown = ({
         onChange(e)
     }
 
-    const handleBlur = () => {
+    const handleBlur = (input) => {
         if (isOpen) {
             setTimeout(() => {
                 setIsOpen(false)
             }, 100)
+        }
+        if(isEmpty){
+            input.target.value=""
         }
     }
 
@@ -84,7 +87,7 @@ const FormSearchableDropdown = ({
                                             ref={itemRef}
                                             name={name}
                                             key={item.id}
-                                            className='flex flex-col p-1 text-left outline-none text-sm hover:cursor-pointer'
+                                            className='flex flex-col p-1 text-left outline-none text-sm w-full hover:cursor-pointer'
                                             type='button'
                                             onClick={(e) =>
                                                 handleClick(e, item)
