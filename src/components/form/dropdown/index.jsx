@@ -20,11 +20,23 @@ const FormSearchableDropdown = ({
     const [data, setData] = useState([])
     const [isOpen, setIsOpen] = useState(false)
     const [isEmpty, setIsEmpty] = useState(false)
+    const [isSelect, setIsSelect] = useState(false)
+
 
     const handleInputType = (input) => {
         let filteredData = options.filter((item) =>
             item.name.toLowerCase().includes(input.target.value.toLowerCase())
         )
+        let selectedData = options.filter((item) =>
+        input.target.value.toLowerCase().includes(item.name.toLowerCase())
+        )
+        
+        if(selectedData.length === 0){
+            setIsSelect(false)
+        } else{
+            setIsSelect(true)
+        }
+    
         if (filteredData.length === 0) {
             setIsEmpty(true)
         } else {
@@ -39,11 +51,14 @@ const FormSearchableDropdown = ({
         onChange(e)
     }
 
-    const handleBlur = () => {
+    const handleBlur = (input) => {
         if (isOpen) {
             setTimeout(() => {
                 setIsOpen(false)
             }, 100)
+        }
+        if(isEmpty || isSelect === false){
+            input.target.value=""
         }
     }
 
@@ -72,6 +87,7 @@ const FormSearchableDropdown = ({
                     onChange={handleInputType}
                     onClick={() => (inputRef.current.value = '')}
                     onBlur={handleBlur}
+                    autoComplete='off'
                     {...props}
                 />
                 {isOpen ? (
@@ -84,7 +100,7 @@ const FormSearchableDropdown = ({
                                             ref={itemRef}
                                             name={name}
                                             key={item.id}
-                                            className='flex flex-col p-1 text-left outline-none text-sm hover:cursor-pointer'
+                                            className='flex flex-col p-1 text-left outline-none text-sm w-full hover:cursor-pointer'
                                             type='button'
                                             onClick={(e) =>
                                                 handleClick(e, item)
