@@ -87,6 +87,7 @@ const FormSearchableDropdown = ({
                     onChange={handleInputType}
                     onClick={() => (inputRef.current.value = '')}
                     onBlur={handleBlur}
+                    autoComplete='off'
                     {...props}
                 />
                 {isOpen ? (
