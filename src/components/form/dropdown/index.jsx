@@ -20,11 +20,23 @@ const FormSearchableDropdown = ({
     const [data, setData] = useState([])
     const [isOpen, setIsOpen] = useState(false)
     const [isEmpty, setIsEmpty] = useState(false)
+    const [isSelect, setIsSelect] = useState(false)
+
 
     const handleInputType = (input) => {
         let filteredData = options.filter((item) =>
             item.name.toLowerCase().includes(input.target.value.toLowerCase())
         )
+        let selectedData = options.filter((item) =>
+        input.target.value.toLowerCase().includes(item.name.toLowerCase())
+        )
+        
+        if(selectedData.length === 0){
+            setIsSelect(false)
+        } else{
+            setIsSelect(true)
+        }
+    
         if (filteredData.length === 0) {
             setIsEmpty(true)
         } else {
@@ -45,7 +57,7 @@ const FormSearchableDropdown = ({
                 setIsOpen(false)
             }, 100)
         }
-        if(isEmpty){
+        if(isEmpty || isSelect === false){
             input.target.value=""
         }
     }
