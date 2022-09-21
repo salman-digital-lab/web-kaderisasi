@@ -139,13 +139,16 @@ const StudentCareModuleForm = ({ name, token }) => {
                                             Akademik
                                         </option>
                                         <option value='Kesehatan'>
-                                            Kesehatan
+                                            Kesehatan Mental
                                         </option>
-                                        <option value='Keuangan'>
-                                            Keuangan
+                                        <option value='Sosial'>
+                                            Sosial
                                         </option>
                                         <option value='Keluarga'>
                                             Keluarga
+                                        </option>
+                                        <option value='Pengembangan'>
+                                            Pengembangan Diri
                                         </option>
                                         <option value='Lainnya'>Lainnya</option>
                                     </FormSelect>
