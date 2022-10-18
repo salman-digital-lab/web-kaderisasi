@@ -16,6 +16,9 @@ const getUserRoleID = (id) => {
         case 7:
             return 'Kader Lanjut'
 
+        case 50:
+            return 'Alumni'
+
         default:
             return 'Not Available'
     }
