@@ -24,11 +24,15 @@ const Route = ({ href, child, children }) => {
         return (
             <div
                 onClick={() => setShowChild(!showChild)}
-                className={`p-4 border-b-4 relative border-transparent transition-all duration-500 hover:border-bmka-accent-orange cursor-pointer${
-                    pathname === href ? 'border-bmka-accent-orange' : ''
-                }`}
+                className={` border-b-4 relative border-transparent transition-all duration-500  cursor-pointer`}
             >
-                <p className='text-white'>{children}</p>
+                <div
+                    className={`p-4 border-b-4 border-transparent transition-all duration-500 hover:border-bmka-accent-orange ${
+                        pathname === href ? 'border-bmka-accent-orange' : ''
+                    }`}
+                >
+                    <p className='text-white'>{children}</p>
+                </div>
                 {child && (
                     <>
                         {showChild && (
@@ -36,7 +40,7 @@ const Route = ({ href, child, children }) => {
                                 style={{
                                     marginLeft: '-40%',
                                 }}
-                                className='w-44 absolute bg-white p-4 flex flex-col gap-4 rounded shadow-level-1 top-20 left-0 right-0'
+                                className='hidden w-44 absolute bg-white p-4 flex flex-col gap-4 rounded shadow-level-1 top-20 left-0 right-0 md:flex'
                             >
                                 {child.map((item) => {
                                     return (
@@ -47,6 +51,26 @@ const Route = ({ href, child, children }) => {
                                 })}
                             </div>
                         )}
+                    </>
+                )}
+                {child && (
+                    <>
+                        {showChild &&
+                            child.map((item) => (
+                                <Link href={item.url}>
+                                    <div
+                                        className={`p-4 border-b-4 border-transparent transition-all duration-500 hover:border-bmka-accent-orange md:hidden bg-white ${
+                                            pathname === href
+                                                ? 'border-bmka-accent-orange'
+                                                : ''
+                                        }`}
+                                    >
+                                        <p >
+                                            {item.name}
+                                        </p>
+                                    </div>
+                                </Link>
+                            ))}
                     </>
                 )}
             </div>
