@@ -125,6 +125,7 @@ const Navigation = () => {
                             <Route href='/activities'>Kegiatan</Route>
                             <Route href='/student-care'>Ruang Curhat</Route>
                             <Route href='/about-us'>Tentang Kami</Route>
+                            <Route child={productChild}>Products</Route>
                             {!state.user ? (
                                 <>
                                     <Route href='/register'>Daftar</Route>
