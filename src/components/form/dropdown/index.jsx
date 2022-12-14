@@ -55,7 +55,7 @@ const FormSearchableDropdown = ({
         if (isOpen) {
             setTimeout(() => {
                 setIsOpen(false)
-            }, 100)
+            }, 250)
         }
         if(isEmpty || isSelect === false){
             input.target.value=""
