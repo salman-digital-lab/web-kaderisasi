@@ -14,7 +14,7 @@ import RegenerationFlowModuleTimelinePoint from './point'
 import RegenerationFlowModuleTimelineSection from './section'
 
 const RegenerationFlowModuleTimeline = () => {
-    const { jamaah, aktivis, kader } = alurKaderisasiJSON
+    const { jamaah, aktivis, kader, kader_lanjut } = alurKaderisasiJSON
 
     return (
         <div className='mt-12'>
@@ -70,6 +70,26 @@ const RegenerationFlowModuleTimeline = () => {
                             title={item.title}
                             description={item.description}
                             number={aktivis.length + index + 1}
+                        />
+                    </div>
+                )
+            })}
+
+            <RegenerationFlowModuleTimelineLine />
+
+            <RegenerationFlowModuleTimelineSection>
+                <RegenerationFlowKaderIcon />
+                <p className='text-white w-12 text-center'>Kader Lanjut</p>
+            </RegenerationFlowModuleTimelineSection>
+            {kader_lanjut.map((item, index) => {
+                return (
+                    <div key={index}>
+                        <RegenerationFlowModuleTimelineLine />
+
+                        <RegenerationFlowModuleTimelinePoint
+                            title={item.title}
+                            description={item.description}
+                            number={5 + index + 1}
                         />
                     </div>
                 )
