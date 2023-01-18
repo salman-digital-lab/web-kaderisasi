@@ -12,6 +12,9 @@ const ProfileModuleContentPersonalDataDomisili = ({
 }) => {
     const { regency, district, village } = regionData
 
+    let villageName = village.find(
+        (village) => village.id == formData.village_id
+    )
     let provinceName = provincesList.find(
         (province) => province.id == formData.province_id
     )
@@ -21,12 +24,19 @@ const ProfileModuleContentPersonalDataDomisili = ({
     let districtName = district.find(
         (district) => district.id == formData.district_id
     )
-    let villageName = village.find(
-        (village) => village.id == formData.village_id
-    )
 
     return (
         <ProfileModuleContentPersonalDataCard>
+               <FormSearchableDropdown
+                label='Desa'
+                name='village_id'
+                defaultValue={formData.village_id}
+                onChange={formOnChangeHandler}
+                placeholder='-- Pilih desa --'
+                defaultName={villageName?.name}
+                options={village}
+                required
+            />
             <FormSearchableDropdown
                 label='Provinsi'
                 name='province_id'
@@ -55,16 +65,6 @@ const ProfileModuleContentPersonalDataDomisili = ({
                 placeholder='-- Pilih kecamatan --'
                 defaultName={districtName?.name}
                 options={district}
-                required
-            />
-            <FormSearchableDropdown
-                label='Desa'
-                name='village_id'
-                defaultValue={formData.village_id}
-                onChange={formOnChangeHandler}
-                placeholder='-- Pilih kecamatan --'
-                defaultName={villageName?.name}
-                options={village}
                 required
             />
         </ProfileModuleContentPersonalDataCard>
