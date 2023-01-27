@@ -6,7 +6,7 @@ import React, { useState } from 'react'
 
 import { Button, FormInput, FormSelect, FormTextArea } from '@components'
 
-const StudentCareModuleForm = ({ name, token }) => {
+const StudentCareModuleForm = ({ name, token, phone }) => {
     const { enqueueSnackbar } = useSnackbar()
 
     const formDataTemplate = {
@@ -16,6 +16,7 @@ const StudentCareModuleForm = ({ name, token }) => {
         problem_owner_name: '',
         technical_handling: '',
         problem_category_desk: '',
+        number_phone_owner: phone ? phone : '',
     }
 
     const [isActive, setIsActive] = useState(false)
@@ -195,6 +196,15 @@ const StudentCareModuleForm = ({ name, token }) => {
                                             Keduanya
                                         </option>
                                     </FormSelect>
+                                    <FormInput
+                                            label='Nomor HP (Pastikan Aktif Whatsapp)'
+                                            name='number_phone_owner'
+                                            onChange={formOnChangeHandler}
+                                            value={formData.number_phone_owner}
+                                            placeholder='-- Masukkan No WA aktif mu disini --'
+                                            disabled={isSending}
+                                            required
+                                        />
                                 </div>
                                 <div className='text-center mt-10'>
                                     <Button variant='secondary'>Submit</Button>
