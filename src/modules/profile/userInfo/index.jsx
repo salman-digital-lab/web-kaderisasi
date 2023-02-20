@@ -111,6 +111,12 @@ const ProfileModuleUserInfo = () => {
                         <p className='text-gray-200'>
                             {getUserRoleID(state.user.role_id)}
                         </p>
+                        <p className='text-gray-200'>
+                            {state.user.ssc ? 'SSC ' + state.user.ssc : ''} 
+                            {state.user.lmd ? ' LMD ' + state.user.lmd : ''} 
+                            {state.user.spectra ? ' SPECTRA ' + state.user.spectra : ''} 
+                            {state.user.komprof ? ' KOMPROF ' + state.user.komprof : ''}
+                        </p>
                     </div>
                     <Button
                         variant='primary'
