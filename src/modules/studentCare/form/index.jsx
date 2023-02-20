@@ -4,9 +4,9 @@ import axios from 'axios'
 import { useSnackbar } from 'notistack'
 import React, { useState } from 'react'
 
-import { Button, FormInput, FormSelect, FormTextArea } from '@components'
+import { Button, FormInput, FormSelect, FormTextArea, FormRadio, FormCheckbox, Link } from '@components'
 
-const StudentCareModuleForm = ({ name, token }) => {
+const StudentCareModuleForm = ({ name, token, phone }) => {
     const { enqueueSnackbar } = useSnackbar()
 
     const formDataTemplate = {
@@ -20,6 +20,7 @@ const StudentCareModuleForm = ({ name, token }) => {
 
     const [isActive, setIsActive] = useState(false)
     const [isSending, setIsSending] = useState(false)
+    const [checkbox, setCheckBox] = useState(false)
     const [formData, setFormData] = useState({ ...formDataTemplate })
 
     const formSubmitHandler = async (e) => {
@@ -195,10 +196,18 @@ const StudentCareModuleForm = ({ name, token }) => {
                                             Keduanya
                                         </option>
                                     </FormSelect>
+                                    <FormCheckbox
+                                        type='checkbox'
+                                        onChange={() => setCheckBox(!checkbox)}
+                                        value={`Saya memastikan nomor HP yang terdaftar ${phone} aktif WhatsApp`}
+                                    />
+                                    <Link href='/profile'>
+                                        <p>Atau <span style={{textDecoration:'underline', color:'blue'}}>ubah nomor Hp</span></p>
+                                    </Link>
                                 </div>
                                 <div className='text-center mt-10'>
-                                    <Button variant='secondary'>Submit</Button>
-                                </div>
+                                    <Button variant={checkbox === true ? 'secondary' : 'info'} disabled={!checkbox}>Submit</Button>
+                                </div> 
                             </>
                         )}
                     </div>
