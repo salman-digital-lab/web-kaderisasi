@@ -11,6 +11,7 @@ import ProfileModuleContentMenu from './menu'
 import ProfileModuleContentHandBook from './handBook'
 import ProfileModuleContentActivities from './activities'
 import ProfileModuleContentPersonalData from './personalData'
+import ProfileModuleStudentCare from './studentCare'
 
 const ProfileModuleContent = ({
     educationList,
@@ -24,6 +25,7 @@ const ProfileModuleContent = ({
         default: '',
         handBook: 'handBook',
         activities: 'activities',
+        studentCare: 'studentCare',
     }
 
     const firstRender = useRef(true)
@@ -252,6 +254,15 @@ const ProfileModuleContent = ({
                 )}
                 {activeMenu === menuName.handBook && (
                     <ProfileModuleContentHandBook
+                        token={state.user.token}
+                        listChecklist={listChecklist}
+                        userChecklist={userChecklist}
+                        setUserChecklist={setUserChecklist}
+                    />
+                )}
+
+                {activeMenu === menuName.studentCare && (
+                    <ProfileModuleStudentCare
                         token={state.user.token}
                         listChecklist={listChecklist}
                         userChecklist={userChecklist}
