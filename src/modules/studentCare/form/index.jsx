@@ -206,7 +206,7 @@ const StudentCareModuleForm = ({ name, token, phone }) => {
                                     </Link>
                                 </div>
                                 <div className='text-center mt-10'>
-                                    <Button variant={checkbox === true ? 'secondary' : 'info'} disabled={!checkbox}>Submit</Button>
+                                    <Button variant={checkbox === false ? 'disable' : 'secondary'} disabled={!checkbox}>Submit</Button>
                                 </div> 
                             </>
                         )}
