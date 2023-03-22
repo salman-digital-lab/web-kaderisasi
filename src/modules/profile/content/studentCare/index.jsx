@@ -28,6 +28,7 @@ const ProfileModuleStudentCare = () => {
         try {
             const studentCareFetchData = await getStudentCareData()
             setStudentCareData(studentCareFetchData)
+            console.log('RC',studentCareFetchData)
         } catch (error) {
             enqueueSnackbar('Error getting region data', { variant: 'error' })
         }
@@ -62,6 +63,16 @@ const ProfileModuleStudentCare = () => {
                                       {item.status_handling}
                                   </h4>
                               </div>
+                          </div>
+                          <div>
+                                <div className='flex'>
+                                    <h3 className='text-md w-20 text-red-400 font-semibold'>
+                                        Deskripsi : 
+                                    </h3>
+                                    <p className='text-md w-52 text-red-400'>
+                                        Masalah hidup apa aja
+                                    </p>
+                                </div>
                           </div>
                           <div
                               className='flex justify-between mt-4 border-bmka-accent-orange rounded border-2 p-2'
