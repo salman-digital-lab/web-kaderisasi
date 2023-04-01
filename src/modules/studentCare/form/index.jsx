@@ -199,10 +199,10 @@ const StudentCareModuleForm = ({ name, token, phone }) => {
                                     <FormCheckbox
                                         type='checkbox'
                                         onChange={() => setCheckBox(!checkbox)}
-                                        value={`Saya memastikan nomor HP yang terdaftar ${phone} aktif WhatsApp`}
+                                        value={`Saya memastikan nomor HP ${phone} aktif WhatsApp`}
                                     />
                                     <Link href='/profile'>
-                                        <p>Atau <span style={{textDecoration:'underline', color:'blue'}}>ubah nomor Hp</span></p>
+                                        <p><span style={{textDecoration:'underline', color:'blue'}}>ubah nomor HP di sini</span></p>
                                     </Link>
                                 </div>
                                 <div className='text-center mt-10'>
