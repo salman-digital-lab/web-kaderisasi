@@ -85,6 +85,14 @@ const ProfileModuleStudentCare = () => {
                               <div className='flex flex-col justify-center text-gray-500'>
                                   <div className='flex'>
                                       <p className='text-sm w-28'>
+                                          Nama :
+                                      </p>
+                                      <p className='text-sm'>
+                                          {item.counselor_name}
+                                      </p>
+                                  </div>
+                                  <div className='flex'>
+                                      <p className='text-sm w-28'>
                                           Penanganan :
                                       </p>
                                       <p className='text-sm'>
@@ -97,14 +105,6 @@ const ProfileModuleStudentCare = () => {
                                       </p>
                                       <p className='text-sm'>
                                           {item.counselor_gender}
-                                      </p>
-                                  </div>
-                                  <div className='flex'>
-                                      <p className='text-sm w-28'>
-                                          Nama :
-                                      </p>
-                                      <p className='text-sm'>
-                                          {item.counselor_name}
                                       </p>
                                   </div>
                               </div>
