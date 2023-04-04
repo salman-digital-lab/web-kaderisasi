@@ -32,6 +32,7 @@ const StudentCareModule = () => {
                         <StudentCareModuleForm
                             name={state.user.name}
                             token={state.user.token}
+                            phone={state.user.phone}
                         />
                     ) : (
                         <div className='w-full flex flex-col gap-6 text-center'>

@@ -182,6 +182,7 @@ const ActivitesRegister = ({
             const answer = parseAnswer()
             enqueueSnackbar('Mengirim data . . .', {
                 variant: 'info',
+                autoHideDuration: 5000
             })
             await axios
                 .post(

@@ -63,6 +63,16 @@ const ProfileModuleStudentCare = () => {
                                   </h4>
                               </div>
                           </div>
+                          <div>
+                                <div className='flex'>
+                                    <h3 className='text-md w-20 text-red-400 font-semibold'>
+                                        Deskripsi : 
+                                    </h3>
+                                    <p className='text-md w-52 text-red-400'>
+                                        {item.problem_category_desk}
+                                    </p>
+                                </div>
+                          </div>
                           <div
                               className='flex justify-between mt-4 border-bmka-accent-orange rounded border-2 p-2'
                               style={{ width: '21rem' }}
@@ -73,6 +83,14 @@ const ProfileModuleStudentCare = () => {
                                   </h4>
                               </div>
                               <div className='flex flex-col justify-center text-gray-500'>
+                                  <div className='flex'>
+                                      <p className='text-sm w-28'>
+                                          Nama :
+                                      </p>
+                                      <p className='text-sm'>
+                                          {item.counselor_name}
+                                      </p>
+                                  </div>
                                   <div className='flex'>
                                       <p className='text-sm w-28'>
                                           Penanganan :
