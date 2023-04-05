@@ -30,6 +30,12 @@ const ProfileModuleContentMenu = ({ menuName, activeMenu, setActiveMenu }) => {
                 Kegiatan
             </Button>
             <Button
+                variant={buttonVariant(menuName.studentCare)}
+                onClick={() => buttonOnClickHandler(menuName.studentCare)}
+            >
+                Ruang Curhat
+            </Button>
+            <Button
                 variant={buttonVariant(menuName.handBook)}
                 onClick={() => buttonOnClickHandler(menuName.handBook)}
             >
