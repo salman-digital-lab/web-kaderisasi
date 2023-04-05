@@ -16,7 +16,7 @@ const HomeModuleHeader = () => {
                         </div>
                         <p className='text-white text-center md:text-left'>
                             Portal Aktivis Salman yang dikelola BMKA (Bidang
-                            Kemahasiswaan, Kaderisasi dan Alumni) Salman yang
+                            Mahasiswa, Kaderisasi dan Alumni) Salman yang
                             berfungsi sebagai pusat pendaftaran kegiatan di{' '}
                             <span className='font-bold underline'>
                                 <Link
