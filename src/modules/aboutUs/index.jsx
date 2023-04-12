@@ -14,7 +14,7 @@ const AboutUsModule = () => {
                     <div>
                         <p>
                             <b>
-                                BMKA (Bidang Kemahasiswaan, Kaderisasi dan
+                                BMKA (Bidang Mahasiswa, Kaderisasi dan
                                 Alumni) Salman ITB{' '}
                             </b>{' '}
                             adalah bidang yang ada di bawah YPM Salman ITB yang

@@ -16,7 +16,7 @@ const info = () => {
 
                 <FooterText>
                     Portal Aktivis Salman yang dikelola BMKA (Bidang
-                    Kemahasiswaan, Kaderisasi dan Alumni) Salman yang berfungsi
+                    Mahasiswa, Kaderisasi dan Alumni) Salman yang berfungsi
                     sebagai pusat pendaftaran kegiatan di @kaderisasisalman.
                     Program pembinaan dalam rangka membentuk kader teladan untuk
                     membangun Indonesia.
