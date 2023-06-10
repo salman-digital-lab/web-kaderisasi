@@ -16,8 +16,14 @@ const getUserRoleID = (id) => {
         case 7:
             return 'Kader Lanjut'
 
-        case 50:
-            return 'Alumni'
+        case 51:
+            return 'Aktivis KK' 
+
+        case 52:
+            return 'Kader Inventra' 
+        
+        case 53:
+            return 'Kader Komprof' 
 
         default:
             return 'Not Available'

@@ -13,7 +13,7 @@ const RegisterModuleForm = ({ formData, inputFormHandler }) => {
                 name='name'
                 value={name}
                 autoComplete='off'
-                placeholder='Name'
+                placeholder='Full Name'
                 onChange={inputFormHandler}
                 icon={<UserIcon className='w-6' />}
                 required
