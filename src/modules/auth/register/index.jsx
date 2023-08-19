@@ -54,8 +54,29 @@ const RegisterModule = () => {
                 }
                 router.push('/login')
             })
-            .catch((err) => {
-                enqueueSnackbar(err.response.data.message, { variant: 'error' })
+            .catch((error) => {
+                if (error.response) {
+                    enqueueSnackbar(error.response.data.message, {
+                        variant: 'error',
+                    });
+                } else {
+                    let requestInfo = '';
+                    if (error.request) {
+                        requestInfo = JSON.stringify(error.request);
+                    }
+                    
+                    let configInfo = JSON.stringify(error.config);
+                    
+                    enqueueSnackbar(requestInfo || error.message, {
+                        variant: 'error',
+                    });
+                    
+                    if (configInfo !== '{}') {
+                        enqueueSnackbar(configInfo, {
+                            variant: 'error',
+                        });
+                    }
+                }
             })
     }
 

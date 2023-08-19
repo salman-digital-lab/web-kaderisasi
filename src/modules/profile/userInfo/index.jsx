@@ -66,8 +66,29 @@ const ProfileModuleUserInfo = () => {
             setProfilePicURL(response.data.data.file_image)
 
             enqueueSnackbar(`${response.data.message}`, { variant: 'success' })
-        } catch (e) {
-            enqueueSnackbar('Oops! Something wrong', { variant: 'error' })
+        } catch (error) {
+            if (error.response) {
+                enqueueSnackbar(error.response.data.message, {
+                    variant: 'error',
+                });
+            } else {
+                let requestInfo = '';
+                if (error.request) {
+                    requestInfo = JSON.stringify(error.request);
+                }
+                
+                let configInfo = JSON.stringify(error.config);
+                
+                enqueueSnackbar(requestInfo || error.message, {
+                    variant: 'error',
+                });
+                
+                if (configInfo !== '{}') {
+                    enqueueSnackbar(configInfo, {
+                        variant: 'error',
+                    });
+                }
+            }
         }
     }
     // use effect to set zustand if profile pic is changed

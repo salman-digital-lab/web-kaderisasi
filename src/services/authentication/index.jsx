@@ -6,12 +6,14 @@ import cookies from 'js-cookie'
 import jwtDecode from 'jwt-decode'
 import React, { useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useSnackbar } from 'notistack'
 
 import { zustandStore } from '@services'
 
 import AuthenticationOverlay from './overlay'
 
 const Authentication = ({ children }) => {
+    const { enqueueSnackbar } = useSnackbar()
     const state = {
         user: zustandStore((state) => state.user),
         setUser: zustandStore((state) => state.setUser),
@@ -62,6 +64,28 @@ const Authentication = ({ children }) => {
 
                 closeOverlay()
             } catch (error) {
+                if (error.response) {
+                    enqueueSnackbar(error.response.data.message, {
+                        variant: 'error',
+                    });
+                } else {
+                    let requestInfo = '';
+                    if (error.request) {
+                        requestInfo = JSON.stringify(error.request);
+                    }
+                    
+                    let configInfo = JSON.stringify(error.config);
+                    
+                    enqueueSnackbar(requestInfo || error.message, {
+                        variant: 'error',
+                    });
+                    
+                    if (configInfo !== '{}') {
+                        enqueueSnackbar(configInfo, {
+                            variant: 'error',
+                        });
+                    }
+                }
                 closeOverlay()
             }
         }
