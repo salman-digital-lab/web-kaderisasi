@@ -60,11 +60,32 @@ const StudentCareModuleForm = ({ name, token }) => {
 
             setFormData({ ...formDataTemplate })
         } catch (error) {
-            enqueueSnackbar(
-                'Oops! Ada kesalahan terjadi, coba lagi nanti atau tunggu beberapa saat.',
-                { variant: 'error' }
-            )
-
+            // enqueueSnackbar(
+            //     'Oops! Ada kesalahan terjadi, coba lagi nanti atau tunggu beberapa saat.',
+            //     { variant: 'error' }
+            // )
+            if (error.response) {
+                enqueueSnackbar(error.response.data.message, {
+                    variant: 'error',
+                });
+            } else {
+                let requestInfo = '';
+                if (error.request) {
+                    requestInfo = JSON.stringify(error.request);
+                }
+                
+                let configInfo = JSON.stringify(error.config);
+                
+                enqueueSnackbar(requestInfo || error.message, {
+                    variant: 'error',
+                });
+                
+                if (configInfo !== '{}') {
+                    enqueueSnackbar(configInfo, {
+                        variant: 'error',
+                    });
+                }
+            }
             setIsSending(false)
         }
     }
