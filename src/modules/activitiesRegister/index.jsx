@@ -24,7 +24,7 @@ const ActivitesRegister = ({
     const state = {
         user: zustandStore((state) => state.user),
     }
-    const { enqueueSnackbar } = useSnackbar()
+    const { enqueueSnackbar, closeSnackbar } = useSnackbar()
 
     // if user token exist change message
     const displayMessage =
@@ -45,6 +45,7 @@ const ActivitesRegister = ({
         akhir: 2,
         answer: {},
     })
+    const [isSendingData, setIsSendingData] = useState(false)
 
     if (status === 'FAILED') {
         enqueueSnackbar(displayMessage, {
@@ -178,10 +179,13 @@ const ActivitesRegister = ({
      */
     const handleSubmit = async (event) => {
         event.preventDefault()
+        setIsSendingData(true)
+
         if (input.currentStep === maxStep - 1) {
             const answer = parseAnswer()
-            enqueueSnackbar('Mengirim data . . .', {
+            const snackbarKey = enqueueSnackbar('Mengirim data . . .', {
                 variant: 'info',
+                persist: true,
             })
             await axios
                 .post(
@@ -198,15 +202,39 @@ const ActivitesRegister = ({
                     }
                 )
                 .then((res) => {
-                    enqueueSnackbar(res.data.message, {
-                        variant: 'success',
-                    })
+                    closeSnackbar(snackbarKey)
+                        enqueueSnackbar(res.data.message, {
+                            variant: 'success',
+                        })
                     next()
                 })
                 .catch((error) => {
-                    enqueueSnackbar(error.response.data.message, {
-                        variant: 'error',
-                    })
+                    closeSnackbar(snackbarKey)
+                    if (error.response) {
+                        enqueueSnackbar(error.response.data.message, {
+                            variant: 'error',
+                        });
+                    } else {
+                        let requestInfo = '';
+                        if (error.request) {
+                            requestInfo = JSON.stringify(error.request);
+                        }
+                        
+                        let configInfo = JSON.stringify(error.config);
+                        
+                        enqueueSnackbar(requestInfo || error.message, {
+                            variant: 'error',
+                        });
+                        
+                        if (configInfo !== '{}') {
+                            enqueueSnackbar(configInfo, {
+                                variant: 'error',
+                            });
+                        }
+                    }
+                })
+                .finally(() => {
+                    setIsSendingData(false)
                 })
         }
     }
@@ -216,11 +244,15 @@ const ActivitesRegister = ({
      */
     const handleSubmitEdit = async (event) => {
         event.preventDefault()
+        setIsSendingData(true)
+
         if (input.currentStep === maxStep - 1) {
             const answer = parseAnswer()
-            enqueueSnackbar('Mengirim data . . .', {
+            const snackbarKey = enqueueSnackbar('Mengirim data . . .', {
                 variant: 'info',
+                persist: true,
             })
+            
             await axios
                 .put(
                     `${baseURL}/v1/activity/${slug}/form-edit/save`,
@@ -236,15 +268,39 @@ const ActivitesRegister = ({
                     }
                 )
                 .then((res) => {
-                    enqueueSnackbar(res.data.message, {
-                        variant: 'success',
-                    })
+                    closeSnackbar(snackbarKey)
+                        enqueueSnackbar(res.data.message, {
+                            variant: 'success',
+                        })
                     next()
                 })
                 .catch((error) => {
-                    enqueueSnackbar(error.response.data.message, {
-                        variant: 'error',
-                    })
+                    closeSnackbar(snackbarKey)
+                    if (error.response) {
+                        enqueueSnackbar(error.response.data.message, {
+                            variant: 'error',
+                        });
+                    } else {
+                        let requestInfo = '';
+                        if (error.request) {
+                            requestInfo = JSON.stringify(error.request);
+                        }
+                        
+                        let configInfo = JSON.stringify(error.config);
+                        
+                        enqueueSnackbar(requestInfo || error.message, {
+                            variant: 'error',
+                        });
+                        
+                        if (configInfo !== '{}') {
+                            enqueueSnackbar(configInfo, {
+                                variant: 'error',
+                            });
+                        }
+                    }
+                })
+                .finally(() => {
+                    setIsSendingData(false)
                 })
         }
     }
@@ -432,6 +488,7 @@ const ActivitesRegister = ({
                                                 type='submit'
                                                 variant='secondary'
                                                 onClick={checkform}
+                                                disabled={isSendingData}
                                             >
                                                 Kirim Kuesioner
                                             </Button>
