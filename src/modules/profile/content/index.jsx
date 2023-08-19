@@ -103,7 +103,29 @@ const ProfileModuleContent = ({
             setListChecklist(checklistResponse.data.data.data)
             setUserChecklist(checklistMemberResponse.data.data)
             setUserActivities(activitiesResponse.data.data)
-        } catch {
+        } catch (error) {
+            if (error.response) {
+                enqueueSnackbar(error.response.data.message, {
+                    variant: 'error',
+                });
+            } else {
+                let requestInfo = '';
+                if (error.request) {
+                    requestInfo = JSON.stringify(error.request);
+                }
+                
+                let configInfo = JSON.stringify(error.config);
+                
+                enqueueSnackbar(requestInfo || error.message, {
+                    variant: 'error',
+                });
+                
+                if (configInfo !== '{}') {
+                    enqueueSnackbar(configInfo, {
+                        variant: 'error',
+                    });
+                }
+            }
             setListChecklist([])
             setUserChecklist([])
             setUserActivities([])

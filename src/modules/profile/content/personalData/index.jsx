@@ -49,8 +49,29 @@ const ProfileModuleContentPersonalData = ({
                 }
             )
             enqueueSnackbar(response.data.message, { variant: 'success' })
-        } catch {
-            enqueueSnackbar('Oops! Something wrong', { variant: 'error' })
+        } catch (error) {
+            if (error.response) {
+                enqueueSnackbar(error.response.data.message, {
+                    variant: 'error',
+                });
+            } else {
+                let requestInfo = '';
+                if (error.request) {
+                    requestInfo = JSON.stringify(error.request);
+                }
+                
+                let configInfo = JSON.stringify(error.config);
+                
+                enqueueSnackbar(requestInfo || error.message, {
+                    variant: 'error',
+                });
+                
+                if (configInfo !== '{}') {
+                    enqueueSnackbar(configInfo, {
+                        variant: 'error',
+                    });
+                }
+            }
         }
     }
 
